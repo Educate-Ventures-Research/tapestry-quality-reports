@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tapestry — Legacy-Derived Quality Test Plan</title>
+<style>
+  :root{
+    --ink-950:#050f19; --ink-900:#091722; --ink-850:#0e1e2c; --ink-800:#132634; --ink-700:#213847;
+    --paper:#f6f8f9; --text:#edf2f4; --text-muted:#bdcad2; --text-subtle:#9aadb9;
+    --gold:#e2b35c; --gold-strong:#f0c46f; --gold-soft:#342b1c;
+    --blue:#78c7ef; --green:#69cda8; --red:#ff938a; --amber:#e9c36f;
+    --border:#304958; --border-strong:#496575; --border-interactive:#5f7c8d; --focus:#8bd8ff;
+    --font-ui: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-display: "Avenir Next", var(--font-ui);
+    --radius-sm:.35rem; --radius-md:.65rem; --radius-lg:1rem;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--ink-950); color:var(--text); font-family:var(--font-ui);
+    line-height:1.55; padding:0 0 6rem 0;
+  }
+  .wrap{max-width:78rem; margin:0 auto; padding:0 clamp(1.25rem,4vw,3.5rem);}
+  header.top{
+    padding:3.5rem 0 2.5rem; border-bottom:1px solid var(--border);
+    background:radial-gradient(ellipse at top left, var(--ink-850) 0%, var(--ink-950) 60%);
+  }
+  .eyebrow{
+    text-transform:uppercase; letter-spacing:.14em; font-size:.75rem; font-weight:700;
+    color:var(--gold-strong); margin:0 0 .9rem 0; display:flex; align-items:center; gap:.6rem;
+  }
+  .eyebrow::before{content:""; width:1.75rem; height:2px; background:var(--gold-strong); display:inline-block;}
+  h1{font-family:var(--font-display); font-size:clamp(2rem,4vw,2.75rem); line-height:1.1; margin:0 0 .9rem 0; font-weight:650; letter-spacing:-.02em;}
+  h2{font-family:var(--font-display); font-size:1.55rem; margin:2.75rem 0 1rem; font-weight:650; letter-spacing:-.01em; color:var(--text);}
+  h3{font-family:var(--font-display); font-size:1.1rem; margin:0 0 .6rem; font-weight:650; color:var(--text);}
+  p{color:var(--text-muted); margin:0 0 1rem 0; max-width:56rem;}
+  .lede{font-size:1.1rem; color:var(--text-muted); max-width:48rem;}
+  .meta-row{display:flex; gap:2.5rem; margin-top:2rem; flex-wrap:wrap;}
+  .meta-item{display:flex; flex-direction:column; gap:.25rem;}
+  .meta-label{font-size:.68rem; text-transform:uppercase; letter-spacing:.1em; color:var(--text-subtle);}
+  .meta-value{font-size:.98rem; color:var(--text); font-weight:600;}
+
+  section{padding-top:.5rem;}
+  .card{background:var(--ink-900); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.5rem 1.75rem; margin-bottom:1.1rem;}
+  .card p:last-child{margin-bottom:0;}
+  ul.clean{margin:.4rem 0 0 0; padding-left:1.2rem; color:var(--text-muted);}
+  ul.clean li{margin-bottom:.5rem;}
+
+  table.taxonomy{width:100%; border-collapse:collapse; margin:1rem 0 2rem; font-size:.92rem;}
+  table.taxonomy th, table.taxonomy td{border:1px solid var(--border); padding:.75rem .9rem; text-align:left; vertical-align:top;}
+  table.taxonomy th{background:var(--ink-850); color:var(--text-subtle); font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; font-weight:700;}
+  table.taxonomy td{color:var(--text-muted); background:var(--ink-900);}
+  table.taxonomy td.fm-id{color:var(--gold-strong); font-weight:700; white-space:nowrap;}
+  table.taxonomy tr:nth-child(even) td{background:var(--ink-850);}
+
+  .pill{display:inline-flex; align-items:center; gap:.4rem; font-size:.72rem; font-weight:700; padding:.25rem .65rem; border-radius:999px; border:1px solid var(--border-interactive); color:var(--blue); background:rgba(120,199,239,.08); white-space:nowrap;}
+
+  .callout{border-left:3px solid var(--amber); background:var(--ink-850); border-radius:var(--radius-sm); padding:1rem 1.25rem; margin:1.25rem 0; color:var(--text-muted);}
+  .callout strong{color:var(--amber);}
+  .callout.good{border-left-color:var(--green);}
+  .callout.good strong{color:var(--green);}
+  .callout.bad{border-left-color:var(--red);}
+  .callout.bad strong{color:var(--red);}
+
+  code{background:var(--ink-800); color:var(--text); padding:.1rem .35rem; border-radius:.25rem; font-size:.88em;}
+
+  /* --- Form / test matrix --- */
+  .form-toolbar{display:flex; gap:.75rem; align-items:center; margin:1rem 0 1.5rem; flex-wrap:wrap;}
+  .form-toolbar button{
+    min-height:2.5rem; padding:.55rem 1.1rem; border:1px solid var(--border-interactive); border-radius:var(--radius-md);
+    background:var(--ink-850); color:var(--text); font-weight:700; font-size:.85rem; cursor:pointer;
+  }
+  .form-toolbar button:hover{background:var(--ink-800);}
+  .form-toolbar button.primary{background:var(--gold); border-color:var(--gold); color:var(--ink-950);}
+  .form-toolbar button.primary:hover{background:var(--gold-strong);}
+  .form-toolbar .status{font-size:.8rem; color:var(--text-subtle);}
+
+  .test-matrix{width:100%; border-collapse:collapse; font-size:.88rem;}
+  .test-matrix th, .test-matrix td{border:1px solid var(--border); padding:.7rem .8rem; text-align:left; vertical-align:top;}
+  .test-matrix thead th{
+    background:var(--ink-850); color:var(--text-subtle); font-size:.68rem; text-transform:uppercase;
+    letter-spacing:.05em; font-weight:700; position:sticky; top:0;
+  }
+  .test-matrix tbody tr:nth-child(even) td{background:var(--ink-850);}
+  .test-matrix tbody tr:nth-child(odd) td{background:var(--ink-900);}
+  .col-id{width:6.5rem;}
+  .test-matrix td.id-cell{color:var(--gold-strong); font-weight:700; white-space:nowrap;}
+  .test-matrix .legacy-answer{color:var(--text-muted); font-size:.85rem; line-height:1.5;}
+  /* Line-clamp needs `display:-webkit-box` on the clamped element itself.
+     Putting that directly on a <td> breaks the table's row-height math (the
+     browser stops treating it as a real table cell), which let text spill
+     past its own row border. Fix: the <td> stays a normal table cell; only
+     an inner <span class="cell-text"> gets the clamp. A separate label span
+     makes it unambiguous which column you're reading. */
+  .test-matrix .question-cell,
+  .test-matrix .legacy-answer,
+  .test-matrix .actual-answer,
+  .test-matrix .criteria-cell{
+    border-left:3px solid var(--border-interactive); cursor:help;
+  }
+  .test-matrix .cell-label{display:block; font-size:.62rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.3rem;}
+  .test-matrix .question-cell .cell-label{color:var(--gold-strong);}
+  .test-matrix .legacy-answer .cell-label{color:var(--text-subtle);}
+  .test-matrix .actual-answer .cell-label{color:var(--green);}
+  .test-matrix .criteria-cell .cell-label{color:var(--blue);}
+  .test-matrix .cell-text{
+    display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:5; line-clamp:5;
+    overflow:hidden; text-overflow:ellipsis; white-space:pre-line;
+  }
+  .test-matrix .actual-answer .cell-text:empty::before{content:"Not run yet"; color:var(--text-subtle); font-style:italic;}
+  .hover-tooltip{
+    position:fixed; z-index:80; max-width:28rem; max-height:70vh; overflow-y:auto; padding:.65rem .85rem;
+    background:var(--ink-800); border:1px solid var(--border-interactive); border-radius:var(--radius-sm);
+    color:var(--text); font-size:.85rem; line-height:1.5; box-shadow:var(--shadow-overlay);
+    white-space:pre-line; pointer-events:none; opacity:0; transition:opacity 80ms ease;
+  }
+  .hover-tooltip.visible{opacity:1;}
+  .result-label{display:block; margin-top:.5rem; font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--text-subtle);}
+  .result-label select{
+    display:block; width:100%; margin-top:.3rem; min-height:2.1rem; padding:.3rem .5rem;
+    border:1px solid var(--border-interactive); border-radius:var(--radius-sm); background:var(--ink-800);
+    color:var(--text); font:inherit; font-size:.82rem; font-weight:700;
+  }
+  .result-label select:focus-visible{outline:3px solid var(--focus); outline-offset:1px;}
+  .result-label select[value="Pass"], .result-label select.result-pass{color:var(--green);}
+  .result-label select.result-fail{color:var(--red);}
+  .result-label select.result-partial{color:var(--amber);}
+  .test-matrix .criteria-cell{color:var(--text); font-size:.85rem; line-height:1.5;}
+  .table-scroll{overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius-md);}
+
+  footer.doc{margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); color:var(--text-subtle); font-size:.82rem;}
+
+  @media print{
+    body{background:#fff; color:#000;}
+    header.top{background:none;}
+    .form-toolbar{display:none;}
+    .card, table.taxonomy td, table.taxonomy th{background:#fff !important; color:#000 !important;}
+    .test-matrix textarea{border:1px solid #999; background:#fff; color:#000;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">Ask to Tapestry &middot; quality evaluation</div>
+    <h1>Legacy-Derived Quality Test Plan</h1>
+    <p class="lede">
+      We read through 136 real conversations people had with the old Tapestry
+      tool to find out what actually goes wrong in practice — not just what we
+      guess might go wrong. Those real problems became the test cases in the
+      form at the end of this document. This is a first draft for the EVR team
+      to review; it doesn't change how Tapestry is tested until someone signs
+      off on it.
+    </p>
+    <div class="meta-row">
+      <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value">Draft — pending EVR review</span></div>
+      <div class="meta-item"><span class="meta-label">Prepared</span><span class="meta-value">2026-09-14</span></div>
+      <div class="meta-item"><span class="meta-label">Source</span><span class="meta-value">136 real conversations, Oct 2025 – Sep 2026</span></div>
+      <div class="meta-item"><span class="meta-label">Method</span><span class="meta-value">Read real chats, grouped the problems found</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <h2>1. Purpose and scope</h2>
+  <div class="card">
+    <p>
+      Tapestry already has 18 automated tests that check things like "did it cite a
+      real source" and "did it stay in scope." Those are good tests, but they were
+      written by guessing what might go wrong — nobody had actually sat down and read
+      through what real people experienced with the old tool first.
+    </p>
+    <p>
+      So that's what we did here: read 136 real conversations from the old tool,
+      wrote down anything that looked wrong, and used the repeated problems to
+      shape the new test cases at the end of this document.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>2. Where the data came from</h2>
+  <div class="card">
+    <p>
+      "The old Tapestry" is a separate app called <code>lm-chat</code> — the tool
+      people used before this one, with its own database. We read 136 real
+      conversations from it (Oct 2025 – Sep 2026) directly from that database,
+      look-only — nothing was changed, written back, or saved into any code
+      repository. The raw conversations were kept on one machine, temporarily,
+      just for this review.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>3. 30 test cases, picked from the 136 conversations reviewed</h2>
+  <div class="form-toolbar">
+    <button type="button" class="primary" id="exportBtn">Export CSV</button>
+    <button type="button" id="printBtn">Print / Save as PDF</button>
+    <button type="button" id="clearBtn">Clear saved answers</button>
+    <span class="status" id="saveStatus"></span>
+  </div>
+</section>
+
+<section>
+  <div class="table-scroll">
+  <table class="test-matrix" id="testMatrix">
+    <thead>
+      <tr>
+        <th class="col-id">Test ID</th>
+        <th style="width:24rem">Question</th>
+        <th style="width:26rem">Answer (Legacy)</th>
+        <th style="width:20rem">Answer (Tapestry — actual)</th>
+        <th style="width:26rem">Correctness criteria</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td class="id-cell">HIST-001</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">We met a multi-academy trust with unclear goals and a limited budget — how should we engage them?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a multi-step engagement plan (discovery workshops, trust-building materials, low-cost pilots) referencing a named internal client-segment framework. The only citations were two raw, unresolvable provider reference codes with no title or link.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Run 2026-09-14 against Tapestry v2 staging (tapestry-acceptance-allowed identity).
+
+Routing shown to user before answering: "Tapestry understood this as EVR intelligence / EVR evidence."
+
+Answer: recommends building strategic clarity before technology decisions, via three entry points - a trust-level strategy conversation, a layered ("onion") needs-identification model (core/recommended/optional technology), and a phased low-risk implementation process (trigger-test-trial-train-track) that protects a limited budget. Also covers positioning EVR as a strategic partner, cautions against rushing adoption (no first-mover advantage), and suggests a school-partnership/MoU model to extend capacity without major upfront cost.
+
+Ends with an explicit "Gaps and uncertainties" section (5 bullets) disclosing what the evidence does NOT cover: no methodology for surfacing unclear goals, no definition of "limited budget" for a MAT, uncertain transferability of the cited models to a smaller/less mature trust, no EVR-specific commercial/onboarding process, and no guidance for divergent priorities among school leaders.
+
+Citations: "8 authorised sources" footer. Verified citation marker 1 by opening it - resolves to a real named internal document ("Implementation_of_education_technology_in_schools_and_colleges.pdf"), tiered "INTERNAL EVR EVIDENCE," with page number (21), section label, a real excerpt, and a revision hash. No raw/unresolved citation syntax (no bracketed provider codes) appeared anywhere in the answer.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-001">
+              <option value="Not run">Not run</option>
+              <option value="Pass" selected>Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Every citation must resolve to a real authorised source (title + URL) via citation-resolve. No raw/unresolved citation syntax may reach the visible answer. If the segmentation framework referenced isn't found in authorised evidence, the answer must say so rather than asserting it.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-002</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you summarise the different client segments in our data model?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Described several named client clusters with strategic profiles for each, backed only by the same unresolvable citation codes as HIST-001.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Run 2026-09-14 against Tapestry v2 staging.
+
+First attempt used the exact literal wording "in our data model" - this was misrouted to the "Work with supplied material" workflow ("No knowledge sources") and correctly refused with an honest capability message ("This workflow needs supplied or external material, but that resource capability is not enabled in this staging release.") rather than fabricating an answer. Interesting finding on its own, but not what this case is testing - retried with clearer knowledge-seeking phrasing ("What client segments or clusters does EVR use in its engagement strategy?"), which correctly routed to "EVR intelligence."
+
+Second attempt answer: describes several real client-segment clusters (organised by institution type and AI-adoption relationship - e.g. school EdTech vendors, HE software/support vendors, HE institutions directly, government/regulatory bodies, international markets), each with named real example clients and their specific needs. [Real client/company names observed in the live answer are intentionally not reproduced here - see the redaction note in section 1.]
+
+Citations: 6 distinct markers used across the answer (1,2,3,4,5,8). Spot-checked all six by opening them: every one resolved to a real, named authorised internal document (a client-interactions doc, a services-exemplar deck, an AI-use-cases deck, an EdTech lab report, and an international-regulation deck) with correct tier ("INTERNAL EVR EVIDENCE"), section/slide numbers, and revision hashes. Marker 1 additionally carried a direct Google Drive URL - opened it directly and confirmed it loads the real, correctly-titled 5-page document (not a 404 or permission error). No raw/unresolved citation syntax anywhere.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-002">
+              <option value="Not run">Not run</option>
+              <option value="Pass" selected>Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Same citation-integrity bar as HIST-001. The described segmentation must match an authorised internal document, or the answer must disclose that no matching authorised source was found.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-003</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you list which clients are our key strategic partners?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">No answer was returned at all ("[No reply]").</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Run 2026-09-14 against Tapestry v2 staging.
+
+Routed to "EVR intelligence" / "EVR evidence." Full answer: "The authorised evidence references examples of EVR clients and previous clients, but does not name specific clients or identify any as key strategic partners. The evidence does not contain a list of named clients or a designation of which among them are key strategic partners."
+
+This is the correct behaviour for this question: rather than the legacy system's total silence, or fabricating a "key strategic partners" list that isn't actually a real category in the source material, Tapestry gives a real, non-empty terminal answer that honestly explains why it can't produce the specific list asked for, while still surfacing what it did find (an "Evidence" section listing real named source documents, e.g. a data-science offering deck, an EdTech-fellowship document, and a thought-leadership impact report, each with resolvable citation markers). 8 citation markers total, all traceable to real evidence.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-003">
+              <option value="Not run">Not run</option>
+              <option value="Pass" selected>Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must always return a terminal outcome — a grounded answer, an evidence-gap message, or an explicit out-of-scope/capability message. An empty or missing response is an automatic fail.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-004</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Multi-turn: "You there Tapestry?" &rarr; "Hello, are you functioning?" &rarr; "I need help with some things."</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">"Sorry, something went wrong." — identically, on all four consecutive turns in the same session.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Run 2026-09-14 against Tapestry v2 staging, all 3 turns in one conversation.
+
+Turn 1 "You there Tapestry?" - classified "Needs clarification," asked "What would you like Tapestry to produce or explain?" with 7 concrete workflow option buttons. No crash.
+
+Turn 2 (chose "General explanation") "Hello, are you functioning?" - classified "Tapestry help," answered "Yes, Tapestry is here and ready to help. What would you like to work on today?" with citations. No crash.
+
+Turn 3 "I need help with some things" - classified "Needs clarification" again, same helpful option-button prompt as turn 1. No crash.
+
+All three turns succeeded with a real, distinct, helpful response - no empty replies, no generic "something went wrong," and no identical repeated failure. A clear improvement over the legacy session, which failed identically 4 times in a row on the same kind of input.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-004">
+              <option value="Not run">Not run</option>
+              <option value="Pass" selected>Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Basic conversational check-ins must succeed. If a dependency is genuinely unavailable, the terminal message must name the limitation (e.g. dependency_unavailable) — and must not repeat identically across a whole session without any escalating guidance to the user.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-005</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Given this school's AI maturity and budget constraints, what engagement approach would you recommend?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a specific, multi-step engagement plan referencing a named strategic cluster, with no verifiable source for the recommendation.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Run 2026-09-14 against Tapestry v2 staging. Routed to "Drafting with EVR evidence" / "EVR evidence."
+
+Draft output covers: mapping stakeholder roles (leadership/teachers as influencers, learners as direct users) with tailored engagement tactics for each; a "learn fast, act more slowly" strategic posture given budget/infrastructure constraints (audit AI use first, build a strategy before deploying tools, confirm safeguarding/data checks); a phased, theme-based (not tool-specific) pilot model using a logic-model approach to reduce lock-in risk; implementation considerations (teacher presence, equity of access, student agency, modelling critical AI use); and an age-differentiated AI Critical Thinking Framework for the curriculum dimension (junior/middle/senior school), plus parent-communication and digital-citizenship materials.
+
+8 distinct citation markers used across the answer, each attached to a specific claim rather than a single blanket citation at the end - reads as genuinely traceable, general good-practice guidance rather than an invented client-specific plan.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-005">
+              <option value="Not run">Not run</option>
+              <option value="Pass" selected>Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Recommendations must be traceable to cited, resolvable authorised evidence. Where the advice is the model's own inference rather than a sourced fact, the answer must clearly separate fact from inference.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-006</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you please summarise this document? (multiple files attached, none named)</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Correctly asked which of the several attached documents to summarise, and in what format.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14, reproduced twice. No real files were available to attach for this run, so tried the closest honest proxy: "Can you please summarise this document?" with nothing attached, and separately "I have a couple of documents open, the strategy deck and the pricing sheet. Can you summarise them?" - also with nothing attached.
+
+Both attempts: routed to "Needs clarification," then immediately failed with "Tapestry received an incompatible response and stopped safely. Tapestry received a response that did not match the expected format." No clarifying question was ever shown, and no option buttons were offered (contrast with HIST-004, where the same "Needs clarification" workflow worked correctly and offered 7 concrete option buttons for a different kind of ambiguous input).
+
+This fails safely (no crash, no fabricated summary) but does not meet the bar: the system should ask which document, not error out. Reproducible - worth a real backend bug report. Caveat: this run used a no-attachment proxy rather than the original multi-file-attached scenario, so it's testing a related but not identical edge case (ambiguity from a missing resource vs. ambiguity from multiple present resources) - worth re-testing with an actual file upload to see if that specific path still works.
+
+RE-TESTED 2026-09-15, same prompt, after the frontend fix (tapestry-frontend#123, deployed to staging) landed: the misleading generic crash text is GONE. The UI now shows the backend's real, specific message: "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Confirms the frontend contract bug is fixed - clarification responses no longer get discarded and replaced with a fake "incompatible response" message. However, the underlying failure is unchanged: raw SSE capture shows the identical error event (code: dependency_unavailable, diagnosticCode: provider_request_rejected) as before - the classifier's call to Anthropic is still being rejected with HTTP 400 for this input. Still an overall Fail (no answer produced), but now failing honestly instead of misleadingly. Underlying cause tracked in tapestry-backend#373, not yet fixed.
+
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-006">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail" selected>Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">When a request is genuinely ambiguous among multiple candidate sources, the system must ask a clarifying question rather than silently guessing one.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-007</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What's [a well-known partner organisation]'s view on opportunities in [a world region]?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Silently assumed one specific meaning of an ambiguous organisation name before answering, without confirming the assumption with the user.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "What's Cambridge's view on opportunities in Central Asia?" ("Cambridge" is a genuine real-world ambiguous term - could mean the university, Cambridge University Press &amp; Assessment, Cambridge Partnership for Education, or the city).
+
+Same failure signature as HIST-006: routed to "Needs clarification," then immediately "Tapestry received an incompatible response and stopped safely. Tapestry received a response that did not match the expected format." No disambiguating question was ever actually shown.
+
+Third reproduction of the identical failure (2x on HIST-006, now this). Emerging pattern worth flagging to engineering: the generic "which workflow do you want" clarification (static option buttons, seen working correctly in HIST-004) succeeds, but every clarification that would need to reference the specific ambiguous entity/content in the question itself (which document, which "Cambridge") fails this schema-validation safety stop. Looks like a defect in whatever step formats a content-specific clarifying question, not the classifier's decision to ask for clarification in the first place.
+
+RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: no more generic crash text. UI now shows "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms the same underlying error (code: dependency_unavailable, diagnosticCode: provider_request_rejected) as before - the "content-specific clarifying question" theory from the original write-up turned out to be a red herring; the real cause was always the classifier's Anthropic call being rejected (tapestry-backend#373), which the frontend bug had been masking. Still Fail, now honest instead of misleading.
+
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-007">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail" selected>Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">When a name or term has more than one plausible referent, the system must either state its assumption explicitly in the answer or ask before proceeding. An unstated silent assumption is a fail.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-008</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Have we had any interaction with [a named philanthropic foundation]?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Correctly reported finding no direct evidence of an interaction, and named which record types were searched.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "Have we had any interaction with the Paul Hamlyn Foundation?" - a plain factual lookup, not actually ambiguous.
+
+Same failure signature again: routed to "Needs clarification," then "Tapestry received an incompatible response and stopped safely. Tapestry received a response that did not match the expected format." Fourth reproduction of the identical defect (after HIST-006 x2, HIST-007).
+
+This one is the most concerning instance so far: unlike HIST-006/007, this question isn't genuinely ambiguous at all - it names one specific, real organisation and asks a plain yes/no factual question. The pattern now looks broader than "disambiguate this term": any question referencing a specific named entity that the classifier doesn't confidently match seems to fall into "Needs clarification," and generating that clarification then crashes. That means real, unambiguous factual questions about unfamiliar names may currently be unanswerable in this staging environment, not just genuinely ambiguous ones - worth escalating as the single most impactful finding from this test run.
+
+RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: UI now shows "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." instead of the generic crash text. Raw SSE confirms identical underlying error (provider_request_rejected) - this plain factual question is still genuinely unanswerable in this environment. Root cause tracked in tapestry-backend#373. Still Fail.
+
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-008">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail" selected>Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">When no matching evidence exists, the system must say so plainly and state what was checked — never fabricate a plausible-sounding but unsupported answer.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-009</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What is [an internal-sounding acronym], and do we have a project by that name?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Correctly reported no matching named project, while noting the term's unrelated everyday use elsewhere in the corpus.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "What is RECAP, and do we have a project by that name?" Identical failure signature: "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely." Fifth reproduction in a row (HIST-006 x2, 007, 008, now 009) - every single question in this run that references an unfamiliar or ambiguous named term has hit this exact defect. See HIST-008's note for the consolidated finding.
+
+RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error as before. Root cause tracked in tapestry-backend#373. Still Fail.
+
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-009">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail" selected>Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Same honesty bar as HIST-008, plus: must distinguish a coincidental generic word match from an actual named-entity match rather than conflating the two.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-010</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Multi-turn: "Do you have the specification for [a named programme]?" followed by 3–4 follow-up refinement questions in the same conversation.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a detailed initial specification, then continued answering follow-ups that correctly referenced the same programme context across many turns.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: opening turn "Do you have the specification for any current international teacher-training programme we're delivering?" (deliberately generic, no proper noun, to avoid guessing a real confidential programme name).
+
+Same failure on turn 1: "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely." Sixth reproduction, and it shows the defect is broader than named-entity disambiguation specifically - a plain "which one of several possible X" question triggers it even with zero proper nouns. Could not proceed to the planned follow-up turns, so multi-turn context retention itself is untested here - blocked entirely by this defect on the very first turn.
+
+RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error. Multi-turn context retention remains untested - still blocked on turn 1 by tapestry-backend#373. Still Fail.
+
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-010">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail" selected>Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must retain and correctly reference established conversation context (e.g. the named programme) across follow-up turns without re-asking for information already given, and without that context leaking into an unrelated later conversation.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-011</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">[Pastes a lengthy email invitation.] Should we accept this?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a reasoned accept/decline recommendation referencing details from the pasted email plus some internal precedent.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: pasted a synthetic, generic speaker-invitation email (fabricated for this test, not real correspondence) and asked "Should we accept this invitation?"
+
+Same failure again: "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely." Seventh reproduction, and the first on a "pasted long content + judgment call" input shape rather than a short question - shows the defect isn't limited to short queries.
+
+RE-TESTED 2026-09-15, same synthetic pasted email, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error - the classifier call still fails on longer pasted content, tracked in tapestry-backend#373. Still Fail.
+
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-011">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail" selected>Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must correctly extract the decision-relevant facts from a long pasted passage (dates, deadline, requester), ground any internal-precedent claim in a real citation, and give a clear recommendation with stated reasoning — not a generic non-answer.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-012</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">[Pastes call notes.] Draft topics for a 4-module, 15-minute-session training based on this.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Returned a generic failure message instead of a usable draft.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: pasted synthetic call notes (fabricated for this test) and asked for a 4-module training draft based on them.
+
+Same failure again: "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely." Eighth reproduction.
+
+Note: unlike the other cases in this run, the legacy system ALSO failed on this exact scenario shape ("Sorry, something went wrong" per the original record) - so this is not a regression versus the old tool, but it is a persisting failure mode that the new system has not actually fixed, just with a different (safer, more honest) error message.
+
+RE-TESTED 2026-09-15, same synthetic call notes, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." - an even more honest message now than before. Raw SSE confirms same provider_request_rejected error, tracked in tapestry-backend#373. Still Fail, still not a regression vs. legacy.
+
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-012">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail" selected>Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must handle a reasonably long pasted working document as input without failing outright. If the input exceeds a supported limit, the system must say so explicitly rather than returning an unexplained generic error.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-013</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Which clients are currently in early-stage conversations about AI strategy?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Queried a live internal CRM/business database directly and returned specific client names and pipeline-stage information.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14. Ninth reproduction of the same "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely" failure.
+
+This one is notable beyond just being another instance: it means the actual scope question this case was meant to test - does Tapestry clearly say "I can't query live CRM data" - is currently untestable, because the request never reaches a scope decision at all. The crash happens first. Whatever the intended out-of-scope behaviour is, it's being masked by this defect.
+
+RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error - the intended CRM out-of-scope behaviour is still masked, since the request still never reaches a scope decision. Root cause tracked in tapestry-backend#373. Still Fail.
+
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-013">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail" selected>Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Pending scope decision. If live CRM lookup is out of scope for Tapestry v2, the correct behaviour is a clear, explicit capability-limitation message — not silence and not a fabricated answer. If it is in scope, this becomes a real functional test instead.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-014</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What invoices are linked to [a named project]?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Returned specific figures and dates read directly from a live invoicing table.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "What invoices are linked to our most recent AI strategy project?" Tenth reproduction of the identical "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely" failure. Same masking effect as HIST-013 - the actual CRM-scope question this case is meant to test is never reached.
+
+RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error. Root cause tracked in tapestry-backend#373. Still Fail.
+
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-014">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail" selected>Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Same scope-boundary criteria as HIST-013.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-015</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Help me draft a follow-up email to [a named client] about past work and possible next steps.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Produced a full draft email that referenced specific past engagement details (scope, prior deliverables).</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "Help me draft a follow-up email to a client about past work and possible next steps" (deliberately left "a client" generic rather than naming a real one). Eleventh reproduction of the identical "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely" failure - the final case in this 15-test run, and it hit the same defect as 10 of the previous 14.
+
+RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error. Root cause tracked in tapestry-backend#373. Still Fail - 10/10 of the original failures now show the honest specific message instead of the misleading generic one, but 0/10 have actually been fixed functionally.
+
+ROOT CAUSE IDENTIFIED 2026-09-15: reproduced the classifier's exact Anthropic API request (same system prompt, tool schema, model, and message) directly against Anthropic, outside the app. Anthropic returned: "Your credit balance is too low to access the Anthropic API. Please go to Plans &amp; Billing to upgrade or purchase credits." This is a billing/account-credits issue, not a code defect - the Anthropic account backing this staging environment ran out of credit. Not fixable in code; needs credits added to the account (a billing action, left to a human with access to that account). Also explains why HIST-001-005 passed earlier in the same test run while HIST-006-015 failed: credits most likely ran out partway through the session.</span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-015">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail" selected>Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Any specific past-engagement facts used in the draft (dates, deliverables, names) must be grounded in real cited evidence, not invented specifics that can't be verified.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-016</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">I'm new here — can you help me get oriented to the organisation?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a broad, well-structured overview of the organisation's mission, vision, and typical work.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-016">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must give an accurate, appropriately-scoped organisational overview grounded in authorised internal materials, without overclaiming specifics that aren't actually present in the source documents.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-017</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Have we done any projects similar to a national digital-skills programme for teachers?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Named several prior programmes as precedent, with brief descriptions of scope and outcomes.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-017">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Specific past-project claims (names, scope, outcomes) must be traceable to real cited evidence. If no real precedent exists, the answer must say so rather than inventing a plausible-sounding one.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-018</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you teach me about our 4D AI Strategy Framework?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a structured explanation of the framework's four dimensions.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-018">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">The framework description must match the real authorised source document's terminology and structure — must not invent, rename, or reorder dimensions that aren't actually in the source.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-019</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">A prospective client wants an independent evaluation of their platform. Draft a proposal and statement of work based on similar past engagements.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Produced a working draft grounded in two named past engagements as precedent.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-019">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Any past-engagement details used as precedent must be grounded in real cited evidence, and clearly separated from newly generated proposal language that isn't sourced from anywhere.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-020</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Design prompt questions and small-group activity scaffolding for a leadership AI-strategy workshop.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Produced a structured activity plan explicitly built around a named internal strategy framework.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-020">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Generated workshop content that claims to align with a named internal framework must accurately reflect that framework's real structure, not an approximation of it.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-021</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What is the AHEAD model?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave five named principles with a short description of each.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-021">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must correctly and completely list the framework's real components from an authorised source — partial, reordered, or renamed components should fail this check.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-022</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What's the standard way to introduce our organisation in a written report?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a suggested boilerplate paragraph, presented as drawn from existing materials.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-022">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Suggested boilerplate text must be grounded in an authorised existing document, not freshly invented copy presented as an existing convention.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-023</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">I need to present on the "five pillars" framework — do you know what that is?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Correctly noted that more than one internal "pillars" framework exists, then answered with its best-guess match.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-023">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">When a term could refer to more than one internal framework, the system must flag the ambiguity clearly rather than presenting one match as the only possibility.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-024</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">[Pastes a media/interview invitation email.] Should we accept this?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Recommended accepting with conditions, citing timeline urgency and reputational fit.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-024">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must correctly extract time-sensitive facts (deadlines) from the pasted content and flag urgency; any reputational or precedent claims must be grounded in real evidence, not assumed.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-025</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What was the actual goal of a specific piece of commissioned research, based on our correspondence with the client about it?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a specific reframing of the research goal, drawn from referenced correspondence records.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-025">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must only state a goal or finding if it is explicitly grounded in retrievable correspondence or documents — must not infer intent beyond what the source actually says.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-026</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">How do you actually answer questions — where does your information come from?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Described querying live internal business tables (clients, projects, invoices, pipeline, events) directly, alongside document retrieval.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-026">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">The system's self-description of its own capabilities must accurately reflect what it can actually access in the current release — must not claim data-source access it doesn't actually have.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-027</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Write a short profile of our organisation for external use.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Produced a paragraph describing mission, founder, and focus areas.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-027">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Company-profile facts (founder, mission wording, focus areas) must match authorised source material — must not paraphrase into claims that drift from the source.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-028</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Multi-turn: "I'm compiling country profiles on AI-in-education policy — check our past work on Country A first, then Country B, then Country C" (one country per turn, same conversation).</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave detailed per-country answers referencing specific past engagements, each turn building on the same overall task.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-028">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must keep each country's findings correctly separated (no cross-country fact bleed) while still remembering the overall task framing across turns.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-029</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Hi, are you working today?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Inconsistent in the real data — sometimes answered normally, sometimes returned a generic failure message.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-029">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">A basic conversational check-in must always succeed with a normal response — this is a baseline reliability floor, not a knowledge question.</span></td>
+      </tr>
+
+      <tr>
+        <td class="id-cell">HIST-030</td>
+        <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you suggest good ready-to-use resources for teachers to use in the classroom?</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a generative, categorised list of resource types and templates.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+          <label class="result-label">Result
+            <select data-field="result" aria-label="Result for HIST-030">
+              <option value="Not run">Not run</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </label></td>
+        <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Where recommendations are generated suggestions rather than pulled from a specific authorised resource, the answer must make that clear rather than implying the resources are pre-existing verified materials.</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function () {
+  // Long text columns are truncated with an ellipsis (see CSS). Hovering a
+  // truncated cell shows the full text in a custom tooltip that follows the
+  // cursor - the browser's native title tooltip is too slow/inconsistent to
+  // rely on here.
+  var tooltip = document.createElement('div');
+  tooltip.className = 'hover-tooltip';
+  document.body.appendChild(tooltip);
+
+  function positionTooltip(e) {
+    var margin = 14;
+    var x = Math.min(e.clientX + margin, window.innerWidth - tooltip.offsetWidth - margin);
+    var y = Math.min(e.clientY + margin, window.innerHeight - tooltip.offsetHeight - margin);
+    tooltip.style.left = Math.max(margin, x) + 'px';
+    tooltip.style.top = Math.max(margin, y) + 'px';
+  }
+
+  Array.prototype.forEach.call(
+    document.querySelectorAll('#testMatrix .question-cell, #testMatrix .legacy-answer, #testMatrix .actual-answer, #testMatrix .criteria-cell'),
+    function (cell) {
+      var textEl = cell.querySelector('.cell-text') || cell;
+      cell.setAttribute('aria-label', textEl.textContent.trim());
+      cell.addEventListener('mouseenter', function (e) {
+        if (textEl.scrollHeight <= textEl.clientHeight) return; // full text already visible
+        tooltip.textContent = textEl.textContent.trim();
+        tooltip.classList.add('visible');
+        positionTooltip(e);
+      });
+      cell.addEventListener('mousemove', positionTooltip);
+      cell.addEventListener('mouseleave', function () {
+        tooltip.classList.remove('visible');
+      });
+    }
+  );
+
+  var STORAGE_KEY = "tapestry-legacy-test-plan-2026-09-14";
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#testMatrix tbody tr'));
+  var statusEl = document.getElementById('saveStatus');
+
+  function rowId(row) {
+    return row.querySelector('.id-cell').textContent.trim();
+  }
+
+  function applyResultStyle(select) {
+    select.classList.remove('result-pass', 'result-fail', 'result-partial');
+    if (select.value === 'Pass') select.classList.add('result-pass');
+    else if (select.value === 'Fail') select.classList.add('result-fail');
+    else if (select.value === 'Partial') select.classList.add('result-partial');
+  }
+
+  function load() {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    var saved = {};
+    if (raw) {
+      try { saved = JSON.parse(raw); } catch (e) { saved = {}; }
+    }
+    rows.forEach(function (row) {
+      var id = rowId(row);
+      var entry = saved[id];
+      var select = row.querySelector('select[data-field="result"]');
+      // The recorded answer text is baked into the page; only the Result
+      // verdict is user-editable and worth persisting per browser.
+      if (entry && typeof entry.result === 'string') select.value = entry.result;
+      applyResultStyle(select);
+    });
+  }
+
+  function save() {
+    var data = {};
+    rows.forEach(function (row) {
+      var select = row.querySelector('select[data-field="result"]');
+      data[rowId(row)] = { result: select.value };
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    statusEl.textContent = "Saved to this browser · " + new Date().toLocaleTimeString();
+  }
+
+  rows.forEach(function (row) {
+    var select = row.querySelector('select[data-field="result"]');
+    select.addEventListener('change', function () { applyResultStyle(select); save(); });
+  });
+  load();
+
+  document.getElementById('clearBtn').addEventListener('click', function () {
+    if (!confirm('Reset all Result dropdowns back to "Not run" in this browser?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    rows.forEach(function (row) {
+      var select = row.querySelector('select[data-field="result"]');
+      select.value = 'Not run';
+      applyResultStyle(select);
+    });
+    statusEl.textContent = 'Cleared.';
+  });
+
+  document.getElementById('printBtn').addEventListener('click', function () {
+    window.print();
+  });
+
+  function csvEscape(value) {
+    var s = String(value == null ? '' : value);
+    if (/[",\n]/.test(s)) s = '"' + s.replace(/"/g, '""') + '"';
+    return s;
+  }
+
+  document.getElementById('exportBtn').addEventListener('click', function () {
+    var rows = Array.prototype.slice.call(document.querySelectorAll('#testMatrix tbody tr'));
+    var header = ['Test ID', 'Question', 'Answer (Legacy)', 'Answer (Tapestry - actual)', 'Result', 'Correctness criteria'];
+    var lines = [header.map(csvEscape).join(',')];
+    rows.forEach(function (row) {
+      var id = row.querySelector('.id-cell').textContent.trim();
+      var question = row.querySelector('.question-cell .cell-text').textContent.trim();
+      var legacy = row.querySelector('.legacy-answer .cell-text').textContent.trim();
+      var actual = row.querySelector('.actual-answer .cell-text').textContent.trim();
+      var result = row.querySelector('select[data-field="result"]').value;
+      var criteria = row.querySelector('.criteria-cell .cell-text').textContent.trim();
+      lines.push([id, question, legacy, actual, result, criteria].map(csvEscape).join(','));
+    });
+    var blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'tapestry-legacy-test-matrix.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+})();
+</script>
+
+</body>
+</html>
