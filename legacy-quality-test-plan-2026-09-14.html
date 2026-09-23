@@ -109,6 +109,9 @@
     display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:5; line-clamp:5;
     overflow:hidden; text-overflow:ellipsis; white-space:pre-line;
   }
+  .test-matrix .cell-text.expanded{display:block; -webkit-line-clamp:unset; line-clamp:unset; overflow:visible;}
+  .test-matrix td.is-expandable{cursor:pointer;}
+  .test-matrix .expand-hint{display:block; margin-top:.35rem; font-size:.7rem; font-weight:700; color:var(--blue);}
   .test-matrix .actual-answer .cell-text:empty::before{content:"Not run yet"; color:var(--text-subtle); font-style:italic;}
   .hover-tooltip{
     position:fixed; z-index:80; max-width:28rem; max-height:70vh; overflow-y:auto; padding:.65rem .85rem;
@@ -271,7 +274,95 @@
       <tr>
         <td class="id-cell">HIST-001</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">We met a multi-academy trust with unclear goals and a limited budget — how should we engage them?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a multi-step engagement plan (discovery workshops, trust-building materials, low-cost pilots) referencing a named internal client-segment framework. The only citations were two raw, unresolvable provider reference codes with no title or link.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
+
+Recommended approach: a small, paid discovery-to-decision engagement
+
+Do not lead with a full trust-wide strategy, audit, or CPD programme. With unclear goals and a limited budget, the immediate job is to help the trust define a priority problem worth solving—and give them a credible, affordable next step.
+
+1. Offer a tightly scoped “AI/EdTech Priorities Sprint”
+
+Position this as a short, fixed-scope engagement rather than consultancy with an open-ended brief.
+
+Suggested components
+
+One leadership discovery session with the CEO/executive lead, digital/IT lead, safeguarding lead, school-improvement representation, and one or two headteachers.
+A short pre-session questionnaire to identify:
+current tools and use cases;
+greatest pressures or opportunities;
+policy/safeguarding concerns;
+staff confidence and capability;
+available budget, decision process, and timescale.
+A practical output: a concise 90-day priorities roadmap containing:
+two or three agreed priority outcomes;
+essential governance and safeguarding actions;
+a recommendation on whether to proceed with CPD, a pilot, an audit, or no further investment yet;
+an indicative phased costed pathway.
+
+This gives the trust something tangible for its board or executive team, while ensuring EVR is not doing extensive unpaid scoping.
+
+2. Frame the discussion around educational and organisational problems—not AI tools
+
+Ask them to select from a limited set of trust-level questions, for example:
+
+Where are staff or leaders losing disproportionate time?
+What inconsistency across schools is causing risk or inequity?
+What teaching-and-learning challenge might AI or digital tools plausibly help address?
+What must be true for AI use to be safe, compliant, and educationally worthwhile?
+What would count as success within one term?
+
+The EVR 4D framework is useful here: use cases, technology/data, staff capability, and governance/ethics. It prevents the conversation being reduced to “which tool should we buy?” and makes clear that training alone may not be the right first investment.
+
+3. Give them three genuinely modular options
+
+Avoid a large menu of sessions. Offer a clear choice after the sprint:
+
+Option Best when Outcome
+A. Foundations The main need is shared understanding and immediate risk reduction Leadership briefing plus a staff-facing essentials/safeguarding session
+B. Focused pilot They have one plausible priority but need evidence before scaling One use case, a small number of schools, logic model, light-touch evaluation
+C. Strategy and capability pathway They identify a trust-wide imperative and can commit funding Diagnostic, leadership strategy work, selected CPD, school-level implementation support
+
+Make clear that Option A or B is the likely starting point, not Option C. The trust should earn the right to scale by demonstrating a clear purpose, leadership ownership, and implementation capacity.
+
+4. Keep a clear boundary between discovery and delivery
+
+A common failure mode is producing a broad proposal before the client can articulate the problem. Internal experience suggests that early-stage MAT conversations progress better when EVR uses structured discovery, concrete examples, and lightweight pilots to convert interest into a defined opportunity and budget.
+
+Therefore:
+
+charge for the sprint, even if modestly;
+specify attendees, preparation required, outputs, and timetable;
+do not promise a bespoke trust-wide strategy as part of the initial fee;
+make any subsequent work contingent on an agreed problem statement, sponsor, budget range, and decision date.
+5. Use peer learning and internal capacity to make the budget go further
+
+For a cost-constrained trust, recommend:
+
+a small cross-trust working group rather than training every member of staff;
+a mixed group of operational, safeguarding, pedagogical, and school leaders—not only IT staff;
+train-the-trainer or champion capacity only after priorities are agreed;
+virtual delivery where it reduces cost and makes cross-school participation easier;
+existing resources and tools where possible, before proposing new licences.
+
+This mirrors EVR’s trust-wide model: develop direction centrally, then support schools to adapt it to their own contexts and use the resulting strategy to target CPD. A MAT-wide technology transformation example also highlights the value of central support combined with sustainable, targeted staff development rather than treating training as an optional extra.
+
+Suggested positioning for the follow-up
+
+It sounds as though the most useful next step is not a large AI programme, but a short piece of structured work to establish where AI could—or should not—add value across the trust. We would help a small leadership group identify the most pressing priorities, clarify essential safeguarding and governance considerations, and leave you with a practical 90-day roadmap and proportionate options for next steps. That would allow you to make a sound decision before committing scarce CPD or technology budget.
+
+Evidence
+Internal CRM—projects_pipeline: [client] requested an offer spanning practitioner and leadership training initially, with the longer-term ambition of a trust-wide AI vision; the recorded proposal approach was to provide a range of sessions dependent on “budget and appetite.”
+Internal CRM—projects_pipeline: [client] headteacher/MAT-style engagement was structured as an initial shared foundation event followed by optional, year-long modules, with explicit attention to local-authority contribution, individual-school contributions, and tiered participation.
+Internal artefacts: EVR materials recommend trust-level strategy first, then school-context adaptation and targeted CPD; the 4D framework provides a practical structure for discovery and prioritisation.
+Gaps / assumptions
+
+The trust’s size, current AI activity, decision-maker, precise budget envelope, and whether its concern is primarily AI strategy, staff CPD, governance, or procurement are not yet known. Those should be resolved in the sprint before recommending a substantive programme.
+
+Sources:
+[1] EVR-[partner].docx
+[2] Cluster Analysis v1.docx
+[3] EVR training services.pptx
+[4] PedTech Report.pdf</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Run 2026-09-14 against Tapestry v2 staging (tapestry-acceptance-allowed identity).
 
 Routing shown to user before answering: "Tapestry understood this as EVR intelligence / EVR evidence."
@@ -299,7 +390,73 @@ RE-TEST 2026-09-23 13:1xZ after fixes (#400 block-level delivery + deadline-awar
       <tr>
         <td class="id-cell">HIST-002</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you summarise the different client segments in our data model?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Described several named client clusters with strategic profiles for each, backed only by the same unresolvable citation codes as HIST-001.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
+
+Summary
+
+The current client snapshot has four machine-assigned clusters (0–3). They are best understood as relationship and commercial-motion segments, rather than clean sector categories: organisations from schools, EdTech, higher education, government and membership bodies can appear in the same cluster.
+
+1. Cluster 0 — Early-stage / lightly qualified contacts
+
+Typical profile: Individual contacts or organisations where an initial meeting, introduction or follow-up has happened, but the commercial need, budget and next step are usually still unclear.
+
+The records are commonly marked Introduction, Meeting held or Scheduling meeting, with low conversion signals and “ill-defined” challenges.
+It includes a mixed set of schools, education providers, EdTech firms and senior leaders—for example, individual-school enquiries, CEOs of education technology companies, and vocational-education leaders.
+Where notes are richer, needs tend to concern exploratory AI strategy, product efficacy, implementation, advisory support or partnership possibilities.
+
+Recommended treatment: qualify quickly—clarify the problem, decision-maker, budget, timing and whether the opportunity is for training, strategy, evaluation or product support. Avoid committing significant delivery resource until those signals are present.
+
+2. Cluster 1 — Key relationships to foster
+
+Typical profile: Strategic, high-value relationships that may be current clients, active collaborators, influential partners, or organisations where EVR wants a deeper long-term relationship.
+
+In the snapshot, these records are explicitly grouped under “Key Relationships to Foster.”
+They include government-facing and system-level organisations, international school groups, major sector bodies, foundations, technology partners and consultancies.
+Several have live project or active-pursuit statuses, such as Current project, Working on it or Backburner for future projects.
+The value here is not limited to immediate sales: these relationships can generate credibility, market access, joint delivery, policy influence, referrals and future multi-year work.
+
+Recommended treatment: relationship-led account management. Maintain senior contact, articulate mutual value, identify a concrete next collaboration, and distinguish carefully between partnership, sponsorship, paid delivery and thought-leadership activity.
+
+3. Cluster 2 — Prospects for proactive outreach
+
+Typical profile: Target organisations or markets identified as potentially relevant, but not yet substantially qualified or engaged.
+
+These records are explicitly grouped under “Potential customers for outreach.”
+Examples include international school associations, universities, government bodies, foundations, professional/membership bodies, and organisations in overseas markets.
+Notes often indicate a planned introduction, event follow-up, future travel, a prospective workshop, or a need to develop a target list and outreach materials.
+Some entries are organisational targets rather than fully developed account records—for example, “review international universities” or “membership bodies.”
+
+Recommended treatment: use structured campaigns rather than bespoke high-effort pursuit. Segment by institution type and geography; lead with a relevant offer such as AI readiness, safeguarding, leadership CPD, evidence/impact evaluation, or strategic implementation support. Promote leads into Cluster 0 or 1 only once a real need and engagement signal emerges.
+
+4. Cluster 3 — School-facing enquiries and practitioner-led opportunities
+
+Typical profile: Direct school, trust, educator or inspectorate contacts, generally at the enquiry, conversation or early engagement stage.
+
+Most records carry the Individual School category, despite the cluster also including adjacent ecosystem organisations such as inspectorates and school-technology providers.
+The dominant needs are practical: AI CPD, strategy conversations, curriculum development, school implementation, operational use and evidence of impact.
+Some prospects display stronger buying signals—for example, a school with a defined goal, a receptive conversion score and available project budget—while many are still low-information event or referral leads.
+
+Recommended treatment: offer a clear, low-friction path from enquiry to diagnosis—for example, a scoping call, AI-readiness conversation, leadership workshop, CPD package or short pilot. Prioritise the subset with a named sponsor, defined use case and budget.
+
+How the segments relate to the wider model
+
+The raw client table also holds the variables needed to refine these broad clusters:
+
+Organisation/context: unified_category, job title, updates.
+AI maturity and need: ai_use_case, human_ai_scale, main challenge and main goal.
+Buying readiness: decision-maker flag, engagement status, conversion, budget and pipeline status.
+Relationship quality: emotional response/persona alignment and qualitative unified_updates.
+
+In other words, the cluster is a useful starting point for workflow prioritisation, but it should be supplemented with these fields before deciding messaging or resource allocation. The current cluster labels are not pure verticals: EVR’s actual market spans governments and charities, schools and higher education, EdTech/publishers, and examining bodies.
+
+Evidence
+Clients snapshot (raw_clients): four clusters are present, with 11 records sampled in Cluster 0, 16 in Cluster 1, 15 in Cluster 2 and 8 in Cluster 3. The segment interpretations above are based on recurring unified_category, pipeline_live_engagementstatus, engagement/conversion fields and qualitative updates.
+Cluster Analysis v1: supports the distinction between relationship-led segments, outreach segments and varying levels of engagement/readiness; it also recommends qualification and light-touch nurturing where records are untested or incomplete.
+
+Data-quality note: the category field is inconsistent in places—for example, various non-school organisations sit under “Individual School,” and some records have sparse structured fields. I would therefore use the four clusters as operational segments, not as a definitive organisation taxonomy.
+
+Sources:
+[1] EVR consultancy services_exemplars_EP.pptx</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Run 2026-09-14 against Tapestry v2 staging.
 
 First attempt used the exact literal wording "in our data model" - this was misrouted to the "Work with supplied material" workflow ("No knowledge sources") and correctly refused with an honest capability message ("This workflow needs supplied or external material, but that resource capability is not enabled in this staging release.") rather than fabricating an answer. Interesting finding on its own, but not what this case is testing - retried with clearer knowledge-seeking phrasing ("What client segments or clusters does EVR use in its engagement strategy?"), which correctly routed to "EVR intelligence."
@@ -325,7 +482,45 @@ RE-TEST 2026-09-23 13:1xZ after fixes (#400 block-level delivery + deadline-awar
       <tr>
         <td class="id-cell">HIST-003</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you list which clients are our key strategic partners?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">No answer was returned at all ("[No reply]").</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
+
+Key strategic partners / priority partnership relationships
+
+The CRM does not currently use a consistent “key strategic partner” category in client_interactions (0 exact matches). However, the client-segmentation snapshot identifies a “Ready Partners” cohort: organisations with strong engagement, budget potential, and scope for joint delivery, sponsorship, research, or market development.
+
+From that cohort, the strongest current strategic relationships appear to be:
+
+[partner A] — very high strategic value
+Active discussions with [person] on AI-in-education policy, data stewardship/data trust pilots, evidence frameworks, research partnerships, and Australian market development.
+
+[partner B] ([person]) — high strategic value
+A commercial delivery partnership is being developed for premium AI implementation and training programmes for Australian independent schools; the notes refer to an agreement in development and regular partnership catch-ups.
+
+[partner C] ([person]) — high strategic value
+A developing commercial and research partnership around evidence-based EdTech evaluation, implementation support, school-market intelligence, and potentially a recommendation/curation model.
+
+[partner D] ([person])
+Active exploration of a partnership centred on [partner D programme] schools in the UAE, including a possible research cohort, AI implementation evaluation, CPD, and regional policy engagement.
+
+[partner E] — Southeast Asia ([person] and [person])
+An active collaboration route for AI leadership and policy training in Brunei, Malaysia, Cambodia, and other Southeast Asian markets, including joint “light-touch” and higher-touch programme development.
+
+[partner F]
+Discussions are underway on EVR’s Shape the Future Coalition, regional EdTech hubs, digital-divide research, and broader collaboration across the UK education-technology ecosystem.
+
+[network]
+This is the only relationship explicitly labelled in the snapshot as “Key partners with whom we collaborate for consultancy.” It is focused on international frameworks, comparison work, government recommendations, and practical school-facing AI guidance.
+
+Other promising—but less established—partner relationships
+[partner G] — aligned values and potential sponsorship/implementation partnership; still being shaped.
+[partner H] — research and assessment collaboration opportunities, but currently marked more as information/advisory than a commercial partnership.
+[partner I] — complementary Middle East consultancy capability, but the relationship is currently on the back burner.
+[partner J] — strategically useful for Australian policy influence, though notes suggest limited direct revenue potential.
+
+Evidence: client segmentation snapshot, Cluster 11 (“Ready Partners”), comprising 24 partner-oriented records; individual relationship status and priority are drawn from the raw_clients snapshot’s unified_updates and pipeline_live_engagementstatus fields. The cluster is characterised as EVR’s highest near-term partnership and revenue potential.
+
+Sources:
+[1] Cluster Analysis v1.docx</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Run 2026-09-14 against Tapestry v2 staging.
 
 Routed to "EVR intelligence" / "EVR evidence." Full answer: "The authorised evidence references examples of EVR clients and previous clients, but does not name specific clients or identify any as key strategic partners. The evidence does not contain a list of named clients or a designation of which among them are key strategic partners."
@@ -349,7 +544,16 @@ RE-TEST 2026-09-23 13:1xZ after fixes (#400 block-level delivery + deadline-awar
       <tr>
         <td class="id-cell">HIST-004</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Multi-turn: "You there Tapestry?" &rarr; "Hello, are you functioning?" &rarr; "I need help with some things."</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">"Sorry, something went wrong." — identically, on all four consecutive turns in the same session.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
+
+Turn 1 — "You there Tapestry?"
+Yes — I’m here. How can I help?
+
+Turn 2 — "Hello, are you functioning?"
+Yes — I’m functioning and ready to help.
+
+Turn 3 — "I need help with some things."
+Of course. Tell me what you need help with—whether it’s drafting something, finding information in your uploaded materials, analysing client/project data, or planning next steps.</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Run 2026-09-14 against Tapestry v2 staging, all 3 turns in one conversation.
 
 Turn 1 "You there Tapestry?" - classified "Needs clarification," asked "What would you like Tapestry to produce or explain?" with 7 concrete workflow option buttons. No crash.
@@ -377,7 +581,79 @@ RE-TEST 2026-09-23 13:1xZ after fixes (#400 block-level delivery + deadline-awar
       <tr>
         <td class="id-cell">HIST-005</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Given this school's AI maturity and budget constraints, what engagement approach would you recommend?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a specific, multi-step engagement plan referencing a named strategic cluster, with no verifiable source for the recommendation.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
+
+Recommendation: a low-cost, phased “readiness-to-pilot” engagement
+
+Assuming this is an individual school with early or uneven AI maturity and limited scope for a substantial consultancy, I would not recommend beginning with a whole-school AI strategy or a tool-procurement exercise. Instead, offer a contained engagement that builds confidence, establishes safe foundations, and generates evidence for a later decision.
+
+Phase 1 — Rapid AI readiness and priority-setting
+
+A short diagnostic combining:
+
+a leadership conversation;
+a lightweight staff pulse survey;
+review of current AI use, safeguarding/data arrangements, infrastructure, and staff confidence; and
+a prioritisation workshop focused on one or two pressing school challenges.
+
+Frame maturity across governance, pedagogy and operations, rather than treating AI adoption as a question of which tool to buy. This reflects EVR’s readiness approach, which assesses strategic oversight and policy, teacher/student capability, and operational factors such as infrastructure, training and safeguarding.
+
+Output: a concise maturity snapshot, risk register, and a 6–12 month action roadmap with “do now / prepare next / defer” recommendations.
+
+Phase 2 — Targeted, low-risk capacity building
+
+Follow with a small, practical CPD offer for a core group of staff—ideally SLT plus 6–12 teacher champions. Focus it on:
+
+safe, critical and pedagogically purposeful use of generative AI;
+a small set of high-value teacher workflows, such as planning, differentiation or resource drafting;
+appropriate prompting, checking and adaptation; and
+consistent expectations for pupils.
+
+This should be practical rather than tool-led: teachers need to test AI’s strengths and limitations, not be asked to redesign teaching around speculative future capabilities.
+
+Output: a school-specific starter guidance pack, example workflows, and a champion group able to support colleagues.
+
+Phase 3 — One tightly bounded pilot
+
+Only after the diagnostic and initial CPD, run a single-term pilot around one defined use case—for example, reducing teacher preparation workload in a department, supporting inclusive resource adaptation, or strengthening pupil AI literacy.
+
+Keep the pilot small:
+
+one department or year group;
+a limited number of participating staff;
+no major new platform commitment unless required;
+simple baseline and end-of-pilot measures on workload, confidence, quality, equity and safeguarding.
+
+Output: an evidence-based recommendation to stop, refine, expand internally, or seek funding for a larger programme.
+
+Commercial approach
+
+Offer this as a modular package, so the school can purchase Phase 1 alone and decide later whether to continue. This is likely to be more realistic than proposing a large transformation programme upfront. EVR’s internal client analysis suggests that individual schools with limited recorded engagement are often exploratory, resource-constrained and best reached through low-barrier entry points such as tasters, starter resources and workshops.
+
+Possible structure:
+
+Essential: readiness diagnostic + prioritisation workshop
+Recommended: Essential + staff-champion CPD
+Optional: pilot design, light-touch evaluation and scale-up plan
+
+Where budget is particularly tight, consider a cohort model with nearby schools or a trust/partnership, or co-develop a pilot that can support a grant or external-funding application. EVR’s prior approach to constrained education partners includes tiered pricing, proportionate participation and potential academic/network partnerships to add value.
+
+Why this is the right fit
+
+This approach:
+
+matches a school that is interested but not yet ready for large-scale implementation;
+avoids locking scarce funds into technology before needs, capability and risks are understood;
+gives leaders a clear investment case for any next step; and
+creates early wins while keeping safeguarding, equity and staff workload central.
+Evidence and uncertainty
+
+The recommendation is based on the available material indicating a light-touch, likely exploratory school profile and budget sensitivity, rather than a named school-specific maturity assessment. If you share the school’s current AI activity, staff confidence, governance position, approximate budget, and whether it is part of a MAT or local partnership, I can turn this into a more precise scope and indicative three-tier proposal.
+
+Sources:
+[1] [client] ITT Proposal.docx
+[2] EducationHazardsofGenerativeAI.pdf
+[3] Cluster Analysis v1.docx</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Run 2026-09-14 against Tapestry v2 staging. Routed to "Drafting with EVR evidence" / "EVR evidence."
 
 Draft output covers: mapping stakeholder roles (leadership/teachers as influencers, learners as direct users) with tailored engagement tactics for each; a "learn fast, act more slowly" strategic posture given budget/infrastructure constraints (audit AI use first, build a strategy before deploying tools, confirm safeguarding/data checks); a phased, theme-based (not tool-specific) pilot model using a logic-model approach to reduce lock-in risk; implementation considerations (teacher presence, equity of access, student agency, modelling critical AI use); and an age-differentiated AI Critical Thinking Framework for the curriculum dimension (junior/middle/senior school), plus parent-communication and digital-citizenship materials.
@@ -401,20 +677,37 @@ RE-TEST 2026-09-23 13:1xZ after fixes (#400 block-level delivery + deadline-awar
       <tr>
         <td class="id-cell">HIST-006</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you please summarise this document? (multiple files attached, none named)</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Correctly asked which of the several attached documents to summarise, and in what format.
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
-RE-RUN 2026-09-23 (same no-attachment proxy): legacy did not ask. It picked a report from its own library (a university workshop summary) and summarised it as if that were 'this document'.</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14, reproduced twice. No real files were available to attach for this run, so tried the closest honest proxy: "Can you please summarise this document?" with nothing attached, and separately "I have a couple of documents open, the strategy deck and the pricing sheet. Can you summarise them?" - also with nothing attached.
+Summary
 
-Both attempts: routed to "Needs clarification," then immediately failed with "Tapestry received an incompatible response and stopped safely. Tapestry received a response that did not match the expected format." No clarifying question was ever shown, and no option buttons were offered (contrast with HIST-004, where the same "Needs clarification" workflow worked correctly and offered 7 concrete option buttons for a different kind of ambiguous input).
+This short Golden Thread report captures priorities emerging from two workshops with professional-services and academic staff at [university]. Its central theme is supporting student self-efficacy—students’ confidence and ability to manage, shape and succeed in their learning journeys.
 
-This fails safely (no crash, no fabricated summary) but does not meet the bar: the system should ask which document, not error out. Reproducible - worth a real backend bug report. Caveat: this run used a no-attachment proxy rather than the original multi-file-attached scenario, so it's testing a related but not identical edge case (ambiguity from a missing resource vs. ambiguity from multiple present resources) - worth re-testing with an actual file upload to see if that specific path still works.
+Key messages
 
-RE-TESTED 2026-09-15, same prompt, after the frontend fix (tapestry-frontend#123, deployed to staging) landed: the misleading generic crash text is GONE. The UI now shows the backend's real, specific message: "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Confirms the frontend contract bug is fixed - clarification responses no longer get discarded and replaced with a fake "incompatible response" message. However, the underlying failure is unchanged: raw SSE capture shows the identical error event (code: dependency_unavailable, diagnosticCode: provider_request_rejected) as before - the classifier's call to Anthropic is still being rejected with HTTP 400 for this input. Still an overall Fail (no answer produced), but now failing honestly instead of misleadingly. Underlying cause tracked in tapestry-backend#373, not yet fixed.
+Belonging and community are a major priority. Participants saw this as particularly challenging at [university] because of hybrid teaching and its large commuter-student population. The implication is that student support should deliberately create opportunities for connection rather than relying on informal campus interactions.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+Personalisation should span the full student journey. Suggested areas include pre-registration support, social hubs and opportunities for students to exercise agency over their experience. However, the report cautions against “over-personalisation” that could weaken shared community and peer connection.
 
-RE-RUN 2026-09-23 on staging v124 (Anthropic credit restored): no crash. Routed to 'Work with supplied material' → 'This workflow needs supplied or external material, but that resource capability is not enabled in this staging release.' No invented summary, which is better than today's legacy, but it doesn't ask which document or tell the user to name or attach one. Partial. Follow-up: tapestry-backend#410.</span>
+Flexibility is viewed as important for engagement and agency. This includes a more adaptable curriculum—particularly one that supports career aspirations and cross-disciplinary projects—as well as varied assessment and content-delivery methods that accommodate differing student preferences.
+
+Employability and future-readiness should be embedded. Participants highlighted graduate attributes, career focus and preparing students to become future leaders and creators.
+
+The university experience could be opened up to families. The workshop ideas include greater involvement of parents and families, presumably as part of a broader support network around students.
+
+Overall interpretation
+
+The report suggests that [university]’s “golden thread” should connect belonging, tailored support, learner agency, flexibility and employability. These elements are presented as mutually reinforcing: students are more likely to develop self-efficacy when they feel connected to a community, can make meaningful choices about their learning, and can see how their university experience relates to their future goals.
+
+Note: The document appears to be an early or incomplete workshop report: the sections specifically titled The Golden Thread: Student self-efficacy and Conclusion contain no substantive text, and the participant number is marked as “x.”
+
+Sources:
+[1] Golden Thread and Workshop report (1).docx</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v124), 2026-09-23. Verbatim; client, partner and person names redacted.
+
+Tapestry understood this as: Work with supplied material · No knowledge sources
+
+This workflow needs supplied or external material, but that resource capability is not enabled in this staging release.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-006">
               <option value="Not run">Not run</option>
@@ -429,20 +722,48 @@ RE-RUN 2026-09-23 on staging v124 (Anthropic credit restored): no crash. Routed 
       <tr>
         <td class="id-cell">HIST-007</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What's [a well-known partner organisation]'s view on opportunities in [a world region]?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Silently assumed one specific meaning of an ambiguous organisation name before answering, without confirming the assumption with the user.
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
-RE-RUN 2026-09-23: again assumed one meaning of the name without saying so, then gave a detailed answer citing specific teacher-training and advisory work in two Central Asian countries.</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "What's Cambridge's view on opportunities in Central Asia?" ("Cambridge" is a genuine real-world ambiguous term - could mean the university, Cambridge University Press &amp; Assessment, Cambridge Partnership for Education, or the city).
+Answer / Summary
 
-Same failure signature as HIST-006: routed to "Needs clarification," then immediately "Tapestry received an incompatible response and stopped safely. Tapestry received a response that did not match the expected format." No disambiguating question was ever actually shown.
+[partner] appears to see credible, government-facing opportunities in Central Asia, but the internal record points to a selective, capability-led approach rather than a fully articulated regional growth plan.
 
-Third reproduction of the identical failure (2x on HIST-006, now this). Emerging pattern worth flagging to engineering: the generic "which workflow do you want" clarification (static option buttons, seen working correctly in HIST-004) succeeds, but every clarification that would need to reference the specific ambiguous entity/content in the question itself (which document, which "Cambridge") fails this schema-validation safety stop. Looks like a defect in whatever step formats a content-specific clarifying question, not the classifier's decision to ask for clarification in the first place.
+Uzbekistan is the clearest evidenced foothold. [partner] has worked with [organisation] on EFL master-teacher training: reviewing the professional-development model, delivering virtual sessions, building a community of practice, and training master trainers. This suggests [partner] sees demand for teacher capacity-building, scalable professional development, and locally supported implementation, rather than standalone content sales.
+Kazakhstan is also within [partner]’s prior international project portfolio. A [partner] senior adviser’s record notes advisory work on international projects in Kazakhstan, including strategy, product/service design, business development, and evidence-informed education policy support.
+The likely offer is therefore system reform and capacity development: policy and data analysis, curriculum and assessment, teacher PD, digital transformation, and monitoring/evaluation. [partner] explicitly frames its work as collaborating with national partners on locally appropriate solutions and sustainable knowledge transfer.
 
-RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: no more generic crash text. UI now shows "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms the same underlying error (code: dependency_unavailable, diagnosticCode: provider_request_rejected) as before - the "content-specific clarifying question" theory from the original write-up turned out to be a red herring; the real cause was always the classifier's Anthropic call being rejected (tapestry-backend#373), which the frontend bug had been masking. Still Fail, now honest instead of misleading.
+For EVR, the strongest joint proposition would be to add an AI-in-education layer to this established reform model: initial system/AI-readiness diagnostic; policy and governance workshops; train-the-trainer programmes; and evaluation of pilots or national implementation. This is consistent with the [partner]–EVR collaboration model used elsewhere, where [partner] contributes local/system-reform capability and EVR contributes AI and evaluation expertise.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+Evidence
+Internal artefacts: [partner]’s Uzbekistan work and broader regional delivery examples are set out in the [client] proposal.
+[partner] experience: Kazakhstan is named as a prior international project context in a [partner] team CV included in the [client] proposal material.
+CRM/pipeline: The current CRM contains [partner] opportunities relating to Kuwait and Southeast Asia, but no active Central Asia-specific pipeline item. The view above is therefore grounded in prior delivery capability, not a confirmed live opportunity.
+Gaps / Uncertainties
 
-RE-RUN 2026-09-23 (v124): answered 'the authorised evidence does not contain any specific discussion…' then listed an unrelated proposal's Asia-Pacific regions. It never says which meaning of the name it assumed (a silent assumption), and it missed the Central Asia evidence legacy found. Fail. Follow-up: tapestry-backend#410.</span>
+There is no recorded [partner] position that ranks Kazakhstan, Uzbekistan, Kyrgyzstan, Tajikistan, or Turkmenistan by priority, nor any current Central Asia opportunity owner, named buyer, budget, or next action. I would treat Uzbekistan as the strongest immediate credibility story and Kazakhstan as a validated prior market, while validating present appetite and procurement routes before positioning Central Asia as a near-term joint pipeline.
+
+Sources:
+[1] [client] proposal (1).docx
+[2] Updated [client] Tech Proposal Draft_Nov2025.docx
+[3] [client] proposal (1).docx</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v124), 2026-09-23. Verbatim; client, partner and person names redacted.
+
+Tapestry understood this as: EVR intelligence · EVR evidence
+
+Answer
+
+The authorised evidence does not contain any specific discussion of [partner]'s view on opportunities in Central Asia. The regional presence described in the evidence covers countries such as Australia, India, Indonesia, Japan, Korea, Singapore, Taiwan, Vietnam, Bhutan, Bangladesh, Brunei, Sri Lanka, Maldives, Malaysia, Pakistan, Hong Kong, Thailand, Nepal, China, and the Philippines, with no mention of Central Asia as a focus area or opportunity. [1][2][3]
+
+Evidence
+[1] [client] proposal.docx
+[2] [client] proposal (1).docx
+[3] Updated [client] Tech Proposal Draft_Nov2025.docx
+
+Gaps and uncertainties
+
+The available evidence may not cover every current detail.
+
+8 authorised sources</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-007">
               <option value="Not run">Not run</option>
@@ -457,20 +778,20 @@ RE-RUN 2026-09-23 (v124): answered 'the authorised evidence does not contain any
       <tr>
         <td class="id-cell">HIST-008</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Have we had any interaction with [a named philanthropic foundation]?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Correctly reported finding no direct evidence of an interaction, and named which record types were searched.
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
-RE-RUN 2026-09-23: same result. No direct interaction; one indirect mention in a pipeline record, and it named the record types it searched.</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "Have we had any interaction with the Paul Hamlyn Foundation?" - a plain factual lookup, not actually ambiguous.
+No direct interaction is recorded with the [foundation] in the client, events, project, or pipeline records searched.
 
-Same failure signature again: routed to "Needs clarification," then "Tapestry received an incompatible response and stopped safely. Tapestry received a response that did not match the expected format." Fourth reproduction of the identical defect (after HIST-006 x2, HIST-007).
+The only reference I found is indirect: in the [client] / [project] pipeline correspondence, [foundation] was listed as one of several prospective philanthropic funders [client] intended to approach. There is no indication that EVR met, emailed, proposed to, or otherwise engaged directly with the Foundation. The [client] opportunity is currently marked Back Burner, with the latest recorded client contact on [date].
 
-This one is the most concerning instance so far: unlike HIST-006/007, this question isn't genuinely ambiguous at all - it names one specific, real organisation and asks a plain yes/no factual question. The pattern now looks broader than "disambiguate this term": any question referencing a specific named entity that the classifier doesn't confidently match seems to fall into "Needs clarification," and generating that clarification then crashes. That means real, unambiguous factual questions about unfamiliar names may currently be unanswerable in this staging environment, not just genuinely ambiguous ones - worth escalating as the single most impactful finding from this test run.
+Evidence: client segmentation returned no [foundation] record; the business database returned no direct interaction or event entries. The sole mention appears in [client]’s fundraising context, rather than a Foundation interaction.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v124), 2026-09-23. Verbatim; client, partner and person names redacted.
 
-RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: UI now shows "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." instead of the generic crash text. Raw SSE confirms identical underlying error (provider_request_rejected) - this plain factual question is still genuinely unanswerable in this environment. Root cause tracked in tapestry-backend#373. Still Fail.
+Tapestry understood this as: EVR intelligence · EVR evidence
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+Tapestry found 8 authorised EVR sources related to this question but could not confirm an answer that they fully support. Try asking about one specific aspect, or name the document you need.
 
-RE-RUN 2026-09-23 (v124): 'found 8 authorised EVR sources related to this question but could not confirm an answer that they fully support.' The answer that nothing is recorded is blocked by the evidence check, although that is exactly what the criterion asks for. (Legacy's evidence also came from business-database records, which v2 cannot query; see #313.) Fail. Follow-up: tapestry-backend#408.</span>
+Tapestry could not confirm this response was fully supported by the evidence it found.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-008">
               <option value="Not run">Not run</option>
@@ -485,16 +806,47 @@ RE-RUN 2026-09-23 (v124): 'found 8 authorised EVR sources related to this questi
       <tr>
         <td class="id-cell">HIST-009</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What is [an internal-sounding acronym], and do we have a project by that name?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Correctly reported no matching named project, while noting the term's unrelated everyday use elsewhere in the corpus.
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
-RE-RUN 2026-09-23: no matching project in project, pipeline or client records; offered a loosely related project and asked for context.</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "What is RECAP, and do we have a project by that name?" Identical failure signature: "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely." Fifth reproduction in a row (HIST-006 x2, 007, 008, now 009) - every single question in this run that references an unfamiliar or ambiguous named term has hit this exact defect. See HIST-008's note for the consolidated finding.
+RECAP is not defined in the internal materials I found, so I can’t confirm what the acronym stands for in EVR’s context.
 
-RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error as before. Root cause tracked in tapestry-backend#373. Still Fail.
+Do we have a project by that name? I found no live project or pipeline record named “RECAP”, and no client record with that name. I also found no clearly labelled RECAP artefact in the internal document store.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+The closest potentially relevant historic work is EVR’s proposed 10-week discovery and conceptualisation project with [partner] for [university]. It concerned an exploratory student-experience data model: defining [university]’s pedagogical “Golden Thread,” mapping concepts and data sources, and producing a costed plan for a broader data-modelling and systems-transformation programme.
 
-RE-RUN 2026-09-23 (v124): Pass. It says RECAP is not a named EVR project, separates the everyday lowercase 'recap' in two documents and a 'Project recap' slide heading from a project name, and says there is no evidence of anything formally named RECAP. Cited throughout. Meets the criterion better than legacy.</span>
+Evidence: business database search across live_projects and projects_pipeline: 0 matches for “RECAP”; client snapshot: 0 matches.
+
+If “RECAP” is a project nickname, an external programme, or an acronym used in meeting notes rather than the formal project title, share any associated organisation, person, or approximate date and I can narrow it down.
+
+Sources:
+[1] EVR-[partner] response - commercial.docx</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v124), 2026-09-23. Verbatim; client, partner and person names redacted.
+
+Tapestry understood this as: EVR intelligence · EVR evidence
+
+Answer
+
+Within the authorised evidence, RECAP does not appear as a named EVR project. The word "recap" appears only in its ordinary lowercase sense — meaning to summarise or revisit something — in two documents: once in a design sprint document referring to summarising a planning process, and once in a training workshop proposal referring to recapping key learnings at the end of a session. [2][3][4]
+
+A separate internal document uses the phrase "Project recap" as a slide heading to introduce a summary of project objectives, but this refers to a recap of an unnamed [client] AI evaluation project, not to a project called RECAP. [4][1][2][3]
+
+There is no evidence in the authorised sources that EVR has a project, programme, product, or initiative formally named RECAP. [1][2][3]
+
+Evidence
+
+[2] A design sprint document produced for the [client] uses the word "recap" in the context of summarising and lightly planning a making process during a sprint session.
+
+[3] A training workshop proposal for [client] includes "Recapping key learnings and takeaways" as a named activity within the reflection and consolidation phase of the workshop agenda.
+
+[4] A research design workshop slide deck uses "Project recap" as a heading to introduce three project objectives related to developing AI evaluation and system readiness frameworks for the [client].
+
+Gaps and uncertainties
+
+The authorised evidence does not include a project register, portfolio list, or comprehensive index of EVR projects, so it is not possible to confirm with certainty that no project named RECAP exists — only that none appears in the available sources.
+
+If RECAP is a recently initiated, informal, or externally facing project not yet documented in the internal materials provided, it would not be captured here. Checking with the relevant project lead or an internal project tracker would be the most reliable way to confirm.
+
+8 authorised sources</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-009">
               <option value="Not run">Not run</option>
@@ -509,18 +861,266 @@ RE-RUN 2026-09-23 (v124): Pass. It says RECAP is not a named EVR project, separa
       <tr>
         <td class="id-cell">HIST-010</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Multi-turn: "Do you have the specification for [a named programme]?" followed by 3–4 follow-up refinement questions in the same conversation.</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a detailed initial specification, then continued answering follow-ups that correctly referenced the same programme context across many turns.
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
-RE-RUN 2026-09-23: named one specific international STEM-educator programme and held it correctly across all four turns (delivery partner, train-the-trainer strand, evaluation).</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: opening turn "Do you have the specification for any current international teacher-training programme we're delivering?" (deliberately generic, no proper noun, to avoid guessing a real confidential programme name).
+Turn 1 — "Do you have the specification for any current international teacher-training programme we're delivering?"
 
-Same failure on turn 1: "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely." Sixth reproduction, and it shows the defect is broader than named-entity disambiguation specifically - a plain "which one of several possible X" question triggers it even with zero proper nouns. Could not proceed to the planned follow-up turns, so multi-turn context retention itself is untested here - blocked entirely by this defect on the very first turn.
+Yes — the clearest match is the [client] “[programme]” programme in Kuwait, delivered with [partner].
 
-RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error. Multi-turn context retention remains untested - still blocked on turn 1 by tapestry-backend#373. Still Fail.
+Specification available
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+Audience: 50 STEM educators spanning pre-service, early-career and college-level contexts; with a train-the-trainer strand for 10 educators.
+Delivery model: 20 hours of self-paced online learning, a five-day in-country intensive (35 contact hours), plus ongoing group and individual coaching.
+Curriculum: four modules:
+Creative Teaching with AI
+Leadership and Change Management in Educational Technology
+Practical Implementation in STEM Education
+Personalised Learning in STEM Education.
+Core content and tools: AI literacy; critical evaluation of AI outputs; AI-supported assessment, adaptive learning, generative AI for lesson planning, data governance, readiness assessment, ethics, bias, DPIAs and equity.
+Capacity-building: trainer co-delivery during the main programme and two hours of one-to-one developmental feedback per trainer.
+Platform and outputs: a customised Moodle/LMS environment with learning resources, collaboration, progress tracking and assessments; module pre/post knowledge checks; an ethics and safety framework; and communications/knowledge-sharing activity.
 
-RE-RUN 2026-09-23 (v124), 4 turns in one conversation. Turn 1 got the generic 'What would you like Tapestry to produce or explain?' workflow menu (tapestry-backend#394). After choosing EVR intelligence it found no full specification and pointed at a different engagement's proposal. Turn 2 switched to another engagement, turn 3 answered across two engagements, and turn 4 went back to the second one (about 100 s). Every turn is grounded, but what 'it' refers to changes from turn to turn, and the programme legacy found never appears. Fail. Follow-up: tapestry-backend#409.</span>
+We also have more operational specification materials:
+
+a detailed delivery/payment schedule that sets out initiation, baseline AI-literacy assessments, curriculum finalisation, 20-hour content development, LMS setup, the November 2025 platform launch and coaching, and delivery into January 2026;
+a working workshop specification covering differentiated tracks (primary, secondary, HE and technical), AI literacy for learners, academic integrity, AI for assessment/personalisation, use-case development, action planning, reflective practice and trainer arrangements.
+
+Status caveat: the internal project record describes this as a six-month programme beginning in August 2025, with major delivery scheduled through January 2026. As today is 23 September 2026, I can confirm we have the specification and delivery materials, but the records retrieved do not establish that it remains active today.
+
+Sources:
+[1] Samples of Work.docx
+[2] Samples of Work.docx.pdf
+[3] EVR payment table_[client].docx
+[4] [client] check-in_.docx
+[5] Updated [client] Tech Proposal Draft_Nov2025.docx
+
+Turn 2 — "Who is our delivery partner on it, and what is their role?"
+
+The delivery partner is [partner]—specifically its Partnership for Education function. [client] commissioned the programme from [partner] and EVR jointly; [partner] is the principal delivery partner, with EVR providing the specialist AI-in-education contribution.
+
+[partner]’s role
+
+Overall programme delivery and coordination with [client].
+Operational delivery of the hybrid programme, including the learning platform, participant administration, in-person delivery arrangements and local logistics.
+Recruitment/selection of participants for evaluation activities and conducting the in-person observations during training.
+Bringing broader education-reform, digital-education and delivery capability.
+
+EVR’s role
+
+Design and delivery of the AI/STEM professional-learning elements: the 20-hour self-paced course, in-person modules, online/in-person coaching, and train-the-trainer provision.
+Specialist input on AI literacy, pedagogy, ethics/safeguarding, data governance and implementation readiness.
+Development of the monitoring-and-evaluation instruments, with EVR conducting participant interviews; [partner] supports the in-person observations and participant recruitment.
+
+So, in shorthand: [partner] leads the programme’s delivery infrastructure and client-side implementation; EVR leads the specialist AI-learning design, educator development and evaluation expertise.
+
+Sources:
+[1] Samples of Work.docx.pdf
+
+Turn 3 — "What does the train-the-trainer strand involve?"
+
+The train-the-trainer (TTT) strand is intended to create a local cadre of 10 educators who can help sustain and extend the [programme] programme beyond the initial cohort.
+
+It includes:
+
+Dedicated synchronous TTT training for the 10 selected educators, supported by tailored trainer resources that extend the core online materials.
+Co-delivery opportunities during the main programme, so trainers develop capability through supported practice rather than only attending a separate workshop.
+Individual developmental mentoring: each trainer receives two hours of one-to-one feedback and mentoring, spread across the programme, to support constructive improvement in their practice.
+Facilitation skills for the local context, including handling difficult conversations about AI, designing age-phase-appropriate safeguarding materials, fostering a reflective learning atmosphere, and addressing myths about AI without alienating participants.
+Practical delivery preparation: the emerging trainers receive materials, a defined delivery approach, and exposure to the programme’s core methods, tools and frameworks so they can support future cohorts. This sits alongside the wider curriculum on AI literacy, classroom/STEM use cases, ethics, governance, assessment and personalised learning.
+
+The intended outcome is not simply that ten people complete extra AI training; it is that they become locally capable trainers and peer leaders, able to support future delivery and embed an AI-enabled STEM educator community in Kuwait.
+
+One limitation in the materials: the detailed role description, commitments and final schedule for the TTT participants were still marked as needing agreement in the working notes, so I would treat the above as the agreed design rather than a fully finalised operational handbook.
+
+Sources:
+[1] Costings_22 Jan v2.docx
+[2] In-person module_outline.docx
+[3] [client] check-in_.docx
+
+Turn 4 — "And how will we evaluate whether it worked?"
+
+We will evaluate it through a mixed-methods monitoring and evaluation framework that tests both outcomes and delivery quality—not simply completion or satisfaction.
+
+1. Did participants learn the intended content?
+
+We will compare baseline and endline assessment data, supported by end-of-module quizzes. This covers understanding of:
+
+AI fundamentals, capabilities and limitations;
+appropriate AI use cases in education;
+ethics, safeguarding, data protection and privacy.
+2. Did their professional capability change?
+
+The evaluation will assess participants’ reported and demonstrated ability to:
+
+design AI-enhanced learning activities;
+choose AI tools that fit an educational objective;
+balance AI use with human-centred teaching;
+differentiate learning with AI; and
+help learners build AI literacy.
+
+During the in-person element, [partner] will use an observation protocol with scaled and qualitative criteria to look at learner-centred practice, assessment practice, questioning, and application of knowledge and skills.
+
+3. Did confidence and readiness improve?
+
+Participants complete confidence check-ins during the programme, followed by interviews and the endline survey. These examine confidence in exploring and using AI in education, and awareness of the resources and support available to them.
+
+4. Was the programme usable, relevant and engaging?
+
+We will monitor:
+
+platform analytics and attendance;
+participation in the online course, coaching and in-person components;
+post-module satisfaction surveys;
+a post-in-person participant survey on facilitation, facilities and technology; and
+qualitative feedback through interviews and, in one version of the M&amp;E plan, one or two focus groups.
+
+This allows us to distinguish, for example, between a course that was well received and one that participants actually engaged with and completed.
+
+5. How will the evidence be brought together?
+
+The proposed analysis combines:
+
+pre/post comparisons of baseline and endline results;
+descriptive analysis of engagement, attendance, quizzes and confidence data;
+qualitative thematic analysis of interviews, focus groups, reflection canvases and participant portfolios/action plans; and
+triangulation across those sources to assess impact on knowledge, skills and confidence, as well as relevance, engagement and instructional effectiveness. The intended final output is an evaluation report with findings against the M&amp;E indicators and recommendations for the next iteration.
+
+Important scope point: EVR’s confirmed core scope is the development of the M&amp;E instruments. Full data analysis and the evaluation report are listed as an optional, separately agreed work package. So the framework and data-collection design are specified, but whether we deliver the final analytical evaluation depends on that additional agreement.
+
+Sources:
+[1] SOW_[client]_Instruments.docx</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v124), 2026-09-23. Verbatim; client, partner and person names redacted.
+
+Turn 1 — "Do you have the specification for any current international teacher-training programme we're delivering?"
+
+Tapestry understood this as: Needs clarification · No knowledge sources
+What would you like Tapestry to produce or explain?
+[Options: Theory of Change · Drafting with EVR evidence · EVR intelligence · Briefing and draft · Work with supplied material · General explanation · Tapestry help — tester chose "EVR intelligence"]
+
+Tapestry understood this as: EVR intelligence · EVR evidence
+
+Answer
+
+The authorised evidence does not contain a full programme specification for any current international teacher-training programme being delivered by EVR. The evidence does reference EVR's involvement in contexts adjacent to international teacher training — notably a proposal to support the [client A] with AI policy development and teacher training — but no detailed programme specification document is present in the available evidence. [7][1][2][3][4][5][6]
+
+The [client A]-related evidence notes that [client A] has developed an internal training programme for their teachers on AI, which approximately 7000 teachers have passed through, and that following policy work, EVR may be asked to support further training including training for leadership — but this describes a potential future engagement, not a current EVR-delivered programme with a specification. [7]
+
+There is also evidence relating to an [programme B] strategic partner Terms of Reference, which outlines a training programme involving curriculum development, Train-the-Trainer workshops, and teaching practicum running from September 2024 to December 2026, but no EVR programme specification document is attached to or described within that evidence. [5][7]
+
+Evidence
+
+[7] The [client A] policy framework development document describes EVR being approached to support the [client A] — a network of independent schools offering private education — with AI policy development and potentially teacher training. It notes that [client A] has an internal training programme that approximately 7000 teachers have passed through, and that EVR may subsequently be asked to support training, including for leadership.
+
+[5] The [programme B] Terms of Reference describes a strategic partner engagement running from September 2024 to December 2026, involving activities such as training resource gathering, curriculum revision, Train-the-Trainer workshops, and teaching practicum. It specifies that all outputs including curriculum and additional training resources should be publicly available and open source.
+
+[1][6] Background academic material on teacher education in the UAE discusses models of teacher education (craft, applied science, reflective practice, and community of practice models) and structural forms (concurrent and consecutive programmes), as well as continuing professional development for teachers in international private schools. This is contextual research material rather than an EVR programme specification.
+
+[3][8] [ministry] documentation covers teacher licensing services, equivalency of international licences, and transitional licensing, which is regulatory context relevant to international teacher preparation in the UAE but does not constitute an EVR programme specification.
+
+Gaps and uncertainties
+
+No programme specification document for any current EVR-delivered international teacher-training programme is present in the authorised evidence. It is possible such a document exists internally but was not included in the evidence set provided.
+
+It is unclear whether EVR is currently delivering a teacher-training programme internationally in its own right, or whether the relevant engagements (such as [client A] or the [programme B]) are at proposal or early-stage delivery phases without a finalised specification. [7][5]
+
+The EVR-[partner] catch-up evidence references project management materials and an RFP but does not clarify whether this relates to a teacher-training programme or another type of engagement. [4]
+
+To answer this request fully, it would be worth checking whether a programme specification, scope of work, or delivery plan document exists for any active international teacher-training contract and requesting that it be added to the evidence set.
+
+8 authorised sources
+
+Turn 2 — "Who is our delivery partner on it, and what is their role?"
+
+Answer
+
+The delivery partner identified in the authorised evidence for the international programme most closely matching the prior conversation is [client B], named in the [programme B] Terms of Reference. [client B]'s role in that engagement is to collaborate with the strategic partner (EVR) on organising and facilitating convenings in local markets, creating and spreading awareness campaign content, and assessing local training provider applicants. [4][2]
+
+The Terms of Reference also describe a Monitoring and Evaluation Technical Consultant (M&amp;E Consultant) as a distinct collaborating role, working with the strategic partner to design assessments and evaluation tools and to monitor and evaluate the effectiveness of the training programmes, including trainer performance — though this role is not attributed to a named organisation in the evidence provided. [4]
+
+For the [region] proposal, the [university] is named as a delivery partner, leading stakeholder engagement while EVR leads the overall bid, with the partnership described as weaving together international and [region] expertise. [6]
+
+Evidence
+
+[4] The [programme B] Terms of Reference sets out that the strategic partner (EVR) is to collaborate with [client B] across three ecosystem-wide capacity building activities: organising and facilitating convenings in respective local markets; creating and spreading awareness campaign content in those markets; and assessing local training provider applicants. The partnership runs from signing until end-December 2026.
+
+[4] The same document identifies the M&amp;E Consultant as a collaborating role responsible for co-designing assessments and evaluation tools with the strategic partner, and for being supported by the strategic partner in monitoring and evaluating training programme effectiveness and trainer performance.
+
+[6] The [region] proposal presentation states that EVR is leading the overall bid and that the [university] is leading stakeholder engagement. It notes that the EVR founder [person] and [person] have worked together on previous educational technology projects and have co-edited a book on educational narrative together, and that the partnership draws on the [university] team's contacts within the [region] education system.
+
+Gaps and uncertainties
+
+The authorised evidence does not name the organisation filling the M&amp;E Consultant role in the [programme B] engagement, so it is not possible to confirm who holds that position. [4]
+
+It is unclear from the evidence whether the [region] proposal was awarded, meaning the [university] partnership may not be active. [6]
+
+No delivery partner information is present in the evidence for any other international teacher-training engagement referenced in the prior conversation, such as the [client A] or [partner] engagements; those documents were not included in the current authorised evidence set.
+
+8 authorised sources
+
+Turn 3 — "What does the train-the-trainer strand involve?"
+
+Answer
+
+The train-the-trainer strand appears across two distinct engagements in the authorised evidence: a proposal to [client C] and the [programme B] Terms of Reference. In both cases it centres on equipping a cohort of trainers with the knowledge, skills, and materials they need to go on to deliver AI-in-education training to teachers or other learners themselves. [4][3][1]
+
+In the [client C] engagement, EVR is supporting a train-the-trainer programme with an initial pool of ten trainers who will begin training teachers in August 2025. The deliverables include three train-the-trainer sessions, each lasting 2 hours, facilitated by 2 trainers with substantial experience in delivering training to educators and senior leadership in AI in Education. Sessions are planned to take place via Zoom between mid-July and the end of August 2025. The total cost for this programme of work is [amount] excluding VAT. [4][1]
+
+Deliverables for the [client C] strand include comprehensive presentation slides (which can be used for future extensions to the train-the-trainer programme and to deliver training to teachers), an EVR toolkit and supplementary resources, and interactive activities and discussions within each session. [1]
+
+The module content covered within the [client C] sessions includes: AI to support professional development; student engagement strategies; AI-enhanced lesson planning techniques and tools; leveraging learning analytics to support data-driven instruction; facilitating collaborative learning through AI tools; and personalised learning pathways and personalised learning experiences to cater to diverse student needs. The emphasis is on using AI purposefully to reduce workload while maintaining high educational standards. [1]
+
+In the [programme B] engagement, the train-the-trainer strand is a more extensive, multi-stage component. It involves: co-developing a common AI training curriculum framework; building a local training resource map; customising the curriculum for the local market; creating additional training resources such as handouts, teaching notes, and activity guides; designing assessments and evaluation tools (in collaboration with the M&amp;E Consultant); planning and delivering Train-the-Trainer workshops for local training providers; and facilitating a teaching practicum and/or supporting pilot training sessions with constructive feedback. [3][8]
+
+The [programme B] timeline schedules Train-the-Trainer workshops across January to March 2025 (with a possible additional round in January to March 2026), followed by a teaching practicum phase from March to April 2025 (with a possible additional round in March to April 2026). Curriculum revision and ongoing support to local training providers then continues through to December 2026. Additional rounds of training resource gathering, curriculum revision, Train-the-Trainer workshops, and teaching practicum may be required depending on local training providers' needs and market changes. [8][2]
+
+Across both engagements, the train-the-trainer approach is also referenced as a relevant track record criterion: the [programme B] Terms of Reference list experience in train-the-trainer approaches as a positive factor for the strategic partner role. [2][1]
+
+EVR's prior delivery of a train-the-trainer component is also cited as an example in the [client C] proposal, referencing training of 50 college-level educators in Kuwait through a combination of online self-paced courses and synchronous coaching, including a train-the-trainer component. [1]
+
+Evidence
+
+[4][1] [client C] proposal ([client C].docx): Sets out the context, module content, session structure, deliverables, costings, and timeline for EVR's train-the-trainer support to [client C], including the initial pool of ten trainers and the August 2025 start date for teacher training.
+
+[3][8][2] [programme B] Strategic Partners Terms of Reference ([programme B]-STRATEGIC-PARTNERS-ToR-010824.pdf): Defines the full scope of the train-the-trainer strand within the [programme B] engagement, including curriculum development, workshop delivery, teaching practicum, quality assurance, and the deliverables and timeline table.
+
+Gaps and uncertainties
+
+It is not confirmed in the evidence whether the [client C] proposal was accepted and the sessions are proceeding as described, or whether any changes to the schedule or scope have since been agreed. [4]
+
+The evidence does not specify the subject matter or curriculum content of the [programme B] Train-the-Trainer workshops beyond the general AI training curriculum framework, so the precise topics covered in those sessions are not confirmed. [3][8]
+
+The [university] presentation references train-the-trainer sessions as an offer to attendees but provides no detail on what those sessions involve, so it cannot be used to characterise the strand further. [5]
+
+No information is available in the authorised evidence about the specific content, structure, or outcomes of the Kuwait train-the-trainer component beyond its brief mention as a prior example. [1]
+
+8 authorised sources
+
+Turn 4 — "And how will we evaluate whether it worked?"
+
+Answer
+
+The authorised evidence contains evaluation framework detail in the [client B] proposal, which sets out evaluation at three levels: effectiveness of the strategic training partner, effectiveness of the local in-country training partner, and impact on the end beneficiary. A fourth layer of an indicative cross-sector and cross-market comparison is also proposed to identify and understand main similarities and differences regarding training effectiveness and end-beneficiary learning outcomes. [2][7]
+
+Key inputs for evaluating the strategic training partner include: a pedagogical evaluation of the curriculum and online/offline resources developed/adapted; a rapid evidence review of relevant theoretical frameworks; an expert review of the curriculum and resources; baseline and endline surveys for local training partners; focus groups for local training partners; and data on engagement and performance of local training partners trained by the strategic partner (e.g. number of learners trained, end-beneficiary feedback). [2]
+
+For the in-country training provider, evaluation draws on observational data (including collaboration with [client B] monitoring teams and, where feasible, observations of face-to-face sessions), baseline and endline surveys for end-beneficiaries, focus groups for end-beneficiaries, and data on engagement and performance of end-beneficiaries on pre and post assessments. [2]
+
+Impact on the end beneficiary is assessed through impact on content knowledge and skills, using baseline and endline surveys with end-beneficiaries and focus groups with end-beneficiaries. [2]
+
+Two costing tiers are outlined: a light touch evaluation at [amount], which includes two cycles of evaluation with quantitative analysis and some qualitative analysis; and a comprehensive evaluation at [amount], which includes both quantitative and detailed qualitative analysis with in-person observations included. An advanced comparative analysis optional add-on is priced at [amount] and includes a cross-market and cross-sectoral comparative analysis. [7]
+
+Evidence
+[1] The EVR Difference Deck by Audience.pptx
+[2] [client B] proposal.docx
+[3] [university] Preserving Human Agency in Educational Innovation.pptx
+
+Gaps and uncertainties
+
+The available evidence may not cover every current detail.
+
+Some points in this answer were removed because Tapestry could not match them closely enough to the authorised EVR evidence.
+
+8 authorised sources</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-010">
               <option value="Not run">Not run</option>
@@ -535,18 +1135,62 @@ RE-RUN 2026-09-23 (v124), 4 turns in one conversation. Turn 1 got the generic 'W
       <tr>
         <td class="id-cell">HIST-011</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">[Pastes a lengthy email invitation.] Should we accept this?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a reasoned accept/decline recommendation referencing details from the pasted email plus some internal precedent.
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
-RE-RUN 2026-09-23 (new synthetic invitation, since the original test text wasn't kept): recommended accepting in principle. It extracted the date, deadline, fee and audience, checked the events table for a clash, and cited two earlier internal speaking engagements. It also shows raw source labels such as 'SQLite: external_events'.</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: pasted a synthetic, generic speaker-invitation email (fabricated for this test, not real correspondence) and asked "Should we accept this invitation?"
+Recommendation: Accept in principle, subject to speaker availability and a few confirmations
 
-Same failure again: "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely." Seventh reproduction, and the first on a "pasted long content + judgment call" input shape rather than a short question - shows the defect isn't limited to short queries.
+This is a strong strategic fit for EVR: the topic—responsible evaluation of AI tools in schools—maps directly to our established work on purpose-driven AI, ethical leadership, tool selection, evidence, and school AI strategy. The audience of approximately 250 school leaders and policymakers is materially larger and more influential than many routine speaking opportunities, and travel costs are covered.
 
-RE-TESTED 2026-09-15, same synthetic pasted email, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error - the classifier call still fails on longer pasted content, tracked in tapestry-backend#373. Still Fail.
+The event is on 18 November 2026 in Manchester, with a response requested by 10 October 2026. No conflicting EVR event is currently recorded for that date, although individual diary availability still needs checking. SQLite: external_events, 0 matching records for 18 November 2026.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+Why accept
+Clear thought-leadership alignment. EVR’s prior AI work with school and trust leaders has explicitly covered evaluating and selecting AI tools, defining purposes before choosing technology, monitoring impact, data privacy, bias, hallucinations, and ethical leadership. SQLite: external_events, [organisation] AI Roadshow records, 2024.
+High-value audience mix. The combination of school leaders and policymakers supports EVR’s aim to influence both implementation and system-level decision-making.
+Useful panel composition. A university, MAT, edtech company and EVR create a credible cross-sector discussion—provided EVR is positioned as the independent evidence-and-evaluation voice rather than as another technology advocate.
+Precedent for unpaid strategic engagements. EVR accepted unpaid policy-facing engagements when there was a credible route to influence, relationships or follow-on work. The September 2025 [organisation]/[organisation] panel, for example, yielded useful senior connections and strengthened EVR’s positioning between technology, policy and practice. SQLite: external_events, “[event]: Panel event in partnership with [organisation],” Event_Report_Summary.
+The 7-minute provocation is manageable. It offers enough space to establish a distinctive framework without requiring a full bespoke keynote.
+Conditions before confirming
 
-RE-RUN 2026-09-23 (v124), same synthetic invitation: 'found 5 authorised EVR sources … could not confirm an answer that they fully support.' The facts that matter are in the user's own pasted text, which the evidence check doesn't count as support. Fail. Follow-up: tapestry-backend#408.</span>
+Ask the organiser to confirm:
+
+Named speakers and moderator, including whether the edtech panellist has a commercial role that could skew the discussion.
+Recording, livestreaming and reuse rights—EVR should approve any editing or use of the opening remarks in marketing.
+Audience breakdown: proportion of school leaders, trust leaders, policymakers, vendors, and others.
+Whether EVR can share a follow-up resource—for example, a responsible-AI evaluation checklist, benchmarking link, or newsletter sign-up—without turning the session into a sales pitch.
+Travel arrangements and timetable, especially whether same-day rail travel is practical.
+Suggested positioning for the opening provocation
+
+A concise proposition could be:
+
+“Schools should not ask, ‘Which AI tool should we buy?’ They should ask, ‘What educational problem are we trying to solve, what evidence would show it is helping, and what safeguards will protect learners, teachers and public trust?’ Responsible evaluation means beginning with purpose, testing impact in context, and stopping or adapting tools when the evidence does not justify their use.”
+
+A simple structure:
+
+Purpose: define the learning, workload or inclusion problem first.
+Evidence: assess plausible benefits, local implementation conditions and measures of impact.
+Risk: test privacy, bias, safeguarding, accessibility and over-reliance.
+Governance: set ownership, review points and transparent criteria for continuation or withdrawal.
+
+This would be highly consistent with EVR’s prior framing of AI as a tool to serve educational purposes—not an end in itself—and with its focus on strategy, evaluation and safeguarding. SQLite: external_events, [organisation] AI Roadshow records, 2024; “[school] Free AI Conference: AI &amp; The Next Phase,” 2025.
+
+Caveat
+
+This should be treated as a thought-leadership investment, not a revenue-generating speaking engagement: there is no fee. EVR’s recent experience also suggests that large free events do not automatically generate business; the [school] conference was assessed as low-to-medium success despite relevant attendees and contacts. Therefore, acceptance should include a deliberate follow-up plan: collect opt-in contacts where permitted, identify priority conversations in advance, and schedule post-event outreach. SQLite: external_events, “[school] Free AI Conference: AI &amp; The Next Phase,” Event_Report_Summary.
+
+Evidence
+SQLite — external_events: no event currently recorded for 18 November 2026.
+SQLite — [organisation] AI Roadshows (2024): EVR’s established content includes purposeful adoption, ethical leadership, tool evaluation, privacy, bias, implementation and monitoring.
+SQLite — [organisation]/[organisation] [event] panel (29 September 2025): unpaid policy-facing panel generated meaningful visibility, senior connections and potential partnership opportunities.
+SQLite — [school] AI Conference (2 September 2025): reinforces the need to plan leverage and follow-up rather than assuming speaking exposure converts to work.
+
+Bottom line: Accept, subject to availability and the confirmations above.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v124), 2026-09-23. Verbatim; client, partner and person names redacted.
+
+Tapestry understood this as: EVR intelligence · EVR evidence
+
+Tapestry found 5 authorised EVR sources related to this question but could not confirm an answer that they fully support. Try asking about one specific aspect, or name the document you need.
+
+Tapestry could not confirm this response was fully supported by the evidence it found.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-011">
               <option value="Not run">Not run</option>
@@ -561,20 +1205,105 @@ RE-RUN 2026-09-23 (v124), same synthetic invitation: 'found 5 authorised EVR sou
       <tr>
         <td class="id-cell">HIST-012</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">[Pastes call notes.] Draft topics for a 4-module, 15-minute-session training based on this.</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Returned a generic failure message instead of a usable draft.
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
-RE-RUN 2026-09-23 (new synthetic call notes): now succeeds. It gave a full 4-module draft with a fixed session pattern for each 15-minute slot.</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: pasted synthetic call notes (fabricated for this test) and asked for a 4-module training draft based on them.
+Draft programme: Practical AI for Teaching — Safe, Useful, Sustainable
 
-Same failure again: "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely." Eighth reproduction.
+Designed as four 15-minute after-school sessions across one term. Each session should follow a simple pattern: 3-minute input, 7-minute demonstration/activity, 5-minute takeaway and commitment. The emphasis is on building confidence gradually, not assuming prior experience.
 
-Note: unlike the other cases in this run, the legacy system ALSO failed on this exact scenario shape ("Sorry, something went wrong" per the original record) - so this is not a regression versus the old tool, but it is a persisting failure mode that the new system has not actually fixed, just with a different (safer, more honest) error message.
+Module 1 — Start Safe: What staff need to know before using generative AI
 
-RE-TESTED 2026-09-15, same synthetic call notes, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." - an even more honest message now than before. Raw SSE confirms same provider_request_rejected error, tracked in tapestry-backend#373. Still Fail, still not a regression vs. legacy.
+Purpose: Establish a shared baseline and reduce anxiety around risk.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+What generative AI can and cannot do: useful assistant, not expert or decision-maker.
+The school’s “safe-use” essentials:
+do not enter identifiable pupil, safeguarding, health or sensitive staff data;
+check school-approved tools/accounts and settings;
+treat outputs as drafts that require professional review;
+be alert to inaccuracies, bias and inappropriate content.
+A quick traffic-light test for deciding whether a task is suitable for AI:
+Green: generic resource ideas, anonymised templates, drafting communications;
+Amber: content requiring careful checking or adaptation;
+Red: personal data, safeguarding information, high-stakes judgements.
+Practical takeaway: a one-page staff “AI safe-use checklist” and an agreed sentence staff can use when explaining responsible AI use to pupils.
 
-RE-RUN 2026-09-23 (v124): not graded. Routed to 'Needs clarification' and then stopped with 'Tapestry's AI request limit has been reached', which is Tapestry's own staging spending cap (acceptance cost ledger, $15), not Anthropic credit. Blocked on tapestry-backend#411.</span>
+This module responds directly to the concerns around data protection and safe practice, while keeping the focus on practical AI literacy rather than technical theory. EVR materials position responsible data handling, ethical judgement and understanding AI’s limitations as core staff-readiness components.
+
+Module 2 — AI for lesson planning: Save time, keep teacher judgement
+
+Purpose: Give hesitant staff one low-risk, high-value use case.
+
+Use AI to generate starting points for:
+lesson hooks and retrieval questions;
+differentiated explanations and examples;
+vocabulary lists, model responses and scaffolded tasks;
+alternative ways to explain a difficult concept.
+A simple prompting structure: role + class/context + learning goal + constraints + output format.
+Demonstration: turn one existing lesson objective into a short starter, a scaffolded activity and an extension task.
+Quality-control routine: check accuracy, check curriculum alignment, check accessibility, personalise for the class.
+Practical takeaway: a small bank of adaptable prompts, plus a “before you use it” checklist.
+
+The proposed focus reflects EVR training materials on AI-enhanced lesson planning and purposeful workload reduction, with AI supporting—rather than replacing—professional pedagogical judgement.
+
+Module 3 — AI, feedback and workload: Faster first drafts, better feedback conversations
+
+Purpose: Explore how AI can reduce routine workload without automating high-stakes judgement.
+
+Appropriate uses:
+drafting feedback stems;
+creating success-criteria-aligned exemplars;
+identifying common misconceptions from anonymised work samples;
+producing practice questions, peer-assessment prompts and improvement tasks.
+What should remain with the teacher:
+final assessment decisions;
+professional judgement about progress and next steps;
+sensitive or personalised feedback.
+Demonstration: use an anonymised paragraph and success criteria to produce:
+improvement prompts,
+a model “next step,” and
+a pupil self-check list.
+Practical takeaway: a feedback workflow that requires staff to review, adapt and personalise every AI-generated suggestion.
+
+This builds on EVR’s existing work on assessment and feedback while retaining high educational standards and recognising that automated feedback must be tied to a clear pedagogical purpose.
+
+Module 4 — Academic integrity and sustainable rollout: Clear boundaries, consistent practice
+
+Purpose: Help staff respond consistently to pupil use of AI and enable internal re-delivery.
+
+Move from “catching AI use” to designing for authentic learning:
+clarify when AI is not permitted, permitted for specified purposes, or used transparently as a collaborative tool;
+ask pupils to show process: notes, drafts, choices, reflections and source checks;
+include personal/classroom-specific application, discussion or short oral elements where appropriate.
+Agree a common, age-appropriate message to pupils and parents: use AI transparently, critically and within stated boundaries.
+Identify 2–3 AI CPD champions to re-deliver the materials in departments and collect examples of effective practice.
+Practical takeaway: a lightweight departmental action card:
+one agreed safe-use norm;
+one lesson-planning or feedback use case to trial;
+one assessment/academic-integrity adjustment;
+one question to review at the next meeting.
+
+EVR’s assessment materials recommend clear boundaries for AI use, process documentation and assessment designs that foreground critical thinking and authentic evidence of learning. The train-the-trainer element is also aligned with EVR’s established approach to building sustainable internal capacity rather than relying solely on external delivery.
+
+Suggested programme-level design
+Keep the toolset narrow: use one approved generative-AI tool for demonstrations, rather than comparing many platforms.
+Differentiate lightly: provide a “first step” task for non-users and an optional extension for regular users in every session.
+Make every session reusable: provide slides, facilitator notes, a one-page handout and a short prompt/resource bank so internal leads can repeat it in departmental meetings.
+Build in a tiny evidence loop: at the end of each session, ask staff to record one intended use and, at the next session, one thing that worked or did not work. This supports a reflective, iterative approach to implementation.
+Style basis / evidence
+EVR materials emphasise ethical, strategic and pedagogically sound AI use, alongside practical applications for teaching and workload.
+The ordering prioritises the school’s stated concerns—data protection and academic integrity—before moving into lesson planning and feedback.
+The short-session format has been adapted for a low-budget, internally sustainable model: one concrete use case and one reusable resource per module.
+Sources:
+[1] [client] April 2025.pptx
+[2] AI training Proposal_external.docx
+[3] AI Innovation and AI Pedagogy.pptx</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v124), 2026-09-23. Verbatim; client, partner and person names redacted.
+
+Tapestry understood this as: Needs clarification · No knowledge sources
+
+Tapestry's AI request limit has been reached. Please try again later.
+
+Tapestry has reached its usage limit for AI requests in this environment.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-012">
               <option value="Not run" selected>Not run</option>
@@ -589,18 +1318,37 @@ RE-RUN 2026-09-23 (v124): not graded. Routed to 'Needs clarification' and then s
       <tr>
         <td class="id-cell">HIST-013</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Which clients are currently in early-stage conversations about AI strategy?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Queried a live internal CRM/business database directly and returned specific client names and pipeline-stage information.
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
-RE-RUN 2026-09-23: queried the live CRM and listed named pipeline clients with owners, stages and last-contact dates (about 50 s).</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14. Ninth reproduction of the same "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely" failure.
+The CRM snapshot identifies the following as the clearest early-stage AI strategy conversations:
 
-This one is notable beyond just being another instance: it means the actual scope question this case was meant to test - does Tapestry clearly say "I can't query live CRM data" - is currently untestable, because the request never reaches a scope decision at all. The crash happens first. Whatever the intended out-of-scope behaviour is, it's being masked by this defect.
+[client A] ([person])
+Exploring a potential research-and-strategy partnership around AI adoption in [client A]’s UAE [programme] Schools, including AI policy, implementation, impact evaluation and a possible year-long research programme. The latest recorded position was for [client A] to review EVR’s proposal internally and arrange a follow-up.
+Owner: [person] / [person]. Stage: Working on it; keep warm. Last recorded contact: 5 August 2025.
 
-RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error - the intended CRM out-of-scope behaviour is still masked, since the request still never reaches a scope decision. Root cause tracked in tapestry-backend#373. Still Fail.
+[client B]
+In discussion about an AI maturity snapshot / gap analysis to assess current readiness, governance and strategic priorities. A short proposal was sent, with a follow-up still pending.
+Owner: [person] / [person]. Stage: Proposal submitted / working on it. Last recorded contact: 16 June 2025.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+[client C] ([person])
+An exploratory discussion about [client C]’s AI assistant and how EVR’s AI-readiness, governance and evaluation frameworks could support its development. This is explicitly contingent on [client C] reaching its beta phase, so it is a longer-horizon opportunity rather than an imminent project.
+Owner: [person]. Stage: Working on it; re-contact planned. Last recorded contact: 4 September 2025.
 
-RE-RUN 2026-09-23: not run on v2 because the staging spending cap was reached (tapestry-backend#411). The intended check (a clear 'I can't query live CRM data' message) is still untested; scope is tracked in #313.</span>
+[client D] ([person])
+A strategic relationship conversation rather than a defined proposal. Discussion covers institution-wide AI adoption, Microsoft Copilot, AI governance, data infrastructure and the organisation’s broader AI direction. There may be scope for coalition and data-stewardship collaboration.
+Owner: [person]. Stage: Working on it. Last recorded contact: 4 August 2025.
+
+[client E] ([person] and [person])
+Ongoing early exploration of consultancy support to help [client E] respond strategically to the “inevitabilities of AI.” The notes indicate interest in a more substantial advisory relationship, but not yet a defined scope or commissioned project.
+Owner: [person]. Stage: Working on it. Last recorded contact: 1 August 2025.
+
+Worth distinguishing:
+
+[client F] began as an early-stage AI strategy and governance conversation, but the pipeline indicates it progressed to verbal approval and contract finalisation for Stage 1. I would therefore treat it as moving beyond early-stage conversation, rather than include it in this list.
+[client G] had a promising AI-enabled strategy and evaluation-framework discussion, but it was marked Back Burner pending a more defined brief and later re-engagement.
+
+Evidence: projects_pipeline returned 18 open/proposal-stage records matching AI strategy, AI implementation, AI readiness or governance terms. The entries above were selected because their notes explicitly describe organisation-level strategy, readiness, governance or maturity work—not simply product evaluation, training delivery, or general relationship-building. The latest recorded activity in the available pipeline is from September 2025, so this is the latest internal snapshot rather than confirmation of live status as of 23 September 2026.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Not run on v2 (blocked by the staging spending cap, tapestry-backend#411).</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-013">
               <option value="Not run" selected>Not run</option>
@@ -615,16 +1363,25 @@ RE-RUN 2026-09-23: not run on v2 because the staging spending cap was reached (t
       <tr>
         <td class="id-cell">HIST-014</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What invoices are linked to [a named project]?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Returned specific figures and dates read directly from a live invoicing table.
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
-RE-RUN 2026-09-23: picked an AI-readiness project and gave a table of 5 scheduled invoices with amounts, the total, the amount invoiced to date and the latest invoice number, read from the live invoices table.</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "What invoices are linked to our most recent AI strategy project?" Tenth reproduction of the identical "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely" failure. Same masking effect as HIST-013 - the actual CRM-scope question this case is meant to test is never reached.
+The most recent AI-focused strategy/readiness project I found is [client]’s AI Learning and Teaching Tools Readiness Assessment. The contract schedules five EVR invoices, all in GBP and exclusive of VAT:
 
-RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error. Root cause tracked in tapestry-backend#373. Still Fail.
+EVR invoice | Scheduled timing | Amount (ex. VAT)
+4 | 30 August | [amount]
+5 | 30 September | [amount]
+6 | 30 October | [amount]
+7 | 30 November | [amount]
+8 | 30 December | [amount]
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+The invoicing record is consistent with that schedule: it shows a [amount] total project value, five invoices issued, and [amount] invoiced so far. The latest recorded invoice is no. [number], for [amount], marked issued on 30 December; the project is marked part received / awaiting payment. The scheduled EVR amounts total [amount], matching the project total.
 
-RE-RUN 2026-09-23: not run on v2 because the staging spending cap was reached (tapestry-backend#411).</span>
+Evidence: project_invoices contains one linked [client] billing record (current invoice [number]; 5 of 5 invoices issued; [amount] ex VAT total; [amount] invoiced so far). The project documentation identifies it as an AI readiness assessment for [country]’s education system.
+
+Sources:
+[1] signed_EVR Consultancy Services Contract Terms and Conditions_[client]_5 August (1).docx
+[2] [contract reference].SOW.EVR Ltd.04.08.25 (1).docx</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Not run on v2 (blocked by the staging spending cap, tapestry-backend#411).</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-014">
               <option value="Not run" selected>Not run</option>
@@ -639,16 +1396,17 @@ RE-RUN 2026-09-23: not run on v2 because the staging spending cap was reached (t
       <tr>
         <td class="id-cell">HIST-015</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Help me draft a follow-up email to [a named client] about past work and possible next steps.</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Produced a full draft email that referenced specific past engagement details (scope, prior deliverables).
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
-RE-RUN 2026-09-23: did not draft. It asked for the client name, past work, next steps and tone, and offered to use pasted notes.</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "Help me draft a follow-up email to a client about past work and possible next steps" (deliberately left "a client" generic rather than naming a real one). Eleventh reproduction of the identical "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely" failure - the final case in this 15-test run, and it hit the same defect as 10 of the previous 14.
+I can draft this, but I’ll need a little context to make it specific and evidence-based:
 
-RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error. Root cause tracked in tapestry-backend#373. Still Fail - 10/10 of the original failures now show the honest specific message instead of the misleading generic one, but 0/10 have actually been fixed functionally.
+Client name
+The past work to reference (project name, scope, or approximate dates)
+Possible next steps you want to raise—e.g., follow-on delivery, evaluation, strategy workshop, proposal, or catch-up call
+Preferred tone: warm/relationship-led, concise/commercial, or formal
 
-ROOT CAUSE IDENTIFIED 2026-09-15: reproduced the classifier's exact Anthropic API request (same system prompt, tool schema, model, and message) directly against Anthropic, outside the app. Anthropic returned: "Your credit balance is too low to access the Anthropic API. Please go to Plans &amp; Billing to upgrade or purchase credits." This is a billing/account-credits issue, not a code defect - the Anthropic account backing this staging environment ran out of credit. Not fixable in code; needs credits added to the account (a billing action, left to a human with access to that account). Also explains why HIST-001-005 passed earlier in the same test run while HIST-006-015 failed: credits most likely ran out partway through the session.
-
-RE-RUN 2026-09-23: not run on v2 because the staging spending cap was reached (tapestry-backend#411).</span>
+If useful, paste any notes from the last conversation and I’ll turn them into a polished email.</span></td>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Not run on v2 (blocked by the staging spending cap, tapestry-backend#411).</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-015">
               <option value="Not run" selected>Not run</option>
@@ -663,7 +1421,84 @@ RE-RUN 2026-09-23: not run on v2 because the staging spending cap was reached (t
       <tr>
         <td class="id-cell">HIST-016</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">I'm new here — can you help me get oriented to the organisation?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a broad, well-structured overview of the organisation's mission, vision, and typical work.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
+
+Welcome to EVR
+
+Educate Ventures Research (EVR) is a boutique consultancy, applied-research and training organisation focused on helping education and training organisations use AI safely, ethically and effectively. We sit at the intersection of learning science, educational technology, data science and AI—always with the aim of improving learning outcomes and widening opportunity.
+
+The core idea
+
+EVR’s mission is “to empower people to use AI safely to learn and thrive.” Its vision is a society where intelligent, evidence-informed learning tools help everyone fulfil their learning potential, regardless of background, ability or context.
+
+A useful shorthand for the culture is the company motto:
+
+Everyone Learning All of the Time
+
+This reflects both the subject matter—learning—and an expectation that colleagues keep developing their own knowledge and help others develop too.
+
+What EVR does
+
+EVR’s work broadly falls into three connected areas:
+
+Training and professional development
+Online and in-person programmes that build AI capability for educators, leaders and organisations. This can include AI foundations, classroom practice, strategy, governance, safeguarding and bespoke CPD.
+
+Research, consultancy and evaluation
+EVR helps clients develop AI and data strategies, assess AI readiness, evaluate programmes and products, create governance frameworks, and translate learning-science principles into practical approaches. The work is typically evidence-led, collaborative and tailored to the client’s context.
+
+Thought leadership
+EVR contributes to public discussion about responsible AI in education through conferences, publications, partnerships and the EdTech Podcast.
+
+Who EVR works with
+
+EVR works across the learning ecosystem, including:
+
+Schools, trusts and international-school groups
+Universities and higher-education providers
+Governments, ministries, public bodies and charities
+Publishers, assessment bodies and EdTech companies
+
+Examples in internal materials include [client list: two ministries of education, a UK government department, an international-school group, an assessment body, an education partnership, a national education agency, a schools association] and various school groups.
+
+What differentiates EVR
+
+A few themes recur across EVR materials:
+
+Human learning first. AI is not treated as an end in itself; the question is how it can enhance teaching, learning, human judgement and opportunity.
+Evidence and impact. Projects aim to connect decisions and interventions to credible evidence, meaningful outcomes and evaluation.
+Ethical, inclusive AI. Responsible design, governance, safeguarding and equity are central—not add-ons.
+Cross-disciplinary delivery. EVR brings together researchers, educators, data scientists, AI specialists and behavioural-science expertise.
+Practical partnership. EVR works with clients to understand their context, co-design an approach, build capability and create usable outputs.
+Some EVR vocabulary you will hear
+AI readiness: assessing whether an organisation has the strategy, culture, skills, infrastructure, governance and evidence base to adopt AI responsibly.
+Golden Thread: the client’s core pedagogical imperative—the learning principles or outcomes that should connect strategy, practice, data and technology decisions.
+Metacognition / self-regulated learning: higher-order learning capabilities such as planning, monitoring, reflecting and adapting one’s learning. These are areas of EVR expertise.
+Ethical AI governance: the policies, roles, processes, controls and training that help an organisation manage AI risks and use AI in line with its values.
+Evidence-led: grounding recommendations in research, data, stakeholder insight and appropriate evaluation rather than technology hype.
+Leadership and expertise
+
+EVR was founded by [person], an AI-and-education expert with more than 30 years’ experience. The organisation’s leadership includes [person], Director of Research &amp; Consultancy, and [person], Deputy Director of Research &amp; Consultancy. Their backgrounds reflect EVR’s mix of AI, learning science, EdTech research, strategy and evaluation.
+
+A practical way to orient yourself in your first weeks
+Learn the mission and language above—these should show up consistently in proposals, workshops and client conversations.
+Review a mix of work: one training deck, one consultancy proposal and one evaluation/governance report will quickly reveal how EVR adapts its core approach to different clients.
+Understand the client ecosystem: notice the distinction between system-level work (government/policy), institution-level work (schools/HE) and product/company work (EdTech/publishers).
+Ask, for every project:
+What learning or organisational problem are we solving?
+What evidence do we have or need?
+Who is affected?
+What would safe, ethical and useful AI look like here?
+How will we know whether it made a difference?
+
+If you tell me your role or team—e.g. research, delivery, sales, operations, data or training—I can turn this into a more specific first-week orientation guide with the key documents, concepts and project types to prioritise.
+
+Sources:
+[1] About_EVR.docx
+[2] EVR training services.pptx
+[3] EVR consultancy services_extended.pptx
+[4] EVR-[partner] response - commercial.pdf
+[5] [client] EVR ethical principles phase 3 report.docx</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">RUN 2026-09-23 (before spec 017). Refused: retrieval returned short slide fragments (median 117 chars) because it searched the literal wording and never resolved 'the organisation' to EVR; the answer check correctly withheld an overview drawn from general knowledge (2173 bp vs 6500). Legacy answered from an 'About_EVR' document that is not in the v2 corpus (#393). Fixed in code by tapestry-backend#392 (spec 017, deployed as v122) and #400 (awaiting deploy); re-run pending.
 
 RE-TEST 2026-09-23 13:1xZ after fixes (#400 block-level delivery + deadline-aware correction, v123; #401 check-ins, v124 + frontend 591d607): now Pass. Tapestry gives a grounded orientation ('Welcome to EVR! Based on the available evidence…') covering EVR's research, evaluation and AI consultancy work and its higher-education training. Narrower than legacy, which drew on an About_EVR document still missing from the v2 corpus (tapestry-backend#393).</span>
@@ -932,7 +1767,24 @@ RE-TEST 2026-09-23 13:1xZ after fixes (#400 block-level delivery + deadline-awar
     function (cell) {
       var textEl = cell.querySelector('.cell-text') || cell;
       cell.setAttribute('aria-label', textEl.textContent.trim());
+      if (cell.classList.contains('legacy-answer') || cell.classList.contains('actual-answer')) {
+        if (textEl.scrollHeight > textEl.clientHeight + 2) {
+          cell.classList.add('is-expandable');
+          var hint = document.createElement('span');
+          hint.className = 'expand-hint';
+          hint.textContent = 'Show full answer';
+          textEl.after(hint);
+          cell.addEventListener('click', function (e) {
+            if (e.target.closest('select, label')) return;
+            var open = textEl.classList.toggle('expanded');
+            hint.textContent = open ? 'Collapse' : 'Show full answer';
+            tooltip.classList.remove('visible');
+          });
+        }
+      }
       cell.addEventListener('mouseenter', function (e) {
+        if (textEl.classList.contains('expanded')) return;
+        if (cell.classList.contains('is-expandable')) return;
         if (textEl.scrollHeight <= textEl.clientHeight) return; // full text already visible
         tooltip.textContent = textEl.textContent.trim();
         tooltip.classList.add('visible');
