@@ -231,7 +231,9 @@ Answer: recommends building strategic clarity before technology decisions, via t
 
 Ends with an explicit "Gaps and uncertainties" section (5 bullets) disclosing what the evidence does NOT cover: no methodology for surfacing unclear goals, no definition of "limited budget" for a MAT, uncertain transferability of the cited models to a smaller/less mature trust, no EVR-specific commercial/onboarding process, and no guidance for divergent priorities among school leaders.
 
-Citations: "8 authorised sources" footer. Verified citation marker 1 by opening it - resolves to a real named internal document ("Implementation_of_education_technology_in_schools_and_colleges.pdf"), tiered "INTERNAL EVR EVIDENCE," with page number (21), section label, a real excerpt, and a revision hash. No raw/unresolved citation syntax (no bracketed provider codes) appeared anywhere in the answer.</span>
+Citations: "8 authorised sources" footer. Verified citation marker 1 by opening it - resolves to a real named internal document ("Implementation_of_education_technology_in_schools_and_colleges.pdf"), tiered "INTERNAL EVR EVIDENCE," with page number (21), section label, a real excerpt, and a revision hash. No raw/unresolved citation syntax (no bracketed provider codes) appeared anywhere in the answer.
+
+RE-RUN 2026-09-23 on staging Lambda v122 (spec 017 retrieval live), side by side with legacy. Tapestry: EVR intelligence, 3 retrieval queries, 8 authorised sources, a numbered citation on every claim, explicit gaps section (operating model, trust size, budget shape, existing strategy, pricing). ~68 s end to end. Legacy: a more actionable fixed-scope 'priorities sprint' plan with options, drawing on CRM pipeline records Tapestry v2 cannot access (#313). Verdict: Pass on the correctness criteria; slower and less actionable than legacy.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-001">
               <option value="Not run">Not run</option>
@@ -253,12 +255,14 @@ First attempt used the exact literal wording "in our data model" - this was misr
 
 Second attempt answer: describes several real client-segment clusters (organised by institution type and AI-adoption relationship - e.g. school EdTech vendors, HE software/support vendors, HE institutions directly, government/regulatory bodies, international markets), each with named real example clients and their specific needs. [Real client/company names observed in the live answer are intentionally not reproduced here - see the redaction note in section 1.]
 
-Citations: 6 distinct markers used across the answer (1,2,3,4,5,8). Spot-checked all six by opening them: every one resolved to a real, named authorised internal document (a client-interactions doc, a services-exemplar deck, an AI-use-cases deck, an EdTech lab report, and an international-regulation deck) with correct tier ("INTERNAL EVR EVIDENCE"), section/slide numbers, and revision hashes. Marker 1 additionally carried a direct Google Drive URL - opened it directly and confirmed it loads the real, correctly-titled 5-page document (not a 404 or permission error). No raw/unresolved citation syntax anywhere.</span>
+Citations: 6 distinct markers used across the answer (1,2,3,4,5,8). Spot-checked all six by opening them: every one resolved to a real, named authorised internal document (a client-interactions doc, a services-exemplar deck, an AI-use-cases deck, an EdTech lab report, and an international-regulation deck) with correct tier ("INTERNAL EVR EVIDENCE"), section/slide numbers, and revision hashes. Marker 1 additionally carried a direct Google Drive URL - opened it directly and confirmed it loads the real, correctly-titled 5-page document (not a 404 or permission error). No raw/unresolved citation syntax anywhere.
+
+RE-RUN 2026-09-23 (v122). Tapestry refused with a bare 'could not validate that the response was supported by authorised EVR evidence' after one corrective regeneration (grounding 1428 bp vs 6500 required on one block). Legacy answered from the CRM client-segmentation table (four machine-assigned clusters), which v2 cannot access. Fails the criterion to disclose what was and was not found. Fix in progress: tapestry-backend#400 (spec 018, block-level delivery and specific evidence-gap messages), awaiting deploy.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-002">
               <option value="Not run">Not run</option>
-              <option value="Pass" selected>Pass</option>
-              <option value="Fail">Fail</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail" selected>Fail</option>
               <option value="Partial">Partial</option>
             </select>
           </label></td>
@@ -273,7 +277,9 @@ Citations: 6 distinct markers used across the answer (1,2,3,4,5,8). Spot-checked
 
 Routed to "EVR intelligence" / "EVR evidence." Full answer: "The authorised evidence references examples of EVR clients and previous clients, but does not name specific clients or identify any as key strategic partners. The evidence does not contain a list of named clients or a designation of which among them are key strategic partners."
 
-This is the correct behaviour for this question: rather than the legacy system's total silence, or fabricating a "key strategic partners" list that isn't actually a real category in the source material, Tapestry gives a real, non-empty terminal answer that honestly explains why it can't produce the specific list asked for, while still surfacing what it did find (an "Evidence" section listing real named source documents, e.g. a data-science offering deck, an EdTech-fellowship document, and a thought-leadership impact report, each with resolvable citation markers). 8 citation markers total, all traceable to real evidence.</span>
+This is the correct behaviour for this question: rather than the legacy system's total silence, or fabricating a "key strategic partners" list that isn't actually a real category in the source material, Tapestry gives a real, non-empty terminal answer that honestly explains why it can't produce the specific list asked for, while still surfacing what it did find (an "Evidence" section listing real named source documents, e.g. a data-science offering deck, an EdTech-fellowship document, and a thought-leadership impact report, each with resolvable citation markers). 8 citation markers total, all traceable to real evidence.
+
+RE-RUN 2026-09-23 (v122). Tapestry answered honestly: states that no definitive named list of strategic partners exists in authorised evidence, then lists seven relationships drawn from cited proposal, exemplar and workshop documents, flags which may not be formal partnerships, and recommends a CRM or partner register for a definitive answer. Legacy returned a CRM-derived list including named individuals and cited a client cluster that its own segmentation answer says does not exist. Minor accuracy notes: two Australian research bodies conflated in one line; one person listed as if an organisation. Verdict: Pass, and closer to the criteria than legacy.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-003">
               <option value="Not run">Not run</option>
@@ -297,13 +303,15 @@ Turn 2 (chose "General explanation") "Hello, are you functioning?" - classified 
 
 Turn 3 "I need help with some things" - classified "Needs clarification" again, same helpful option-button prompt as turn 1. No crash.
 
-All three turns succeeded with a real, distinct, helpful response - no empty replies, no generic "something went wrong," and no identical repeated failure. A clear improvement over the legacy session, which failed identically 4 times in a row on the same kind of input.</span>
+All three turns succeeded with a real, distinct, helpful response - no empty replies, no generic "something went wrong," and no identical repeated failure. A clear improvement over the legacy session, which failed identically 4 times in a row on the same kind of input.
+
+RE-RUN 2026-09-23 (v122). No crashes, but turns 1 and 3 ('You there Tapestry?', 'I need help with some things.') showed a workflow menu that locked the message box until an option was chosen, and the chosen option appeared in the user's bubble as the raw code 'product_help'. Turn 2 answered naturally. Legacy replied naturally on every turn. Fix in progress: tapestry-backend#401 (routing for check-ins, composer stays usable, readable labels), awaiting deploy.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-004">
               <option value="Not run">Not run</option>
-              <option value="Pass" selected>Pass</option>
+              <option value="Pass">Pass</option>
               <option value="Fail">Fail</option>
-              <option value="Partial">Partial</option>
+              <option value="Partial" selected>Partial</option>
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Basic conversational check-ins must succeed. If a dependency is genuinely unavailable, the terminal message must name the limitation (e.g. dependency_unavailable) — and must not repeat identically across a whole session without any escalating guidance to the user.</span></td>
@@ -317,12 +325,14 @@ All three turns succeeded with a real, distinct, helpful response - no empty rep
 
 Draft output covers: mapping stakeholder roles (leadership/teachers as influencers, learners as direct users) with tailored engagement tactics for each; a "learn fast, act more slowly" strategic posture given budget/infrastructure constraints (audit AI use first, build a strategy before deploying tools, confirm safeguarding/data checks); a phased, theme-based (not tool-specific) pilot model using a logic-model approach to reduce lock-in risk; implementation considerations (teacher presence, equity of access, student agency, modelling critical AI use); and an age-differentiated AI Critical Thinking Framework for the curriculum dimension (junior/middle/senior school), plus parent-communication and digital-citizenship materials.
 
-8 distinct citation markers used across the answer, each attached to a specific claim rather than a single blanket citation at the end - reads as genuinely traceable, general good-practice guidance rather than an invented client-specific plan.</span>
+8 distinct citation markers used across the answer, each attached to a specific claim rather than a single blanket citation at the end - reads as genuinely traceable, general good-practice guidance rather than an invented client-specific plan.
+
+RE-RUN 2026-09-23 (v122). Routed to drafting; first draft took ~59 s, failed grounding, and the corrective regeneration was killed by the 85 s request deadline, so the user saw 'could not prepare a validated response right now'. The usable first draft was discarded. Legacy stated its assumption ('assuming an individual school with early AI maturity') and gave a phased readiness-to-pilot plan. Fix in progress: tapestry-backend#400 (deadline-aware correction keeps the first draft; block-level delivery), awaiting deploy.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-005">
               <option value="Not run">Not run</option>
-              <option value="Pass" selected>Pass</option>
-              <option value="Fail">Fail</option>
+              <option value="Pass">Pass</option>
+              <option value="Fail" selected>Fail</option>
               <option value="Partial">Partial</option>
             </select>
           </label></td>
@@ -555,12 +565,12 @@ ROOT CAUSE IDENTIFIED 2026-09-15: reproduced the classifier's exact Anthropic AP
         <td class="id-cell">HIST-016</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">I'm new here — can you help me get oriented to the organisation?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a broad, well-structured overview of the organisation's mission, vision, and typical work.</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text"></span>
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">RUN 2026-09-23 (before spec 017). Refused: retrieval returned short slide fragments (median 117 chars) because it searched the literal wording and never resolved 'the organisation' to EVR; the answer check correctly withheld an overview drawn from general knowledge (2173 bp vs 6500). Legacy answered from an 'About_EVR' document that is not in the v2 corpus (#393). Fixed in code by tapestry-backend#392 (spec 017, deployed as v122) and #400 (awaiting deploy); re-run pending.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-016">
               <option value="Not run">Not run</option>
               <option value="Pass">Pass</option>
-              <option value="Fail">Fail</option>
+              <option value="Fail" selected>Fail</option>
               <option value="Partial">Partial</option>
             </select>
           </label></td>
