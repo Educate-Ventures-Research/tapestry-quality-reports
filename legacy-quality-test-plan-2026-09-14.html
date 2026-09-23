@@ -62,6 +62,8 @@
   .callout.bad{border-left-color:var(--red);}
   .callout.bad strong{color:var(--red);}
 
+  #latest-status a{color:var(--blue); font-weight:700;}
+  #latest-status a:focus-visible{outline:3px solid var(--focus); outline-offset:2px;}
   code{background:var(--ink-800); color:var(--text); padding:.1rem .35rem; border-radius:.25rem; font-size:.88em;}
 
   /* --- Form / test matrix --- */
@@ -154,7 +156,7 @@
       off on it.
     </p>
     <div class="meta-row">
-      <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value">Draft — pending EVR review</span></div>
+      <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value">Draft — pending EVR review · results updated 2026-09-23</span></div>
       <div class="meta-item"><span class="meta-label">Prepared</span><span class="meta-value">2026-09-14</span></div>
       <div class="meta-item"><span class="meta-label">Source</span><span class="meta-value">136 real conversations, Oct 2025 – Sep 2026</span></div>
       <div class="meta-item"><span class="meta-label">Method</span><span class="meta-value">Read real chats, grouped the problems found</span></div>
@@ -163,6 +165,53 @@
 </header>
 
 <div class="wrap">
+
+<section id="latest-status">
+  <h2>Latest status — 2026-09-23</h2>
+  <p>Side-by-side re-run of HIST-001 to 016 on staging (backend Lambda v124, frontend Amplify job 27), with the legacy tool run on the same prompts on the same day. Issue links go to EVR's private GitHub repositories. If a Result dropdown below still shows an old verdict, use <em>Clear saved answers</em> (your browser saved your earlier choices).</p>
+  <div class="meta-row" style="margin:1rem 0 1.5rem">
+    <div class="meta-item"><span class="meta-label">Pass</span><span class="meta-value" style="color:var(--green)">6 — 001, 002, 003, 004, 009, 016</span></div>
+    <div class="meta-item"><span class="meta-label">Partial</span><span class="meta-value" style="color:var(--amber)">2 — 005, 006</span></div>
+    <div class="meta-item"><span class="meta-label">Fail</span><span class="meta-value" style="color:var(--red)">4 — 007, 008, 010, 011</span></div>
+    <div class="meta-item"><span class="meta-label">Blocked</span><span class="meta-value">4 — 012 to 015 (spending cap)</span></div>
+    <div class="meta-item"><span class="meta-label">Not run yet</span><span class="meta-value">14 — 017 to 030</span></div>
+  </div>
+  <div class="card">
+    <h3>What the re-run found</h3>
+    <ul class="clean">
+      <li><strong>The 2026-09-14 crashes are gone.</strong> They were caused by the staging Anthropic account running out of credit, not by code. With credit restored, every case gets a real routed response.</li>
+      <li><strong>Answers that nothing is recorded, or that depend on pasted text, are blocked (008, 011).</strong> The evidence check only accepts corpus documents as support. "No record of this" and facts from the user's own message therefore fail, and the user gets a generic evidence-gap message. <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a></li>
+      <li><strong>Follow-up turns lose the subject (010).</strong> Each turn is grounded, but what "it" refers to changes from turn to turn across different engagements. Legacy held one programme for all four turns. <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/409">#409</a></li>
+      <li><strong>Ambiguous names are answered without saying which meaning was assumed, and evidence is missed (007).</strong> A request to summarise "this document" with nothing attached is a dead end with no next step (006). <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/410">#410</a></li>
+      <li><strong>Plain lookups still sometimes get the generic workflow menu</strong> (010, turn 1). <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/394">#394</a></li>
+      <li><strong>Where v2 now beats legacy:</strong> 009 separates the everyday word from a project name; 006 doesn't invent a summary (legacy did today); 003 and 002 disclose what isn't in the evidence instead of relying on CRM rows.</li>
+      <li><strong>Blocked:</strong> Tapestry's own staging spending cap ($15 lifetime acceptance cost ledger) ran out during 012. 012 to 015 and 017 to 030 need an account-owner decision to raise it. <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/411">#411</a></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Fixes shipped from this test plan</h3>
+    <ul class="clean">
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-frontend/issues/123">tapestry-frontend#123</a>: shows the backend's real error message instead of a misleading "incompatible response" (2026-09-15).</li>
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/392">#392</a>: spec 017. The router writes the retrieval queries and nearby passages are added, so broad questions ("the organisation") resolve to EVR evidence. Deployed as v122; HIST-016 moved from Fail to Pass.</li>
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/400">#400</a>: spec 018. Supported sections are delivered when only some fail the check, the correction retry is skipped when there isn't time, and "can't answer" messages are specific (ADR 0009 amended). Deployed as v123; HIST-002 moved from Fail to Pass, and HIST-005 from timeout to Partial.</li>
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/401">#401</a>: check-ins get a direct reply, the message box stays usable, and labels are readable. Deployed as v124 + frontend 591d607; HIST-004 moved from Partial to Pass.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Open follow-ups</h3>
+    <ul class="clean">
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a> [P1] Evidence gate blocks absence answers and judgements about pasted content (HIST-008, 011)</li>
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/409">#409</a> [P2] Follow-up turns lose the conversation's subject (HIST-010)</li>
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/410">#410</a> [P2] Ambiguous names: unstated assumption and missed evidence; supplied-material dead end (HIST-006, 007)</li>
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/407">#407</a> [P2] Context-free drafting questions end as evidence gaps (HIST-005)</li>
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/394">#394</a> [P3] Router over-clarifies some plain questions (HIST-010 turn 1)</li>
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/402">#402</a> [P3] Small talk still runs retrieval and shows a sources footer (HIST-004)</li>
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/393">#393</a> [Blocked] Organisation overview document missing from the v2 corpus (HIST-016)</li>
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/411">#411</a> [Blocked] Staging spending cap exhausted: blocks HIST-012 to 015 and 017 to 030</li>
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/313">#313</a> Scope decision on live CRM and invoice data (HIST-013, 014)</li>
+    </ul>
+  </div>
+</section>
 
 <section>
   <h2>1. Purpose and scope</h2>
@@ -352,7 +401,9 @@ RE-TEST 2026-09-23 13:1xZ after fixes (#400 block-level delivery + deadline-awar
       <tr>
         <td class="id-cell">HIST-006</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you please summarise this document? (multiple files attached, none named)</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Correctly asked which of the several attached documents to summarise, and in what format.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Correctly asked which of the several attached documents to summarise, and in what format.
+
+RE-RUN 2026-09-23 (same no-attachment proxy): legacy did not ask. It picked a report from its own library (a university workshop summary) and summarised it as if that were 'this document'.</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14, reproduced twice. No real files were available to attach for this run, so tried the closest honest proxy: "Can you please summarise this document?" with nothing attached, and separately "I have a couple of documents open, the strategy deck and the pricing sheet. Can you summarise them?" - also with nothing attached.
 
 Both attempts: routed to "Needs clarification," then immediately failed with "Tapestry received an incompatible response and stopped safely. Tapestry received a response that did not match the expected format." No clarifying question was ever shown, and no option buttons were offered (contrast with HIST-004, where the same "Needs clarification" workflow worked correctly and offered 7 concrete option buttons for a different kind of ambiguous input).
@@ -361,13 +412,15 @@ This fails safely (no crash, no fabricated summary) but does not meet the bar: t
 
 RE-TESTED 2026-09-15, same prompt, after the frontend fix (tapestry-frontend#123, deployed to staging) landed: the misleading generic crash text is GONE. The UI now shows the backend's real, specific message: "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Confirms the frontend contract bug is fixed - clarification responses no longer get discarded and replaced with a fake "incompatible response" message. However, the underlying failure is unchanged: raw SSE capture shows the identical error event (code: dependency_unavailable, diagnosticCode: provider_request_rejected) as before - the classifier's call to Anthropic is still being rejected with HTTP 400 for this input. Still an overall Fail (no answer produced), but now failing honestly instead of misleadingly. Underlying cause tracked in tapestry-backend#373, not yet fixed.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+
+RE-RUN 2026-09-23 on staging v124 (Anthropic credit restored): no crash. Routed to 'Work with supplied material' → 'This workflow needs supplied or external material, but that resource capability is not enabled in this staging release.' No invented summary, which is better than today's legacy, but it doesn't ask which document or tell the user to name or attach one. Partial. Follow-up: tapestry-backend#410.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-006">
               <option value="Not run">Not run</option>
               <option value="Pass">Pass</option>
-              <option value="Fail" selected>Fail</option>
-              <option value="Partial">Partial</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial" selected>Partial</option>
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">When a request is genuinely ambiguous among multiple candidate sources, the system must ask a clarifying question rather than silently guessing one.</span></td>
@@ -376,7 +429,9 @@ ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defe
       <tr>
         <td class="id-cell">HIST-007</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What's [a well-known partner organisation]'s view on opportunities in [a world region]?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Silently assumed one specific meaning of an ambiguous organisation name before answering, without confirming the assumption with the user.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Silently assumed one specific meaning of an ambiguous organisation name before answering, without confirming the assumption with the user.
+
+RE-RUN 2026-09-23: again assumed one meaning of the name without saying so, then gave a detailed answer citing specific teacher-training and advisory work in two Central Asian countries.</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "What's Cambridge's view on opportunities in Central Asia?" ("Cambridge" is a genuine real-world ambiguous term - could mean the university, Cambridge University Press &amp; Assessment, Cambridge Partnership for Education, or the city).
 
 Same failure signature as HIST-006: routed to "Needs clarification," then immediately "Tapestry received an incompatible response and stopped safely. Tapestry received a response that did not match the expected format." No disambiguating question was ever actually shown.
@@ -385,7 +440,9 @@ Third reproduction of the identical failure (2x on HIST-006, now this). Emerging
 
 RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: no more generic crash text. UI now shows "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms the same underlying error (code: dependency_unavailable, diagnosticCode: provider_request_rejected) as before - the "content-specific clarifying question" theory from the original write-up turned out to be a red herring; the real cause was always the classifier's Anthropic call being rejected (tapestry-backend#373), which the frontend bug had been masking. Still Fail, now honest instead of misleading.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+
+RE-RUN 2026-09-23 (v124): answered 'the authorised evidence does not contain any specific discussion…' then listed an unrelated proposal's Asia-Pacific regions. It never says which meaning of the name it assumed (a silent assumption), and it missed the Central Asia evidence legacy found. Fail. Follow-up: tapestry-backend#410.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-007">
               <option value="Not run">Not run</option>
@@ -400,7 +457,9 @@ ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defe
       <tr>
         <td class="id-cell">HIST-008</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Have we had any interaction with [a named philanthropic foundation]?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Correctly reported finding no direct evidence of an interaction, and named which record types were searched.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Correctly reported finding no direct evidence of an interaction, and named which record types were searched.
+
+RE-RUN 2026-09-23: same result. No direct interaction; one indirect mention in a pipeline record, and it named the record types it searched.</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "Have we had any interaction with the Paul Hamlyn Foundation?" - a plain factual lookup, not actually ambiguous.
 
 Same failure signature again: routed to "Needs clarification," then "Tapestry received an incompatible response and stopped safely. Tapestry received a response that did not match the expected format." Fourth reproduction of the identical defect (after HIST-006 x2, HIST-007).
@@ -409,7 +468,9 @@ This one is the most concerning instance so far: unlike HIST-006/007, this quest
 
 RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: UI now shows "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." instead of the generic crash text. Raw SSE confirms identical underlying error (provider_request_rejected) - this plain factual question is still genuinely unanswerable in this environment. Root cause tracked in tapestry-backend#373. Still Fail.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+
+RE-RUN 2026-09-23 (v124): 'found 8 authorised EVR sources related to this question but could not confirm an answer that they fully support.' The answer that nothing is recorded is blocked by the evidence check, although that is exactly what the criterion asks for. (Legacy's evidence also came from business-database records, which v2 cannot query; see #313.) Fail. Follow-up: tapestry-backend#408.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-008">
               <option value="Not run">Not run</option>
@@ -424,17 +485,21 @@ ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defe
       <tr>
         <td class="id-cell">HIST-009</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What is [an internal-sounding acronym], and do we have a project by that name?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Correctly reported no matching named project, while noting the term's unrelated everyday use elsewhere in the corpus.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Correctly reported no matching named project, while noting the term's unrelated everyday use elsewhere in the corpus.
+
+RE-RUN 2026-09-23: no matching project in project, pipeline or client records; offered a loosely related project and asked for context.</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "What is RECAP, and do we have a project by that name?" Identical failure signature: "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely." Fifth reproduction in a row (HIST-006 x2, 007, 008, now 009) - every single question in this run that references an unfamiliar or ambiguous named term has hit this exact defect. See HIST-008's note for the consolidated finding.
 
 RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error as before. Root cause tracked in tapestry-backend#373. Still Fail.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+
+RE-RUN 2026-09-23 (v124): Pass. It says RECAP is not a named EVR project, separates the everyday lowercase 'recap' in two documents and a 'Project recap' slide heading from a project name, and says there is no evidence of anything formally named RECAP. Cited throughout. Meets the criterion better than legacy.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-009">
               <option value="Not run">Not run</option>
-              <option value="Pass">Pass</option>
-              <option value="Fail" selected>Fail</option>
+              <option value="Pass" selected>Pass</option>
+              <option value="Fail">Fail</option>
               <option value="Partial">Partial</option>
             </select>
           </label></td>
@@ -444,14 +509,18 @@ ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defe
       <tr>
         <td class="id-cell">HIST-010</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Multi-turn: "Do you have the specification for [a named programme]?" followed by 3–4 follow-up refinement questions in the same conversation.</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a detailed initial specification, then continued answering follow-ups that correctly referenced the same programme context across many turns.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a detailed initial specification, then continued answering follow-ups that correctly referenced the same programme context across many turns.
+
+RE-RUN 2026-09-23: named one specific international STEM-educator programme and held it correctly across all four turns (delivery partner, train-the-trainer strand, evaluation).</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: opening turn "Do you have the specification for any current international teacher-training programme we're delivering?" (deliberately generic, no proper noun, to avoid guessing a real confidential programme name).
 
 Same failure on turn 1: "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely." Sixth reproduction, and it shows the defect is broader than named-entity disambiguation specifically - a plain "which one of several possible X" question triggers it even with zero proper nouns. Could not proceed to the planned follow-up turns, so multi-turn context retention itself is untested here - blocked entirely by this defect on the very first turn.
 
 RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error. Multi-turn context retention remains untested - still blocked on turn 1 by tapestry-backend#373. Still Fail.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+
+RE-RUN 2026-09-23 (v124), 4 turns in one conversation. Turn 1 got the generic 'What would you like Tapestry to produce or explain?' workflow menu (tapestry-backend#394). After choosing EVR intelligence it found no full specification and pointed at a different engagement's proposal. Turn 2 switched to another engagement, turn 3 answered across two engagements, and turn 4 went back to the second one (about 100 s). Every turn is grounded, but what 'it' refers to changes from turn to turn, and the programme legacy found never appears. Fail. Follow-up: tapestry-backend#409.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-010">
               <option value="Not run">Not run</option>
@@ -466,14 +535,18 @@ ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defe
       <tr>
         <td class="id-cell">HIST-011</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">[Pastes a lengthy email invitation.] Should we accept this?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a reasoned accept/decline recommendation referencing details from the pasted email plus some internal precedent.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Gave a reasoned accept/decline recommendation referencing details from the pasted email plus some internal precedent.
+
+RE-RUN 2026-09-23 (new synthetic invitation, since the original test text wasn't kept): recommended accepting in principle. It extracted the date, deadline, fee and audience, checked the events table for a clash, and cited two earlier internal speaking engagements. It also shows raw source labels such as 'SQLite: external_events'.</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: pasted a synthetic, generic speaker-invitation email (fabricated for this test, not real correspondence) and asked "Should we accept this invitation?"
 
 Same failure again: "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely." Seventh reproduction, and the first on a "pasted long content + judgment call" input shape rather than a short question - shows the defect isn't limited to short queries.
 
 RE-TESTED 2026-09-15, same synthetic pasted email, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error - the classifier call still fails on longer pasted content, tracked in tapestry-backend#373. Still Fail.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+
+RE-RUN 2026-09-23 (v124), same synthetic invitation: 'found 5 authorised EVR sources … could not confirm an answer that they fully support.' The facts that matter are in the user's own pasted text, which the evidence check doesn't count as support. Fail. Follow-up: tapestry-backend#408.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-011">
               <option value="Not run">Not run</option>
@@ -488,7 +561,9 @@ ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defe
       <tr>
         <td class="id-cell">HIST-012</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">[Pastes call notes.] Draft topics for a 4-module, 15-minute-session training based on this.</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Returned a generic failure message instead of a usable draft.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Returned a generic failure message instead of a usable draft.
+
+RE-RUN 2026-09-23 (new synthetic call notes): now succeeds. It gave a full 4-module draft with a fixed session pattern for each 15-minute slot.</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: pasted synthetic call notes (fabricated for this test) and asked for a 4-module training draft based on them.
 
 Same failure again: "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely." Eighth reproduction.
@@ -497,12 +572,14 @@ Note: unlike the other cases in this run, the legacy system ALSO failed on this 
 
 RE-TESTED 2026-09-15, same synthetic call notes, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." - an even more honest message now than before. Raw SSE confirms same provider_request_rejected error, tracked in tapestry-backend#373. Still Fail, still not a regression vs. legacy.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+
+RE-RUN 2026-09-23 (v124): not graded. Routed to 'Needs clarification' and then stopped with 'Tapestry's AI request limit has been reached', which is Tapestry's own staging spending cap (acceptance cost ledger, $15), not Anthropic credit. Blocked on tapestry-backend#411.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-012">
-              <option value="Not run">Not run</option>
+              <option value="Not run" selected>Not run</option>
               <option value="Pass">Pass</option>
-              <option value="Fail" selected>Fail</option>
+              <option value="Fail">Fail</option>
               <option value="Partial">Partial</option>
             </select>
           </label></td>
@@ -512,19 +589,23 @@ ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defe
       <tr>
         <td class="id-cell">HIST-013</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Which clients are currently in early-stage conversations about AI strategy?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Queried a live internal CRM/business database directly and returned specific client names and pipeline-stage information.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Queried a live internal CRM/business database directly and returned specific client names and pipeline-stage information.
+
+RE-RUN 2026-09-23: queried the live CRM and listed named pipeline clients with owners, stages and last-contact dates (about 50 s).</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14. Ninth reproduction of the same "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely" failure.
 
 This one is notable beyond just being another instance: it means the actual scope question this case was meant to test - does Tapestry clearly say "I can't query live CRM data" - is currently untestable, because the request never reaches a scope decision at all. The crash happens first. Whatever the intended out-of-scope behaviour is, it's being masked by this defect.
 
 RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error - the intended CRM out-of-scope behaviour is still masked, since the request still never reaches a scope decision. Root cause tracked in tapestry-backend#373. Still Fail.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+
+RE-RUN 2026-09-23: not run on v2 because the staging spending cap was reached (tapestry-backend#411). The intended check (a clear 'I can't query live CRM data' message) is still untested; scope is tracked in #313.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-013">
-              <option value="Not run">Not run</option>
+              <option value="Not run" selected>Not run</option>
               <option value="Pass">Pass</option>
-              <option value="Fail" selected>Fail</option>
+              <option value="Fail">Fail</option>
               <option value="Partial">Partial</option>
             </select>
           </label></td>
@@ -534,17 +615,21 @@ ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defe
       <tr>
         <td class="id-cell">HIST-014</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What invoices are linked to [a named project]?</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Returned specific figures and dates read directly from a live invoicing table.</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Returned specific figures and dates read directly from a live invoicing table.
+
+RE-RUN 2026-09-23: picked an AI-readiness project and gave a table of 5 scheduled invoices with amounts, the total, the amount invoiced to date and the latest invoice number, read from the live invoices table.</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "What invoices are linked to our most recent AI strategy project?" Tenth reproduction of the identical "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely" failure. Same masking effect as HIST-013 - the actual CRM-scope question this case is meant to test is never reached.
 
 RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error. Root cause tracked in tapestry-backend#373. Still Fail.
 
-ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.</span>
+ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defect - the Anthropic account backing this staging environment ran out of credit. Confirmed by reproducing the classifier's exact request directly against Anthropic and getting back "Your credit balance is too low to access the Anthropic API." Needs a billing top-up, not a code fix.
+
+RE-RUN 2026-09-23: not run on v2 because the staging spending cap was reached (tapestry-backend#411).</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-014">
-              <option value="Not run">Not run</option>
+              <option value="Not run" selected>Not run</option>
               <option value="Pass">Pass</option>
-              <option value="Fail" selected>Fail</option>
+              <option value="Fail">Fail</option>
               <option value="Partial">Partial</option>
             </select>
           </label></td>
@@ -554,17 +639,21 @@ ROOT CAUSE IDENTIFIED 2026-09-15 (see HIST-015 for full detail): not a code defe
       <tr>
         <td class="id-cell">HIST-015</td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Help me draft a follow-up email to [a named client] about past work and possible next steps.</span></td>
-        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Produced a full draft email that referenced specific past engagement details (scope, prior deliverables).</span></td>
+        <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Produced a full draft email that referenced specific past engagement details (scope, prior deliverables).
+
+RE-RUN 2026-09-23: did not draft. It asked for the client name, past work, next steps and tone, and offered to use pasted notes.</span></td>
         <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">REAL BUG - run 2026-09-14: "Help me draft a follow-up email to a client about past work and possible next steps" (deliberately left "a client" generic rather than naming a real one). Eleventh reproduction of the identical "Needs clarification" -&gt; "Tapestry received an incompatible response and stopped safely" failure - the final case in this 15-test run, and it hit the same defect as 10 of the previous 14.
 
 RE-TESTED 2026-09-15, same prompt, after tapestry-frontend#123 deployed: generic crash text replaced by "Tapestry's AI provider could not accept this request. Tapestry's AI provider declined to process this specific request." Raw SSE confirms same provider_request_rejected error. Root cause tracked in tapestry-backend#373. Still Fail - 10/10 of the original failures now show the honest specific message instead of the misleading generic one, but 0/10 have actually been fixed functionally.
 
-ROOT CAUSE IDENTIFIED 2026-09-15: reproduced the classifier's exact Anthropic API request (same system prompt, tool schema, model, and message) directly against Anthropic, outside the app. Anthropic returned: "Your credit balance is too low to access the Anthropic API. Please go to Plans &amp; Billing to upgrade or purchase credits." This is a billing/account-credits issue, not a code defect - the Anthropic account backing this staging environment ran out of credit. Not fixable in code; needs credits added to the account (a billing action, left to a human with access to that account). Also explains why HIST-001-005 passed earlier in the same test run while HIST-006-015 failed: credits most likely ran out partway through the session.</span>
+ROOT CAUSE IDENTIFIED 2026-09-15: reproduced the classifier's exact Anthropic API request (same system prompt, tool schema, model, and message) directly against Anthropic, outside the app. Anthropic returned: "Your credit balance is too low to access the Anthropic API. Please go to Plans &amp; Billing to upgrade or purchase credits." This is a billing/account-credits issue, not a code defect - the Anthropic account backing this staging environment ran out of credit. Not fixable in code; needs credits added to the account (a billing action, left to a human with access to that account). Also explains why HIST-001-005 passed earlier in the same test run while HIST-006-015 failed: credits most likely ran out partway through the session.
+
+RE-RUN 2026-09-23: not run on v2 because the staging spending cap was reached (tapestry-backend#411).</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-015">
-              <option value="Not run">Not run</option>
+              <option value="Not run" selected>Not run</option>
               <option value="Pass">Pass</option>
-              <option value="Fail" selected>Fail</option>
+              <option value="Fail">Fail</option>
               <option value="Partial">Partial</option>
             </select>
           </label></td>
