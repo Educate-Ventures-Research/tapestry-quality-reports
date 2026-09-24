@@ -171,11 +171,12 @@
 
 <section id="latest-status">
   <h2>Latest status — 2026-09-24</h2>
+  <p><strong>Update, v128:</strong> after the no-dead-ends fix (#418, spec 020 FR-1/FR-8) and the copies fix (#430), HIST-006, 010, 012, 028 and 030 were re-run: 006 and 030 moved to Pass, 028 to Partial; 010 and 012 stay Fail (010: the first turn still gets the workflow menu; 012: pasted notes still don't count as evidence, which needs the ADR 0009 decision).</p>
   <p>All 30 cases now have a Tapestry v2 result. HIST-012 to 015 and 017 to 030 were run on 2026-09-24 against staging backend Lambda v127, in one browser session with one conversation per case (HIST-028 as one three-turn conversation). HIST-001 to 011 and 016 keep their 2026-09-23 results (v124); the code changes since then do not touch answering. Legacy answers for 017 to 030 are now shown verbatim. Issue links go to EVR's private GitHub repositories. If a Result dropdown still shows an old verdict, use <em>Clear saved answers</em>.</p>
   <div class="meta-row" style="margin:1rem 0 1.5rem">
-    <div class="meta-item"><span class="meta-label">Pass</span><span class="meta-value" style="color:var(--green)">13 — 001, 002, 003, 004, 009, 016, 017, 020, 021, 022, 025, 027, 029</span></div>
-    <div class="meta-item"><span class="meta-label">Partial</span><span class="meta-value" style="color:var(--amber)">4 — 005, 006, 015, 023</span></div>
-    <div class="meta-item"><span class="meta-label">Fail</span><span class="meta-value" style="color:var(--red)">13 — 007, 008, 010, 011, 012, 013, 014, 018, 019, 024, 026, 028, 030</span></div>
+    <div class="meta-item"><span class="meta-label">Pass</span><span class="meta-value" style="color:var(--green)">15 — 001, 002, 003, 004, 006, 009, 016, 017, 020, 021, 022, 025, 027, 029, 030</span></div>
+    <div class="meta-item"><span class="meta-label">Partial</span><span class="meta-value" style="color:var(--amber)">4 — 005, 015, 023, 028</span></div>
+    <div class="meta-item"><span class="meta-label">Fail</span><span class="meta-value" style="color:var(--red)">11 — 007, 008, 010, 011, 012, 013, 014, 018, 019, 024, 026</span></div>
   </div>
   <div class="card">
     <h3>What the full run found</h3>
@@ -191,6 +192,9 @@
   <div class="card">
     <h3>Fixes shipped from this test plan</h3>
     <ul class="clean">
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/418">#418</a>: spec 020 FR-1/FR-8. Requests needing external or supplied material that isn't there now answer from EVR's documents with a note saying what couldn't be used; the remaining stops give a next step. Deployed as v128; HIST-006 and 030 moved to Pass, 028 to Partial.</li>
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/430">#430</a>: copies of one document share the evidence cap, so they no longer fill the slots (v128).</li>
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/429">#429</a>: no document can expire while the Drive sync is off (v126, v127).</li>
       <li><a href="https://github.com/Educate-Ventures-Research/tapestry-frontend/issues/123">tapestry-frontend#123</a>: shows the backend's real error message instead of a misleading "incompatible response" (2026-09-15).</li>
       <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/392">#392</a>: spec 017. The router writes the retrieval queries and nearby passages are added, so broad questions ("the organisation") resolve to EVR evidence. Deployed as v122; HIST-016 moved from Fail to Pass.</li>
       <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/400">#400</a>: spec 018. Supported sections are delivered when only some fail the check, the correction retry is skipped when there isn't time, and "can't answer" messages are specific (ADR 0009 amended). Deployed as v123; HIST-002 moved from Fail to Pass, and HIST-005 from timeout to Partial.</li>
@@ -785,17 +789,16 @@ Note: The document appears to be an early or incomplete workshop report: the sec
 
 Sources:
 [1] Golden Thread and Workshop report (1).docx</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v124), 2026-09-23. Verbatim; client, partner and person names redacted.
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v128), 2026-09-24, after the no-dead-ends fix (#418). Verbatim; client, partner and person names and money figures redacted.
 
-Tapestry understood this as: Work with supplied material · No knowledge sources
-
-This workflow needs supplied or external material, but that resource capability is not enabled in this staging release.</span>
+TAPESTRY UNDERSTOOD THIS AS: Work with supplied material · No knowledge sources
+There's no document or text here for Tapestry to work on, and it can't read uploaded or pasted documents in this release. Next step: ask about an EVR document by name, or ask Tapestry to find EVR evidence on the topic.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-006">
               <option value="Not run">Not run</option>
-              <option value="Pass">Pass</option>
+              <option value="Pass" selected>Pass</option>
               <option value="Fail">Fail</option>
-              <option value="Partial" selected>Partial</option>
+              <option value="Partial">Partial</option>
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">When a request is genuinely ambiguous among multiple candidate sources, the system must ask a clarifying question rather than silently guessing one.</span></td>
@@ -1379,10 +1382,11 @@ Sources:
 [1] [client] April 2025.pptx
 [2] AI training Proposal_external.docx
 [3] AI Innovation and AI Pedagogy.pptx</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v127), 2026-09-24. Verbatim; client, partner and person names redacted.
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v128), 2026-09-24, after the no-dead-ends fix (#418). Verbatim; client, partner and person names and money figures redacted.
 
-TAPESTRY UNDERSTOOD THIS AS: Drafting with EVR evidence · Supplied material only
-This workflow needs supplied or external material, but that resource capability is not enabled in this staging release.</span>
+TAPESTRY UNDERSTOOD THIS AS: Drafting with EVR evidence · EVR evidence
+Tapestry found 5 authorised EVR sources related to this question but could not confirm an answer that they fully support. Try asking about one specific aspect, or name the document you need.
+Tapestry could not confirm this response was fully supported by the evidence it found.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-012">
               <option value="Not run">Not run</option>
@@ -2995,24 +2999,68 @@ Scotland/[client]: readiness, governance, ethical controls, and evaluation frame
 These are transferable reference points, but should be labelled clearly as international comparators, not Kazakhstan experience. EVR’s general practice is to support AI strategy, readiness, governance, training and evaluation through an evidence-based, human-centred approach. fileciteturn3file4turn3file13
 
 Gap: We will need external research for the substantive Kazakhstan AI-in-education policy profile.</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v127), 2026-09-24. Verbatim; client, partner and person names redacted.
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v128), 2026-09-24, after the no-dead-ends fix (#418). Verbatim; client, partner and person names and money figures redacted.
 
-turn 1 (68 s): "I'm compiling country profiles on AI-in-education policy. Check our past work on the UAE first."
+turn 1 (66 s): "I'm compiling country profiles on AI-in-education policy. Check our past work on the UAE first."
 TAPESTRY UNDERSTOOD THIS AS: EVR intelligence · EVR evidence
 Tapestry found 7 authorised EVR sources related to this question but could not confirm an answer that they fully support. Try asking about one specific aspect, or name the document you need.
 Tapestry could not confirm this response was fully supported by the evidence it found.
 
-turn 2 (8 s): "Now Singapore."
-This workflow needs supplied or external material, but that resource capability is not enabled in this staging release.
+turn 2 (64 s): "Now Singapore."
+Answer
+Singapore has a well-developed and internationally recognised education system that is actively integrating AI and learning analytics (LA) across multiple levels, driven by national programmes, government funding, and a strategic vision for Singapore to become a global leader in AI-powered educational innovation.
+The Smart Nation Initiative leads the development and deployment of scalable AI solutions in high-value sectors, including education, while talent development programmes such as AI for Everyone and the AI Apprenticeship Programme support workforce readiness.
+AI Singapore (AISG), as a national programme, launched a Student Outreach Program to encourage AI literacy and proficiency among students, supported by the [ministry] ([ministry]).
+The Singapore Student Learning Space (SLS), [ministry]'s core platform for teaching and learning, integrates applications including an AI-enabled adaptive learning system and an automated marking and e-assessment system.
+A national open data portal (data.gov.sg) has been created, with over 70 public agencies contributing publicly available data, supporting data scientists and the broader workforce in working with open data.
+Most AI and LA research in Singapore is funded either through national programmes such as the AI Research Grant Call from AI Singapore, or by ministries for specific purposes such as the Education Research Funded Program by [ministry].
+EVR conducted six focus group discussions (FGDs) with [ministry] stakeholders — including senior management, officers involved in AI-in-education development, and school leaders and teachers — to review the current approach to AI use in Singapore schools and develop envisioned opportunities for AI and data.
+EVR's aspirational vision for Singapore, as articulated in the [ministry] Golden Thread report, is for Singapore to be recognised as a global leader in leveraging AI and data to drive educational innovation and excellence, with every student having access to cutting-edge tools and personalised support.
+[person], EVR's Director of AI Research and Consulting, served as workstream lead for the [ministry] Singapore engagement, working closely with the ministry on ethical and purposeful approaches to AI.
+Evidence
+The primary academic source is a 2023 paper published in Information and Technology in Education and Learning (Vol. 3, No. 1), authored by researchers affiliated with the National Institute of Education, Nanyang Technological University, Singapore. It provides an overview of AI and learning analytics initiatives within Singapore's education landscape.
+Two versions of the [ministry] Golden Thread Final Report (dated 13 June and 27 June respectively) represent EVR's own primary research output from its Singapore [ministry] engagement. These reports document findings from six FGDs with [ministry] stakeholders and set out strategic recommendations for AI and data integration in Singapore schools.
+Two versions of EVR's Scotland ITT proposal (dated 28 July and 19 August) reference the Singapore [ministry] engagement as prior work and name [person] as the workstream lead for that engagement, providing internal confirmation of EVR's direct involvement.
+Key national initiatives identified in the evidence: Smart Nation Initiative, AI Singapore (AISG) Student Outreach Program, SkillsFuture Singapore, AI for Everyone programme, AI Apprenticeship Programme, and the Singapore Student Learning Space (SLS).
+Identified limitations in Singapore's AI-in-education landscape include: most projects remaining at prototype or small-scale research stage and not ready for scale in the near future; limited collaboration between academics and industry due to differing goals; dependence on data quality and availability; and challenges around algorithmic interpretability and user trust.
+Ethical and social concerns noted include data privacy, algorithmic bias, and the impact of automation on employment.
+The [ministry] Golden Thread reports recommend developing a robust data ontology, investing in educator capacity building, and establishing governance frameworks for responsible AI implementation.
+Gaps and uncertainties
+The evidence does not include a standalone, published Singapore AI-in-education policy document equivalent to a national strategy paper; the policy landscape is inferred from programme descriptions and EVR's own research outputs.
+The [ministry] Golden Thread reports are internal EVR deliverables and their specific recommendations and findings may not fully reflect [ministry]'s official adopted positions or subsequent policy decisions.
+The academic paper notes that most AI and LA projects in Singapore remain at prototype or limited-site implementation stage, meaning the evidence base on scaled, system-wide outcomes is limited.
+The evidence does not cover developments after mid-2023, so more recent policy announcements, programme expansions, or regulatory changes in Singapore are not captured.
+No evidence is available on budget allocations, specific implementation timelines, or measurable outcome data for the national AI-in-education programmes described.
+External research isn't available in this release, so this answer uses EVR's own documents only.
+8 authorised sources
 
-turn 3 (8 s): "Now Kazakhstan."
-This workflow needs supplied or external material, but that resource capability is not enabled in this staging release.</span>
+turn 3 (70 s): "Now Kazakhstan."
+Answer
+The authorised evidence contains very limited direct information on Kazakhstan's AI-in-education policy. Kazakhstan appears in the evidence only as a geographic setting in a robotics and language learning meta-analysis, as a visitor country to a UK edtech school, and as a country that has incorporated AI strategy within a broader ICT or digital strategy rather than publishing a standalone national AI strategy.
+A UNESCO mapping conducted as of April 2023 found that Kazakhstan had incorporated AI strategy within broader ICT or digital strategies, rather than publishing a dedicated national AI strategy document.
+Kazakhstan was one of 4 geographic settings in a meta-analysis of 59 articles on social robot behaviours in language learning, covering studies published between 2004 and 2022.
+Kazakhstan is listed among countries from which visitors attended LEO, a UK edtech reference school, during the period covered by that research, indicating some level of international interest in edtech practice.
+No EVR deliverable or project document focused specifically on Kazakhstan's AI-in-education policy is present in the authorised evidence.
+Evidence
+The UNESCO generative AI guidance document includes a mapping, based on data collected as of April 2023 from a UNESCO survey distributed to its 193 Member States, the [partner] AI Policy Observatory, and Stanford University's AI Index Report, as well as first-hand information from international experts. This mapping identifies Kazakhstan among countries that have incorporated AI strategies within broader ICT or digital strategies, distinguishing it from countries that have published standalone national AI strategies.
+The [author] and [author] meta-analysis reviewed 59 articles with a total sample size of 2,835 participants on the application of social robot behaviours in language learning. Articles were published between 2004 and 2022. Kazakhstan was one of the geographic settings, with 4 studies conducted there, placing it alongside the United States (n = 10), Taiwan (n = 10), Netherlands (n = 8), Japan (n = 5), Iran (n = 4), South Korea (n = 4), and Turkey (n = 4) as the most represented settings.
+The PedTech Report on LEO lists Kazakhstan among countries from which visitors came to the school during the period addressed by the research, alongside Taiwan, France, Singapore, and countries from South America.
+The UNESCO AI and education policy-makers guidance notes that more than 300 AI policy initiatives from 60 countries and the EU exist globally, and that most make some reference to education, though few focus specifically on AI in K-12 contexts or on how AI is being implemented in education.
+Gaps and uncertainties
+No EVR project document, country profile, or deliverable focused on Kazakhstan's AI-in-education policy is present in the authorised evidence. A substantive country profile cannot be constructed from the available material.
+The UNESCO mapping confirms Kazakhstan has an AI strategy embedded within a broader ICT or digital strategy, but the authorised evidence does not describe the content, scope, or education-specific provisions of that strategy.
+The UNESCO mapping data was collected as of April 2023; any subsequent policy developments, strategy updates, or new legislation in Kazakhstan are not captured in the authorised evidence.
+No information is available in the authorised evidence on Kazakhstan's national curriculum frameworks for AI literacy, government investment in AI-in-education programmes, data governance or privacy regulation in the education sector, or institutional actors responsible for AI-in-education policy.
+The presence of Kazakhstan-based studies in the [author] and [author] meta-analysis indicates some research activity on educational robotics in the country, but the evidence does not identify the institutions involved, the scale of activity, or any link to national policy.
+External research is not available in this release, so this answer uses EVR's own documents and the authorised evidence set only. Publicly available Kazakhstani government sources, [partner] country notes, or regional analyses that could fill these gaps have not been consulted.
+External research isn't available in this release, so this answer uses EVR's own documents only.
+8 authorised sources</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-028">
               <option value="Not run">Not run</option>
               <option value="Pass">Pass</option>
-              <option value="Fail" selected>Fail</option>
-              <option value="Partial">Partial</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial" selected>Partial</option>
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must keep each country's findings correctly separated (no cross-country fact bleed) while still remembering the overall task framing across turns.</span></td>
@@ -3088,15 +3136,41 @@ Sources:
 [5] Resources
 [6] Chemistry curriculum support | RSC Education
 [7] Biology teaching resources – UKRI</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v127), 2026-09-24. Verbatim; client, partner and person names redacted.
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v128), 2026-09-24, after the no-dead-ends fix (#418). Verbatim; client, partner and person names and money figures redacted.
 
-TAPESTRY UNDERSTOOD THIS AS: EVR intelligence · EVR evidence with additional context · Check this interpretation before continuing.
-This workflow needs supplied or external material, but that resource capability is not enabled in this staging release.</span>
+TAPESTRY UNDERSTOOD THIS AS: Drafting with EVR evidence · EVR evidence
+Draft output
+Here is a selection of well-established, ready-to-use resource platforms that teachers can draw on directly in the classroom, along with some notes on what makes each one useful.
+Twinkl: Offers a free tier with 40,000 resources, scaling up to an ultimate membership at [amount] per month that unlocks a library of 600,000 teacher-created resources. These include full schemes of work, lesson plans, assessments, online educational games, and augmented reality content, available in multiple languages for download.
+Times Educational Supplement (TES): Hosts over 900,000 resources made by teachers for teachers, covering lesson plans, units, and resource bundles in a mix of free and paid options. A review and rating system surfaces the most popular and trending activities, and contributing partners include [partner] Education.
+Share My Lesson (SML): Created by the American Federation of Teachers and TES Global in 2012, this platform is entirely free and organises lesson plans, activities, and units by 11 popular topics, themes, and events. As of 2020, it had 1.7 million members and more than 420,000 pre-K to grade 12 resources, downloaded more than 14 million times. Contributing partners include Discovery Education and NBC Learn.
+LessonPlanet: Curated by a team of experienced teachers, this platform offers 400,000 resources searchable by grade, subject, calendar date, and content type, including multimedia. Subscription services start at [amount] per month.
+Elephango: A membership-only platform recognised as an industry leader in research-based curriculum resources, which won a TechEdvocate Award in 2020. It provides unlimited access to lessons personalised by learning style (auditory, kinesthetic, visual) and personality type, with rich media content, interactive activities, downloadables, and progress tracking through achievement trophies, badges, and awards for pre-K to high school.
+When selecting from these platforms, it is worth keeping a few practical considerations in mind. Teachers tend to prioritise tools that align with specific lesson objectives, are simple and intuitive for both teachers and students to adopt, and make lessons more interactive and engaging.
+It is also worth noting that having resources spread across many different locations can make them harder to access when needed. Where possible, look for platforms that offer a clear library-style interface so content is easy to browse and locate quickly.
+For teachers who want to go further and create or adapt their own materials, generative AI tools have the potential to help produce worksheets, lesson plans, activities, assessments, videos, and images more rapidly. This can be particularly useful for time-poor teachers who would otherwise rely on resources created by others. However, it is important to critically evaluate the quality and accuracy of AI-generated content, and to be mindful of potential bias or lack of diverse perspectives in what is produced.
+Style and evidence basis
+The platform descriptions (Twinkl, TES, Share My Lesson, LessonPlanet, Elephango) are drawn directly from a landscape audit of adaptive platforms and resources for smart lessons. All figures, dates, prices, and membership details are reproduced exactly as they appear in that source.
+The framing around how teachers select tools — prioritising curriculum alignment, ease of use, and student engagement — is grounded in a baseline assessment analysis of teacher approaches to technology selection.
+The practical note about resource discoverability and the value of a library-style interface reflects feedback gathered from teachers in an evaluation report.
+The section on generative AI for resource creation draws on an EdTech quarterly review focused on AI in education, which outlines both the potential and the limitations of using tools such as ChatGPT for teacher resource creation.
+Adaptation notes
+The platforms listed are primarily oriented towards English-language and international contexts; if the audience is specifically UK-based, Twinkl and TES are the most directly relevant, as both have strong UK curriculum coverage.
+Share My Lesson and LessonPlanet are US-focused in their grade and standards framing, so UK or other international teachers may need to adapt or filter resources accordingly.
+If this output is being shared with teachers who have expressed concern about screen time or over-reliance on digital tools, it may be worth acknowledging that some platforms also offer downloadable or printable resources as an alternative to purely screen-based delivery.
+For teachers at an early stage of technology adoption, platforms with free tiers (Twinkl, TES, Share My Lesson) are a lower-risk starting point before committing to paid subscriptions.
+If the intended audience includes teachers interested in AI-assisted resource creation rather than ready-made platforms, the generative AI section can be expanded; equally, it can be removed if the focus is strictly on ready-to-use, curated resources.
+Gaps and uncertainties
+The landscape audit evidence does not include up-to-date pricing or membership details beyond what is cited; costs and tier structures for all platforms may have changed since the audit was conducted.
+The evidence does not cover subject-specific or age-specific suitability in depth, so further filtering by the teacher's own context (subject, year group, curriculum) would be needed before recommending a specific platform.
+No evidence in the authorised set addresses data privacy or safeguarding considerations for these platforms, which are important factors — particularly for tools used with younger learners.
+The evidence does not include independent quality evaluations or effectiveness research for any of the listed platforms, so recommendations are based on platform descriptions and teacher-reported preferences rather than outcome data.
+8 authorised sources</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-030">
               <option value="Not run">Not run</option>
-              <option value="Pass">Pass</option>
-              <option value="Fail" selected>Fail</option>
+              <option value="Pass" selected>Pass</option>
+              <option value="Fail">Fail</option>
               <option value="Partial">Partial</option>
             </select>
           </label></td>
