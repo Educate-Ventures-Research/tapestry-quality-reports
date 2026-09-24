@@ -171,12 +171,13 @@
 
 <section id="latest-status">
   <h2>Latest status — 2026-09-24</h2>
+  <p><strong>Update, v129:</strong> after spec 021 (#409, #394), HIST-010 moved from Fail to Partial: the first turn now answers instead of showing the workflow menu, and turns 2–3 stay explicitly on one programme (turn 3 names a second programme as "not the subject of the current conversation"). Turn 4 still ends at the evidence check, and retrieval does not surface the programme legacy found. An off-topic request is still refused as out of scope.</p>
   <p><strong>Update, v128:</strong> after the no-dead-ends fix (#418, spec 020 FR-1/FR-8) and the copies fix (#430), HIST-006, 010, 012, 028 and 030 were re-run: 006 and 030 moved to Pass, 028 to Partial; 010 and 012 stay Fail (010: the first turn still gets the workflow menu; 012: pasted notes still don't count as evidence, which needs the ADR 0009 decision).</p>
   <p>All 30 cases now have a Tapestry v2 result. HIST-012 to 015 and 017 to 030 were run on 2026-09-24 against staging backend Lambda v127, in one browser session with one conversation per case (HIST-028 as one three-turn conversation). HIST-001 to 011 and 016 keep their 2026-09-23 results (v124); the code changes since then do not touch answering. Legacy answers for 017 to 030 are now shown verbatim. Issue links go to EVR's private GitHub repositories. If a Result dropdown still shows an old verdict, use <em>Clear saved answers</em>.</p>
   <div class="meta-row" style="margin:1rem 0 1.5rem">
     <div class="meta-item"><span class="meta-label">Pass</span><span class="meta-value" style="color:var(--green)">15 — 001, 002, 003, 004, 006, 009, 016, 017, 020, 021, 022, 025, 027, 029, 030</span></div>
-    <div class="meta-item"><span class="meta-label">Partial</span><span class="meta-value" style="color:var(--amber)">4 — 005, 015, 023, 028</span></div>
-    <div class="meta-item"><span class="meta-label">Fail</span><span class="meta-value" style="color:var(--red)">11 — 007, 008, 010, 011, 012, 013, 014, 018, 019, 024, 026</span></div>
+    <div class="meta-item"><span class="meta-label">Partial</span><span class="meta-value" style="color:var(--amber)">5 — 005, 010, 015, 023, 028</span></div>
+    <div class="meta-item"><span class="meta-label">Fail</span><span class="meta-value" style="color:var(--red)">10 — 007, 008, 011, 012, 013, 014, 018, 019, 024, 026</span></div>
   </div>
   <div class="card">
     <h3>What the full run found</h3>
@@ -192,6 +193,7 @@
   <div class="card">
     <h3>Fixes shipped from this test plan</h3>
     <ul class="clean">
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/409">#409</a> / <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/394">#394</a>: spec 021. Follow-ups stay anchored on the documents the previous answer used; a request the router would send to the workflow menu is answered from relevant EVR evidence first (with a note), and the menu stays only when nothing relevant exists. Deployed as v129; HIST-010 moved from Fail to Partial.</li>
       <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/418">#418</a>: spec 020 FR-1/FR-8. Requests needing external or supplied material that isn't there now answer from EVR's documents with a note saying what couldn't be used; the remaining stops give a next step. Deployed as v128; HIST-006 and 030 moved to Pass, 028 to Partial.</li>
       <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/430">#430</a>: copies of one document share the evidence cap, so they no longer fill the slots (v128).</li>
       <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/429">#429</a>: no document can expire while the Drive sync is off (v126, v127).</li>
@@ -1074,144 +1076,69 @@ Important scope point: EVR’s confirmed core scope is the development of the M&
 
 Sources:
 [1] SOW_[client]_Instruments.docx</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v124), 2026-09-23. Verbatim; client, partner and person names redacted.
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v129), 2026-09-24, after spec 021 (conversation subject, search before clarifying). Verbatim; client, partner, programme and person names and money figures redacted.
 
-Turn 1 — "Do you have the specification for any current international teacher-training programme we're delivering?"
-
-Tapestry understood this as: Needs clarification · No knowledge sources
-What would you like Tapestry to produce or explain?
-[Options: Theory of Change · Drafting with EVR evidence · EVR intelligence · Briefing and draft · Work with supplied material · General explanation · Tapestry help — tester chose "EVR intelligence"]
-
-Tapestry understood this as: EVR intelligence · EVR evidence
-
+Turn 1 (35 s): "Do you have the specification for any current international teacher-training programme we're delivering?"
+TAPESTRY UNDERSTOOD THIS AS: EVR intelligence · EVR evidence · Check this interpretation before continuing.
 Answer
-
-The authorised evidence does not contain a full programme specification for any current international teacher-training programme being delivered by EVR. The evidence does reference EVR's involvement in contexts adjacent to international teacher training — notably a proposal to support the [client A] with AI policy development and teacher training — but no detailed programme specification document is present in the available evidence. [7][1][2][3][4][5][6]
-
-The [client A]-related evidence notes that [client A] has developed an internal training programme for their teachers on AI, which approximately 7000 teachers have passed through, and that following policy work, EVR may be asked to support further training including training for leadership — but this describes a potential future engagement, not a current EVR-delivered programme with a specification. [7]
-
-There is also evidence relating to an [programme B] strategic partner Terms of Reference, which outlines a training programme involving curriculum development, Train-the-Trainer workshops, and teaching practicum running from September 2024 to December 2026, but no EVR programme specification document is attached to or described within that evidence. [5][7]
-
+The authorised evidence does not contain a full programme specification for any current international teacher-training programme that EVR is delivering. The evidence touches on related areas — such as a Terms of Reference for an AI workforce training strategic partnership, an AI policy framework proposal for the [client], and background material on teacher education models in the UAE — but none of these constitute a programme specification owned and delivered by EVR.
+If a specification exists, it has not been surfaced in the internal sources available for this query.
 Evidence
-
-[7] The [client A] policy framework development document describes EVR being approached to support the [client A] — a network of independent schools offering private education — with AI policy development and potentially teacher training. It notes that [client A] has an internal training programme that approximately 7000 teachers have passed through, and that EVR may subsequently be asked to support training, including for leadership.
-
-[5] The [programme B] Terms of Reference describes a strategic partner engagement running from September 2024 to December 2026, involving activities such as training resource gathering, curriculum revision, Train-the-Trainer workshops, and teaching practicum. It specifies that all outputs including curriculum and additional training resources should be publicly available and open source.
-
-[1][6] Background academic material on teacher education in the UAE discusses models of teacher education (craft, applied science, reflective practice, and community of practice models) and structural forms (concurrent and consecutive programmes), as well as continuing professional development for teachers in international private schools. This is contextual research material rather than an EVR programme specification.
-
-[3][8] [ministry] documentation covers teacher licensing services, equivalency of international licences, and transitional licensing, which is regulatory context relevant to international teacher preparation in the UAE but does not constitute an EVR programme specification.
-
+The [programme] Strategic Partners Terms of Reference describes a training programme delivery timeline running from September 2024 to December 2026, covering activities such as curriculum development, Train-the-Trainer workshops, teaching practicum, and monitoring and evaluation. This is the closest document to a programme specification in the evidence set, but it is a Terms of Reference for a strategic partner role rather than an EVR-authored programme specification.
+The [client] policy framework development document describes a proposal to support the [client] with AI policy and potentially teacher training, and notes that [client] has an internal training programme through which approximately 7,000 teachers have passed. This is a client-facing proposal document, not a programme specification.
+The [author] chapter on teacher education in the UAE provides contextual background on international models of teacher education (craft, applied science, reflective practice, and community of practice models) and structural forms (concurrent and consecutive programmes), but contains no EVR programme specification.
+The [programme] two-year evaluation report and the AI Roadmap Spain document reference teacher professional development activities (including AI twilight workshops delivered in English and Spanish in 2023 and planned Gemini training for secondary teachers in Term 3 2024/25), but these relate to client or partner programmes rather than an EVR-owned specification.
+The EVR-[programme] catch-up slide deck references teacher focus groups and a pilot study but contains no programme specification content.
 Gaps and uncertainties
-
-No programme specification document for any current EVR-delivered international teacher-training programme is present in the authorised evidence. It is possible such a document exists internally but was not included in the evidence set provided.
-
-It is unclear whether EVR is currently delivering a teacher-training programme internationally in its own right, or whether the relevant engagements (such as [client A] or the [programme B]) are at proposal or early-stage delivery phases without a finalised specification. [7][5]
-
-The EVR-[partner] catch-up evidence references project management materials and an RFP but does not clarify whether this relates to a teacher-training programme or another type of engagement. [4]
-
-To answer this request fully, it would be worth checking whether a programme specification, scope of work, or delivery plan document exists for any active international teacher-training contract and requesting that it be added to the evidence set.
-
+No programme specification document for a current internationally delivered EVR teacher-training programme was found in the authorised evidence. It is possible that such a specification exists but has not been indexed or shared as part of this evidence set.
+It is unclear whether the [programme] strategic partner engagement has produced a finalised curriculum or specification document that would be held internally by EVR.
+The [client] proposal may have progressed to a contracted and specified programme, but no such follow-on document is present in the evidence.
+To answer this question fully, it would be worth checking EVR's project management or document repository directly for any programme design, curriculum, or specification files associated with active international teacher-training contracts.
+Several EVR documents matched this request, so Tapestry answered from the closest ones. Name the programme, client or document to narrow it down.
 8 authorised sources
 
-Turn 2 — "Who is our delivery partner on it, and what is their role?"
-
+Turn 2 (67 s): "Who is our delivery partner on it, and what is their role?"
 Answer
-
-The delivery partner identified in the authorised evidence for the international programme most closely matching the prior conversation is [client B], named in the [programme B] Terms of Reference. [client B]'s role in that engagement is to collaborate with the strategic partner (EVR) on organising and facilitating convenings in local markets, creating and spreading awareness campaign content, and assessing local training provider applicants. [4][2]
-
-The Terms of Reference also describe a Monitoring and Evaluation Technical Consultant (M&amp;E Consultant) as a distinct collaborating role, working with the strategic partner to design assessments and evaluation tools and to monitor and evaluate the effectiveness of the training programmes, including trainer performance — though this role is not attributed to a named organisation in the evidence provided. [4]
-
-For the [region] proposal, the [university] is named as a delivery partner, leading stakeholder engagement while EVR leads the overall bid, with the partnership described as weaving together international and [region] expertise. [6]
-
+Based on the authorised evidence, the delivery partner on the [programme] programme is [client]. The Terms of Reference describe a collaborative relationship in which the strategic partner (EVR) works alongside [client] across three areas: organising and facilitating convenings in respective local markets, creating and spreading awareness campaign content in those markets, and assessing local training provider applicants.
+Beyond the ecosystem-wide collaboration with [client], the strategic partner role itself carries responsibility for curriculum design and training resource development, Train-the-Trainer workshop delivery, teaching practicum facilitation, training quality assurance, and ongoing support to local training providers throughout programme implementation. The partnership runs from signing until end-December 2026.
 Evidence
-
-[4] The [programme B] Terms of Reference sets out that the strategic partner (EVR) is to collaborate with [client B] across three ecosystem-wide capacity building activities: organising and facilitating convenings in respective local markets; creating and spreading awareness campaign content in those markets; and assessing local training provider applicants. The partnership runs from signing until end-December 2026.
-
-[4] The same document identifies the M&amp;E Consultant as a collaborating role responsible for co-designing assessments and evaluation tools with the strategic partner, and for being supported by the strategic partner in monitoring and evaluating training programme effectiveness and trainer performance.
-
-[6] The [region] proposal presentation states that EVR is leading the overall bid and that the [university] is leading stakeholder engagement. It notes that the EVR founder [person] and [person] have worked together on previous educational technology projects and have co-edited a book on educational narrative together, and that the partnership draws on the [university] team's contacts within the [region] education system.
-
+The Terms of Reference document ([programme]) sets out the roles and responsibilities of the strategic partner and names [client] as the entity with whom the strategic partner collaborates on ecosystem-wide capacity building activities.
+Collaborate with [client] to organise and facilitate convenings in respective local markets.
+Collaborate with [client] to create and spread the awareness campaign content in respective local markets.
+Collaborate with [client] to assess the local training provider applicants.
+The overall programme timeline runs from signing until end-December 2026, with a final report due 10 Dec 2026, and monitoring and evaluation support running from May 2025 to Dec 2026.
 Gaps and uncertainties
-
-The authorised evidence does not name the organisation filling the M&amp;E Consultant role in the [programme B] engagement, so it is not possible to confirm who holds that position. [4]
-
-It is unclear from the evidence whether the [region] proposal was awarded, meaning the [university] partnership may not be active. [6]
-
-No delivery partner information is present in the evidence for any other international teacher-training engagement referenced in the prior conversation, such as the [client A] or [partner] engagements; those documents were not included in the current authorised evidence set.
-
+The Terms of Reference name [client] as the collaborating entity but do not provide further detail on [client]'s organisational profile, governance structure, or the precise division of decision-making authority between [client] and EVR within the programme.
+The number of local training providers in any specific market was stated to be determined by January 2025, and some project activities and required resources were described as to be finalised accordingly. It is not clear from the evidence whether these have since been confirmed.
+No signed contract, programme specification, or progress update document for this programme is present in the authorised evidence, so it is not possible to confirm the current operational status of the partnership or whether deliverable timelines have changed.
 8 authorised sources
 
-Turn 3 — "What does the train-the-trainer strand involve?"
-
+Turn 3 (46 s): "What does the train-the-trainer strand involve?"
 Answer
-
-The train-the-trainer strand appears across two distinct engagements in the authorised evidence: a proposal to [client C] and the [programme B] Terms of Reference. In both cases it centres on equipping a cohort of trainers with the knowledge, skills, and materials they need to go on to deliver AI-in-education training to teachers or other learners themselves. [4][3][1]
-
-In the [client C] engagement, EVR is supporting a train-the-trainer programme with an initial pool of ten trainers who will begin training teachers in August 2025. The deliverables include three train-the-trainer sessions, each lasting 2 hours, facilitated by 2 trainers with substantial experience in delivering training to educators and senior leadership in AI in Education. Sessions are planned to take place via Zoom between mid-July and the end of August 2025. The total cost for this programme of work is [amount] excluding VAT. [4][1]
-
-Deliverables for the [client C] strand include comprehensive presentation slides (which can be used for future extensions to the train-the-trainer programme and to deliver training to teachers), an EVR toolkit and supplementary resources, and interactive activities and discussions within each session. [1]
-
-The module content covered within the [client C] sessions includes: AI to support professional development; student engagement strategies; AI-enhanced lesson planning techniques and tools; leveraging learning analytics to support data-driven instruction; facilitating collaborative learning through AI tools; and personalised learning pathways and personalised learning experiences to cater to diverse student needs. The emphasis is on using AI purposefully to reduce workload while maintaining high educational standards. [1]
-
-In the [programme B] engagement, the train-the-trainer strand is a more extensive, multi-stage component. It involves: co-developing a common AI training curriculum framework; building a local training resource map; customising the curriculum for the local market; creating additional training resources such as handouts, teaching notes, and activity guides; designing assessments and evaluation tools (in collaboration with the M&amp;E Consultant); planning and delivering Train-the-Trainer workshops for local training providers; and facilitating a teaching practicum and/or supporting pilot training sessions with constructive feedback. [3][8]
-
-The [programme B] timeline schedules Train-the-Trainer workshops across January to March 2025 (with a possible additional round in January to March 2026), followed by a teaching practicum phase from March to April 2025 (with a possible additional round in March to April 2026). Curriculum revision and ongoing support to local training providers then continues through to December 2026. Additional rounds of training resource gathering, curriculum revision, Train-the-Trainer workshops, and teaching practicum may be required depending on local training providers' needs and market changes. [8][2]
-
-Across both engagements, the train-the-trainer approach is also referenced as a relevant track record criterion: the [programme B] Terms of Reference list experience in train-the-trainer approaches as a positive factor for the strategic partner role. [2][1]
-
-EVR's prior delivery of a train-the-trainer component is also cited as an example in the [client C] proposal, referencing training of 50 college-level educators in Kuwait through a combination of online self-paced courses and synchronous coaching, including a train-the-trainer component. [1]
-
+The train-the-trainer strand in the [programme] programme (the subject of this conversation) covers four main areas: curriculum and resource development, training delivery, training quality assurance, and ecosystem-wide capacity building.
+Under curriculum and resource development, the strategic partner creates additional training resources for local training providers as needed — including handouts, teaching notes, and activity guides — and designs assessments and evaluation tools to measure trainer and trainee progress in collaboration with the Monitoring and Evaluation Technical Consultant.
+For training delivery, the strategic partner plans and delivers Train-the-Trainer workshops for local training providers across the target market, and facilitates teaching practicum and/or supports pilot training sessions, providing constructive feedback.
+Training quality assurance involves revising and updating the customised AI training curriculum and materials as required, offering ongoing support and guidance to local training providers throughout programme implementation, serving as a resource person to address questions or challenges related to curriculum delivery or training methods, and supporting the M&amp;E Consultant in monitoring and evaluating the effectiveness of training programmes including trainer performance.
+The ecosystem-wide capacity building element involves collaborating with [client] to organise and facilitate convenings in local markets, to create and spread awareness campaign content, and to assess local training provider applicants.
+The Terms of Reference note that there may be additional rounds of training resource gathering, curriculum revision, Train-the-Trainer workshops, and teaching practicum depending on local training providers' needs and changes in the market where the strategic partner works.
 Evidence
-
-[4][1] [client C] proposal ([client C].docx): Sets out the context, module content, session structure, deliverables, costings, and timeline for EVR's train-the-trainer support to [client C], including the initial pool of ten trainers and the August 2025 start date for teacher training.
-
-[3][8][2] [programme B] Strategic Partners Terms of Reference ([programme B]-STRATEGIC-PARTNERS-ToR-010824.pdf): Defines the full scope of the train-the-trainer strand within the [programme B] engagement, including curriculum development, workshop delivery, teaching practicum, quality assurance, and the deliverables and timeline table.
-
+All detail on the train-the-trainer strand's scope, activities, and quality assurance obligations is drawn from the [programme] Strategic Partners Terms of Reference document (dated 01 August 2024). This document sets out the full list of strategic partner responsibilities across curriculum development, training delivery, quality assurance, and ecosystem-wide capacity building, as well as the note on potential additional rounds of activity.
+The [client] proposal document describes a separate train-the-trainer engagement where EVR would support an initial pool of ten trainers who are due to start training teachers in August 2025, with three train-the-trainer sessions each lasting 2 hours, delivered via Zoom between mid-July and end of August 2025, at a cost of [amount] excluding VAT. This is a distinct programme from the [programme] and is not the subject of the current conversation.
 Gaps and uncertainties
-
-It is not confirmed in the evidence whether the [client C] proposal was accepted and the sessions are proceeding as described, or whether any changes to the schedule or scope have since been agreed. [4]
-
-The evidence does not specify the subject matter or curriculum content of the [programme B] Train-the-Trainer workshops beyond the general AI training curriculum framework, so the precise topics covered in those sessions are not confirmed. [3][8]
-
-The [university] presentation references train-the-trainer sessions as an offer to attendees but provides no detail on what those sessions involve, so it cannot be used to characterise the strand further. [5]
-
-No information is available in the authorised evidence about the specific content, structure, or outcomes of the Kuwait train-the-trainer component beyond its brief mention as a prior example. [1]
-
+The Terms of Reference state that the number of local training providers in any specific market will be determined by January 2025, and that part of the project activities and required resources will be finalised accordingly. It is not confirmed in the authorised evidence whether these figures have since been set.
+The authorised evidence does not include a signed contract, programme specification, or progress update, so it is not possible to confirm the current operational status of the train-the-trainer strand or whether any deliverable timelines have changed since the Terms of Reference were issued.
+The Terms of Reference describe timelines as estimates that are prone to change between stages of the project, so the scheduled dates for Train-the-Trainer workshops and related activities should be treated as indicative rather than fixed.
 8 authorised sources
 
-Turn 4 — "And how will we evaluate whether it worked?"
-
-Answer
-
-The authorised evidence contains evaluation framework detail in the [client B] proposal, which sets out evaluation at three levels: effectiveness of the strategic training partner, effectiveness of the local in-country training partner, and impact on the end beneficiary. A fourth layer of an indicative cross-sector and cross-market comparison is also proposed to identify and understand main similarities and differences regarding training effectiveness and end-beneficiary learning outcomes. [2][7]
-
-Key inputs for evaluating the strategic training partner include: a pedagogical evaluation of the curriculum and online/offline resources developed/adapted; a rapid evidence review of relevant theoretical frameworks; an expert review of the curriculum and resources; baseline and endline surveys for local training partners; focus groups for local training partners; and data on engagement and performance of local training partners trained by the strategic partner (e.g. number of learners trained, end-beneficiary feedback). [2]
-
-For the in-country training provider, evaluation draws on observational data (including collaboration with [client B] monitoring teams and, where feasible, observations of face-to-face sessions), baseline and endline surveys for end-beneficiaries, focus groups for end-beneficiaries, and data on engagement and performance of end-beneficiaries on pre and post assessments. [2]
-
-Impact on the end beneficiary is assessed through impact on content knowledge and skills, using baseline and endline surveys with end-beneficiaries and focus groups with end-beneficiaries. [2]
-
-Two costing tiers are outlined: a light touch evaluation at [amount], which includes two cycles of evaluation with quantitative analysis and some qualitative analysis; and a comprehensive evaluation at [amount], which includes both quantitative and detailed qualitative analysis with in-person observations included. An advanced comparative analysis optional add-on is priced at [amount] and includes a cross-market and cross-sectoral comparative analysis. [7]
-
-Evidence
-[1] The EVR Difference Deck by Audience.pptx
-[2] [client B] proposal.docx
-[3] [university] Preserving Human Agency in Educational Innovation.pptx
-
-Gaps and uncertainties
-
-The available evidence may not cover every current detail.
-
-Some points in this answer were removed because Tapestry could not match them closely enough to the authorised EVR evidence.
-
-8 authorised sources</span>
+Turn 4 (84 s): "And how will we evaluate whether it worked?"
+Tapestry found 6 authorised EVR sources related to this question but could not confirm an answer that they fully support. Try asking about one specific aspect, or name the document you need.
+Tapestry could not confirm this response was fully supported by the evidence it found.</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-010">
               <option value="Not run">Not run</option>
               <option value="Pass">Pass</option>
-              <option value="Fail" selected>Fail</option>
-              <option value="Partial">Partial</option>
+              <option value="Fail">Fail</option>
+              <option value="Partial" selected>Partial</option>
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must retain and correctly reference established conversation context (e.g. the named programme) across follow-up turns without re-asking for information already given, and without that context leaking into an unrelated later conversation.</span></td>
