@@ -170,7 +170,14 @@
 <div class="wrap">
 
 <section id="latest-status">
-  <h2>Latest status — 2026-09-24</h2>
+  <h2>Latest status — 2026-09-25</h2>
+  <p><strong>Update, v133 (2026-09-25):</strong> after the retrieval fix (M8), nine cases were re-run: 010 moved from Partial to Pass and 007 from Fail to Pass, with no regressions.</p>
+  <ul class="clean">
+    <li>Search now looks for a question's distinctive words (its names, acronyms and rare terms) instead of requiring every word.</li>
+    <li>010 now finds the programme specification it was asked about, and every follow-up turn stays on that programme.</li>
+    <li>007 now says which partner organisation it assumed.</li>
+  </ul>
+  <p>A first version (v132) made each question about 3 seconds slower and was rolled back. The fix now adds about half a second. Still failing: 008, 011, 012 and 024, all of which wait on the sponsor's decision about pasted text and "no record" answers. Still partial: 005, 015 and 023.</p>
   <p><strong>Update, v130:</strong> after five fixes from the remaining-failures review, 15 cases were re-run: 013, 014, 018, 019, 026 and 028 moved to Pass, with no regressions. The five fixes:</p>
   <ul class="clean">
     <li>a figure cited to the wrong source is re-attributed, or only that point is removed;</li>
@@ -184,9 +191,9 @@
   <p><strong>Update, v128:</strong> after the no-dead-ends fix (#418, spec 020 FR-1/FR-8) and the copies fix (#430), HIST-006, 010, 012, 028 and 030 were re-run: 006 and 030 moved to Pass, 028 to Partial; 010 and 012 stay Fail (010: the first turn still gets the workflow menu; 012: pasted notes still don't count as evidence, which needs the ADR 0009 decision).</p>
   <p>All 30 cases now have a Tapestry v2 result. HIST-012 to 015 and 017 to 030 were run on 2026-09-24 against staging backend Lambda v127, in one browser session with one conversation per case (HIST-028 as one three-turn conversation). HIST-001 to 011 and 016 keep their 2026-09-23 results (v124); the code changes since then do not touch answering. Legacy answers for 017 to 030 are now shown verbatim. Issue links go to EVR's private GitHub repositories. If a Result dropdown still shows an old verdict, use <em>Clear saved answers</em>.</p>
   <div class="meta-row" style="margin:1rem 0 1.5rem">
-    <div class="meta-item"><span class="meta-label">Pass</span><span class="meta-value" style="color:var(--green)">21 — 001, 002, 003, 004, 006, 009, 013, 014, 016, 017, 018, 019, 020, 021, 022, 025, 026, 027, 028, 029, 030</span></div>
-    <div class="meta-item"><span class="meta-label">Partial</span><span class="meta-value" style="color:var(--amber)">4 — 005, 010, 015, 023</span></div>
-    <div class="meta-item"><span class="meta-label">Fail</span><span class="meta-value" style="color:var(--red)">5 — 007, 008, 011, 012, 024</span></div>
+    <div class="meta-item"><span class="meta-label">Pass</span><span class="meta-value" style="color:var(--green)">23 — 001, 002, 003, 004, 006, 007, 009, 010, 013, 014, 016, 017, 018, 019, 020, 021, 022, 025, 026, 027, 028, 029, 030</span></div>
+    <div class="meta-item"><span class="meta-label">Partial</span><span class="meta-value" style="color:var(--amber)">3 — 005, 015, 023</span></div>
+    <div class="meta-item"><span class="meta-label">Fail</span><span class="meta-value" style="color:var(--red)">4 — 008, 011, 012, 024</span></div>
   </div>
   <div class="card">
     <h3>What the full run found</h3>
@@ -202,6 +209,7 @@
   <div class="card">
     <h3>Fixes shipped from this test plan</h3>
     <ul class="clean">
+      <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/453">#453</a>: M8. Search looks for a question's distinctive words: the rarest ones, each found in at most 4% of documents. The retrieval test now finds the right document for 9 of 17 questions, against 4 before. Deployed as v133; 010 and 007 moved to Pass.</li>
       <li><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a> / <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/445">#445</a>: fixes from the remaining-failures review.
         <ul class="clean">
           <li>M1: a figure cited to the wrong source is re-attributed, or just that point is removed.</li>
@@ -384,53 +392,63 @@ Sources:
 [2] Cluster Analysis v1.docx
 [3] EVR training services.pptx
 [4] PedTech Report.pdf</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v124), 2026-09-23. Verbatim; client, partner and person names redacted.
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v133), 2026-09-25, after the distinctive-word retrieval fix (M8). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed.
 
+We met a multi-academy trust with unclear goals and a limited budget — how should we engage them?
+
+TAPESTRY UNDERSTOOD THIS AS
+EVR intelligence
+EVR evidence
+Change
 Answer
 
-When engaging a multi-academy trust with unclear goals and a limited budget, the priority is to help them establish strategic clarity before recommending any specific tools or training. EVR's approach positions trust-level AI and digital strategy development as the essential first step, with school-level strategies and CPD following from that foundation. [1][2][3][4]
+When engaging a multi-academy trust (MAT) with unclear goals and a limited budget, the recommended approach is to lead with EVR's advisory offer as a low-cost, high-value entry point, use structured discovery to surface the trust's real priorities, and position EVR's evidence-based and ethical AI expertise as directly relevant to the trust's context — even before the trust has fully articulated its own strategy.
 
-EVR suggests that stakeholders and senior leaders develop an AI strategy as part of an overarching digital strategy at trust level, after which individual schools are supported in developing their own strategies tailored to their unique context and priorities. [1][2]
+EVR's annual advisory fee ranges from [amount] to [amount] making the Advisory Service a realistic starting point for budget-constrained organisations, with the fee calibrated to the complexity of the support required.
 
-This trust-level strategy then informs the design and delivery of an AI CPD programme for teachers, with the most effective schools becoming beacons of excellence — an AI Centre of Excellence model. [1][2][3][4]
+The Advisory Service offers up to six scheduled strategic sessions per academic year, each lasting up to two hours, plus ad hoc participation in key events by mutual agreement — a contained and predictable commitment that suits a trust uncertain about scope.
 
-For a trust with a limited budget, a layered or phased approach to technology adoption is well evidenced: core systems are chosen centrally, recommended technologies with good evidence of impact are implemented trust-wide, and optional tools are piloted at smaller scale — with tools able to move between layers as evidence of impact accumulates. [7]
+Because the trust's goals are unclear, the early sessions should function as structured discovery: EVR advisors can review progress, offer feedback to steer direction, highlight relevant policy and technology trends, and help align any emerging AI or data strategy with ethical and inclusive learning practices — all within the existing advisory scope.
 
-Having an EdTech or AI strategy in place is described as an important part of successfully identifying needs and ensuring that technology implemented is relevant and helps the setting achieve its goals — making strategy development a natural and credible entry point for EVR to offer value. [7]
+EVR should assign a named senior advisor whose background aligns with the trust's context, ensuring relationship depth and strategic continuity from the outset — a differentiator that matters when a client is still forming its direction.
 
-Where a trust lacks clear goals, it is worth exploring whether their decision-making is centred on learner outcomes or on organisational priorities, as this distinction shapes how strategy and technology adoption should be framed in conversation with them. [3][1]
+EVR's cross-sector experience with schools, governments, EdTech companies, and higher education institutions, combined with expertise in pedagogy, behavioural science, and data analytics, positions EVR to help the trust identify what good looks like before committing to a larger programme.
 
-A cautious, evidence-led framing will resonate with many MAT leaders: the evidence from [trust A], the largest MAT in England with over 90 state-funded academies, emphasises that there is no first-mover advantage for schools with AI, and that the most powerful action is to sense-check new products carefully rather than adopting them quickly. [2]
+Where the trust is open to it, EVR can introduce key figures and networks from across the education and EdTech landscape and recommend opportunities for partnerships or thought leadership — adding value that goes beyond what a limited budget might otherwise access.
 
-For a budget-constrained trust, EVR's consultancy and training offer — which is evidence-based and focused on impact — is well suited to a scoped, modular engagement rather than a large upfront commitment, starting with strategy and expanding to CPD as confidence and clarity grow. [6][8][1][2][3]
+EVR's learn-fast, act-slow approach to AI integration — allowing organisations to develop internal expertise, build governance structures, and evaluate AI applications against educational objectives before scaling — is well suited to a trust that has not yet defined its goals.
+
+The PedTech work with [client school] Academy Trust illustrates how EVR can support a MAT in building an evidence base for technology implementation that demonstrates impact across multiple schools — a model that could be referenced with the prospective trust to show what a longer-term engagement might look like.
+
+External evidence on MAT EdTech implementation suggests that trusts benefit from structured, staged approaches — such as trigger, test, trial, train, and track — and from bi-annual partnership meetings between central teams and individual school leaders; EVR's advisory model can be framed as providing the strategic oversight layer that makes such a staged approach coherent.
 
 Evidence
 
-EVR training services: EVR proposes a trust-level AI strategy as the starting point, cascading to school-level strategies and then to an AI CPD programme, with the most effective schools becoming an AI Centre of Excellence. This provides a clear, scalable engagement model for a trust at an early stage of strategic development.
+EVR Advisor Service Offer DRAFT.docx — sets out the full scope, time commitment, fee structure ([amount]–[amount] per year), and named-advisor model of EVR's Advisory Service.
 
-[7] Implementation of EdTech in schools and colleges: Research found that all except two of the schools and colleges studied already had some form of EdTech strategy, and that having a strategy was described as important for identifying needs and ensuring technology supports the setting's goals. Strategies included vision, needs analysis, roles and responsibilities, infrastructure plans, and training requirements.
+Updated [client] Tech Proposal Draft_Nov2025.docx — articulates EVR's learn-fast, act-slow philosophy and its structured approach to helping organisations build governance, evaluate AI, and develop internal capacity before scaling.
 
-[7] Implementation of EdTech in schools and colleges: A large mixed-phase MAT described identifying needs using a layered model — core systems chosen centrally, recommended technologies with evidence of impact rolled out trust-wide, and optional tools piloted at smaller scale. Tools could move between layers as evidence of impact was measured, making this a budget-sensitive and evidence-driven approach.
+[client] proposal presentation pptx.pptx — summarises EVR's positioning around ethical AI, evidence-based engagement, and the breadth of client types (schools, universities, government agencies, EdTech companies).
 
-[1] Implementation of EdTech in schools and colleges ([trust B] case study): [trust B] uses bi-annual partnership meetings between its central EdTech team and individual school leaders to understand school improvement priorities and discuss how EdTech can support them. This structured dialogue model is a practical example of how to surface goals in a trust where priorities are not yet clearly articulated.
+PedTech Report.pdf — provides a concrete example of EVR supporting a MAT ([client school] Academy Trust, transforming over 4,500 lives per year) through an evidence-based technology implementation programme, with endorsements from senior education and industry figures.
 
-[2] Artificial Advantage ([organisation]): [trust A], the largest MAT in England with over 90 state-funded academies, does not intervene directly at school level on AI but instead provides guardrails, advice, guidance, and learning and sharing opportunities. Its Chief Transformation Officer emphasised that schools should act as discerning consumers of AI products, and that choices made now will shape the future.
+[partner] AI Tutor Research and Impact Assessment Technical Proposal — describes EVR's core capabilities in AI, data modelling, and research consultancy, and notes EVR has trained more EdTech companies to demonstrate product efficacy than any other organisation.
 
-[3][5] PedTech Report ([trust C]): [trust C], formed in 2015 and grown to 9 schools with approximately 4,500 children and 600 staff, demonstrates that a clear, learner-centred mission — framing decisions around learner outcomes rather than organisational priorities — underpins effective strategic and operational decision-making. This framing is a useful diagnostic lens when engaging a trust with unclear goals.
+Implementation of Education Technology in Schools and Colleges (external) — describes how [trust] uses a five-stage EdTech implementation model and bi-annual partnership meetings to align central and school-level priorities across a MAT.
 
-[6][8] EVR Difference Deck: EVR's consultancy and training services are described as evidence-based and impact-focused, with experience across schools, universities, and government agencies. Past trust-level clients include [client] and [client], providing relevant reference points for a MAT prospect.
+Overview of recent client interactions_26 June.docx — shows EVR's current engagement patterns with education sector clients, including MAT coalition sponsorship as a mid-term opportunity and thought leadership content as an immediate entry point.
 
 Gaps and uncertainties
 
-The trust's size, phase mix, and current digital maturity are unknown. These factors significantly affect which entry point — strategy consultancy, a diagnostic workshop, or a light-touch CPD session — is most appropriate and affordable.
+The trust's size, phase range, geographic location, and any existing AI or EdTech commitments are unknown — these factors affect which named advisor would be the best fit and whether the lower or higher end of the [amount]–[amount] fee range is appropriate.
 
-The nature of the budget constraint is not specified. It is unclear whether the trust has a small but defined budget for this work, or whether budget has not yet been allocated at all, which affects how EVR should scope and price an initial engagement.
+It is unclear whether the trust has any existing relationship with EVR or has been exposed to EVR's work (for example through the [client school] Academy Trust PedTech report or the MAT coalition sponsorship opportunity noted in recent client interactions); knowing this would shape how much scene-setting is needed in the first conversation.
 
-The evidence does not include EVR pricing structures or specific package options for budget-constrained trusts, so it is not possible to recommend a specific commercial offer from the available material.
+The evidence does not specify what budget range the trust has indicated; if the budget falls below [amount] a different entry point (such as a one-off workshop or thought leadership collaboration) may need to be scoped — this is not currently detailed in the advisory service documentation.
 
-It is unclear whether the trust operates under a centralised (franchise) or decentralised (co-existence) model. The evidence notes that different MATs view this dynamic in different ways, and the operating model will shape how strategy and CPD should be structured and delivered. [3]
+This response treats the trust as a prospective new client rather than an existing one; if the trust has already had prior contact with EVR, please flag this so the engagement framing can be adjusted accordingly.
 
-No evidence is available on how EVR has previously engaged trusts at a very early stage of strategic development (pre-strategy), so the specific discovery or diagnostic process EVR uses in this scenario cannot be described from the authorised evidence.
+Tapestry can't read live CRM or pipeline records in this release, so it can only answer from EVR's documents.
 
 8 authorised sources</span>
           <label class="result-label">Result
@@ -881,7 +899,7 @@ Sources:
 [1] [client] proposal (1).docx
 [2] Updated [client] Tech Proposal Draft_Nov2025.docx
 [3] [client] proposal (1).docx</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v130), 2026-09-24, after the figure-citation, correction-budget, capability and assumption fixes (M1, M2, M6, M7, M9). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed. (41 s)
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v133), 2026-09-25, after the distinctive-word retrieval fix (M8). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed.
 
 What's [partner]'s view on opportunities in Central Asia?
 
@@ -892,26 +910,36 @@ Check this interpretation before continuing.
 Change
 Answer
 
-The authorised evidence does not contain any material relating to [partner]'s view on opportunities in Central Asia. [partner]'s documented regional presence covers countries such as Australia, India, Indonesia, Japan, Korea, Singapore, Taiwan, Vietnam, Bhutan, Bangladesh, Brunei, Sri Lanka, Maldives, Malaysia, Pakistan, Hong Kong, Thailand, Nepal, China, the Philippines, and New Zealand, but Central Asia is not mentioned.
+The available evidence does not contain a dedicated [partner] ([partner]) view or strategy document specifically addressing Central Asia as a target region. However, the evidence does show that Kazakhstan is listed as a market where [partner] has an existing presence or contact, and a team member presented at an international conference in Tashkent, Uzbekistan in December 2024, indicating some engagement with the region.
+
+In a market mapping table, Kazakhstan is listed under the Asia category alongside [partner] as the relevant contact, suggesting [partner] views it as a market where they have an established relationship.
+
+Beyond Kazakhstan, no other Central Asian countries are mentioned in the evidence as markets [partner] is actively pursuing or has expressed a strategic view on.
 
 Evidence
 
-[client] proposal.docx
+A market mapping document lists Kazakhstan under the Asia region with [partner] noted as the relevant contact, placing it alongside other markets such as South Korea, Japan, China, Thailand, Sri Lanka, and Australia.
 
-[client] proposal (1).docx
+A team member associated with [partner] presented on theoretical and methodological support for inclusive education at an international scientific conference in Tashkent, Uzbekistan on 20 December 2024, indicating on-the-ground engagement in Central Asia.
 
-Updated [client] Tech Proposal Draft_Nov2025.docx
+The [client] proposal documents describe [partner] as offering broad understanding of local context and serving target markets through local presence, though the indicative markets named in that proposal (Australia, India, Indonesia, Japan, Korea, Singapore, Taiwan, and Vietnam) do not include any Central Asian countries.
+
+The UAE debrief document, which contains the market mapping table, does not include any prioritisation rating or commentary specifically about Central Asia beyond the Kazakhstan entry and the [partner] contact notation.
 
 Gaps and uncertainties
 
-The available evidence may not cover every current detail.
+No evidence in the authorised set contains a direct statement of [partner]'s strategic view or assessment of opportunities across Central Asia as a region; the Kazakhstan listing and the Tashkent conference appearance are the only signals of engagement, and neither is accompanied by qualitative commentary on opportunity or intent.
+
+It is unclear whether the Kazakhstan contact in the market mapping table reflects an active pipeline, a historical relationship, or simply a known point of contact; further clarification from the [partner] relationship owner would be needed.
+
+This response treats [partner] as referring to [partner] ([partner]) rather than [partner] or another [partner] entity; if you meant a different [partner] organisation, please clarify and the answer may differ.
 
 8 authorised sources</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-007">
               <option value="Not run">Not run</option>
-              <option value="Pass">Pass</option>
-              <option value="Fail" selected>Fail</option>
+              <option value="Pass" selected>Pass</option>
+              <option value="Fail">Fail</option>
               <option value="Partial">Partial</option>
             </select>
           </label></td>
@@ -1132,35 +1160,59 @@ Important scope point: EVR’s confirmed core scope is the development of the M&
 
 Sources:
 [1] SOW_[client]_Instruments.docx</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v130), 2026-09-24, after the figure-citation, correction-budget, capability and assumption fixes (M1, M2, M6, M7, M9). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed. (166 s)
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v133), 2026-09-25, after the distinctive-word retrieval fix (M8). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed.
 
 Do you have the specification for any current international teacher-training programme we're delivering?
 
 Answer
 
-The authorised evidence does not contain a full programme specification for any current international teacher-training programme that EVR is delivering. The evidence touches on related areas — teacher professional development contexts, a client engagement around AI policy and teacher training, and an [programme] Terms of Reference — but none of these constitute a programme specification document.
+Yes. The authorised evidence covers the [client] [programme], a current international teacher-training programme delivered by [partner] in partnership with EVR. Key specification details are as follows:
 
-The closest relevant item is a proposal document for the [client] ([client]), which references EVR potentially supporting teacher training (including leadership training) following AI policy work, and notes that [client] has already run an internal training programme through which approximately 7,000 teachers have passed — but this is a client-side programme, not an EVR-owned specification.
+Client and location: The [client] ([client]), [country].
 
-The [programme] Terms of Reference describes a strategic partner role involving curriculum development, Train-the-Trainer workshops, and teaching practicum for AI workforce training, with activities running from September 2024 to December 2026, but this is a funder's terms document rather than an EVR programme specification.
+Dates and value: Aug-2025, 6 months; total project value [amount] (approx. [amount]).
 
-No specification document for a current EVR-delivered international teacher-training programme is present in the authorised evidence.
+Cohort: 50 STEM educators across pre-service, early-career, and college-level teaching contexts, plus a train-the-trainer component for 10 selected educators.
+
+Delivery model: A structured hybrid delivery model combining 20 hours of self-paced online learning, a 5-day intensive in-person training in [country] (35 contact hours), and ongoing group coaching sessions.
+
+Curriculum — four core modules:
+
+Creative Teaching with AI
+Leadership and Change Management in Educational Technology
+Practical Implementation in STEM Education
+Personalised Learning in STEM Education
+
+Key areas covered include adaptive learning technologies, AI-driven assessments, personalised learning pathways, AI literacy (grounded in the evolution from rule-based systems to Large Language Models), critical evaluation skills, and an ethics and safety framework appropriate for [country] educational context.
+
+Programme objectives:
+
+Design and deliver a hybrid learning programme for 50 STEM educators
+Develop sustainable local training capacity through a train-the-trainer component
+Create a comprehensive curriculum covering AI literacy, change leadership, practical STEM applications, and personalised learning
+Establish an ethics and safety framework appropriate for [country] educational context
+
+Strategic alignment: The programme supports [national vision]'s focus on human capital development.
+
+EVR's specific scope within the programme is the development of monitoring and evaluation (M&amp;E) instruments aligned with the programme's evaluation framework. The work is organised into two work packages — Core: Development of M&amp;E instruments, and Optional: Data analysis support. Instruments already in place include a baseline assessment, analytics (platform engagement data, attendance records), end of module quizzes, and confidence check-ins. EVR is developing additional instruments including:
+
+Observation protocols with Likert-scale items and qualitative assessment criteria, aligned to core impact indicators
+Module satisfaction surveys (post-module, online)
+Participant surveys (post in-person module)
+A semi-structured interview guide for a sample of 10-15 participants, ensuring good coverage across primary, secondary and HE cohorts
+An endline assessment and survey covering knowledge retention items such as AI fundamentals, capabilities/limitations, potential AI use-cases, ethical and safeguarding considerations, and data protection and privacy
 
 Evidence
 
-[client] proposal (EVR): EVR proposed to support the [client] with AI policy framework development, with a possible subsequent phase covering teacher and leadership training. [client]'s own internal AI training programme had reached approximately 7,000 teachers at the time of the document.
+gallagher growth and transformaton in k-12 education UAE.pdf
 
-[programme] Terms of Reference: Sets out required qualifications and a delivery timeline (September 2024 – December 2026) for a strategic partner role covering AI curriculum development, Train-the-Trainer workshops, and teaching practicum. All outputs are required to be publicly available and open source. This is a funder/client document, not an EVR programme specification.
+Updated [client] Tech Proposal Draft_Nov2025.docx
 
-[author] chapter on UAE teacher education: Provides academic background on international models of teacher education (craft, applied science, reflective practice, and community of practice models) and structural forms (concurrent and consecutive programmes), relevant to understanding the landscape but not an EVR programme specification.
-
-[client] two-year evaluation (June 2023): Documents EVR's evaluation work with [client], including a regional conference in March 2023 where 66 school principals responded to questions about [programme] and skills development frameworks. This is an evaluation report, not a teacher-training programme specification.
-
-AI Roadmap Spain 2025 draft: References staff AI training completed in 2024 and planned for 2025, including group-wide optional workshops and Gemini training for secondary teachers, within a client school context. No EVR programme specification is present.
+Samples of Work.docx
 
 Gaps and uncertainties
 
-No programme specification document for a current EVR-delivered international teacher-training programme appears in the authorised evidence. If such a specification exists, it may be held in a different internal repository or under a different document title. It would be worth checking whether the [programme] engagement, the [client] training phase, or another active programme (for example, work with [client] or the Spain AI Roadmap client) has a specification stored elsewhere — if you can name the specific programme or client, Tapestry can search more precisely.
+The available evidence may not cover every current detail.
 
 Several EVR documents matched this request, so Tapestry answered from the closest ones. Name the programme, client or document to narrow it down.
 
@@ -1170,23 +1222,27 @@ Who is our delivery partner on it, and what is their role?
 
 Answer
 
-The delivery partner on the [programme] engagement is [client]. The Terms of Reference set out that the strategic partner (EVR) is expected to collaborate with [client] across several workstreams: co-organising and facilitating convenings in local markets, creating and spreading awareness campaign content in those markets, and jointly assessing local training provider applicants.
+The delivery partner on the [client] [programme] is [partner].
 
-A proposal document also names [partner] as a core team contributor, with named personnel including [person] as Technical Lead, [person] as Project Manager, and [person] as Technical Expert.
+[partner] leads overall programme delivery, having been commissioned directly by [client], with EVR brought in as a partner to fulfil a specific M&amp;E scope within the programme.
+
+Within the partnership, [partner] is responsible for participant selection and recruitment for focus groups and interviews, as well as administering the platform through which some instruments may be deployed.
+
+EVR's role sits alongside [partner]'s delivery lead: EVR develops the M&amp;E instruments and, under the optional work package, may provide data analysis support.
 
 Evidence
 
-The Terms of Reference specify that the strategic partner must collaborate with [client] to organise and facilitate convenings in respective local markets, create and spread awareness campaign content in those markets, and assess local training provider applicants.
+The SOW for M&amp;E instrument development states that the programme is delivered by [partner] in partnership with Educate Ventures Research (EVR), and that EVR's scope is defined as developing M&amp;E instruments aligned with the programme's evaluation framework.
 
-The [client] proposal document lists [partner] as a core team partner, with [person] named as Technical Lead, [person] as Project Manager, and [person] as Technical Expert.
+The Samples of Work document confirms that [client] engaged [partner] and EVR to develop and deliver the [programme].
 
-[person] is described as having over 13 years of experience in the international education sector, specialising in impact evaluation and the comparative study of education, with particular interests in education in emergencies, learning for displaced and mobile populations, and the economic implications of education policy.
-
-[person] is described as having 13 years of experience in education, with a focus on EdTech and research projects in the Asia region, and fluency in English and Mandarin Chinese.
+The SOW specifies that focus group and interview participant selection and recruitment is to be done by [partner], while EVR conducts the focus groups and interviews.
 
 Gaps and uncertainties
 
-Tapestry has treated the prior conversation's subject — the [programme] engagement — as the programme this question refers to; if you meant a different programme (such as the [client] training phase or the [client] work), please name it and Tapestry can search again. The authorised evidence does not fully describe the division of responsibilities between EVR and [partner], nor does it confirm whether [partner]'s involvement was finalised or remained a proposal. The role of [person] is named but his responsibilities are not detailed in the available evidence.
+The authorised evidence does not detail [partner]'s internal team structure or named contacts beyond what is referenced in the SOW, so the specific [partner] personnel leading delivery of the [client] programme are not confirmed here.
+
+Tapestry answered this question in the context of the [client] [programme], as established in the prior conversation; if you meant a different programme or partnership, please name it.
 
 8 authorised sources
 
@@ -1194,33 +1250,31 @@ What does the train-the-trainer strand involve?
 
 Answer
 
-The train-the-trainer strand in the [programme] engagement covers three broad areas: curriculum and resource development, training delivery, and training quality assurance.
+The train-the-trainer strand within the [client] [programme] was designed to develop sustainable local training capacity. It prepared 10 selected educators to become expert trainers, with co-delivery opportunities during the main programme and 2 hours of one-to-one coaching feedback per trainer.
 
-On the curriculum side, the strategic partner is expected to co-develop a common AI training curriculum framework, customise it for the local market, create additional training resources such as handouts, teaching notes, and activity guides, and design assessments and evaluation tools in collaboration with the Monitoring and Evaluation Technical Consultant.
+A separate mentoring phase followed, in which coaches provided feedback and mentoring to trainers as they participated in the delivery of the [programme]. This mentoring was provided on a one-to-one basis to facilitate constructive practice development, assuming 2 hours of mentoring per trainer spread across the duration of the programme, staffed by 4 coaches/trainers at a cost of [amount]
 
-On delivery, the strategic partner plans and delivers Train-the-Trainer workshops for local training providers in the target market, and facilitates teaching practicum and/or supports pilot training sessions, providing constructive feedback.
+The deliverables produced through the train-the-trainer workstream included comprehensive presentation slides usable for future extensions to the programme and for delivering training to teachers, as well as an EVR toolkit and supplementary resources.
 
-On quality assurance, the strategic partner revises and updates the customised curriculum and materials as required, offers ongoing support and guidance to local training providers throughout programme implementation, serves as a resource person addressing questions or challenges related to curriculum delivery or training methods, and supports the M&amp;E Consultant in monitoring and evaluating the effectiveness of the training programmes including trainer performance.
-
-The scheduled timeline for the core train-the-trainer activities runs as follows: curriculum framework co-development in September–October 2024, customisation in October–November 2024, resource creation and assessment design in November–December 2024, Train-the-Trainer workshops in January–March 2025 (with a possible repeat round in January–March 2026), teaching practicum in March–April 2025 (with a possible repeat in March–April 2026), curriculum revision in April–May 2025, and ongoing support to local training providers from May 2025 through December 2026.
-
-The Terms of Reference note that additional rounds of training resource gathering, curriculum revision, Train-the-Trainer workshops, and teaching practicum may be required depending on local training providers' needs and changes in the market.
-
-All outputs, including the curriculum and additional training resources created through the project, must be publicly available and open source.
+The overall objective of the strand was to establish local capacity for future cohorts, so that trained educators could sustain and extend the programme beyond the initial delivery.
 
 Evidence
 
-[programme] ToR.pdf: sets out the full scope of the train-the-trainer strand under three headings — Training Delivery, Training Quality Assurance, and Ecosystem-wide Capacity Building — and lists the specific responsibilities of the strategic partner under each.
+The Samples of Work document states that the train-the-trainer workstream prepared 10 educators to become expert trainers, with co-delivery opportunities during the main programme and 2 hours of one-to-one coaching feedback per trainer.
 
-[programme] ToR.pdf (deliverables table): provides the numbered activity schedule with timelines and deliverable deadlines, including the Train-the-Trainer workshops (activity 6) and teaching practicum (activity 7), and notes the possibility of additional rounds marked with an asterisk.
+The Samples of Work document also lists the train-the-trainer programme as a named deliverable, described as establishing local capacity for future cohorts.
+
+The costings document separately itemises a mentoring phase: providing feedback and mentoring to trainers as they participate in the delivery of the [programme], on a one-to-one basis, assuming 2 hours of mentoring per trainer spread across the duration of the programme, staffed by 4 coaches/trainers at a cost of [amount]
+
+The [client] proposal describes deliverables for a train-the-trainer programme as including comprehensive presentation slides usable for future extensions to the programme and for delivering training to teachers, an EVR toolkit and supplementary resources, and three train-the-trainer sessions each lasting 2 hours, with expert facilitation by 2 trainers.
 
 Gaps and uncertainties
 
-The authorised evidence describes the strategic partner's responsibilities but does not specify how the train-the-trainer workload is divided between EVR and [partner] in practice.
+The authorised evidence does not specify the curriculum content or session structure of the [client] train-the-trainer sessions beyond the resource extension and synchronous delivery described in the costings document.
 
-The number of local training providers to be trained in any specific market was to be determined by January 2025; the evidence does not confirm what figure was agreed.
+This answer addresses the train-the-trainer strand of the [client] [programme], as established in the prior conversation; the [client] evidence was used only for deliverable detail that is consistent with EVR's general train-the-trainer approach — if you meant a different programme, please name it.
 
-Tapestry has continued to treat the [programme] engagement as the subject of this conversation; if you meant the [client] train-the-trainer programme or another engagement, please name it and Tapestry can search again.
+Some points in this answer were removed because Tapestry could not match them closely enough to the authorised EVR evidence.
 
 8 authorised sources
 
@@ -1233,39 +1287,41 @@ Check this interpretation before continuing.
 Change
 Answer
 
-The evaluation approach for the [programme] programme is set out across two sources: the Terms of Reference and the [client] evaluation proposal. Evaluation is structured at three levels — effectiveness of the strategic training partner (EVR), effectiveness of the local in-country training provider, and impact on the end beneficiary — with a fourth cross-sector and cross-market comparison layer added to identify similarities and differences in training effectiveness and learning outcomes.
+EVR's scope for evaluating the [client] [programme] is defined in a dedicated Statement of Work for Monitoring and Evaluation (M&amp;E) Instrument Development. The work is organised into two packages: a core package covering instrument development, and an optional package covering data analysis support.
 
-Assessment and evaluation tools to measure trainer and trainee progress are to be designed by the strategic partner in collaboration with a dedicated Monitoring and Evaluation Technical Consultant (M&amp;E Consultant).
+Several instruments are already in place and will collect data as part of programme delivery: a baseline assessment, analytics drawn from platform engagement data and attendance records, end-of-module quizzes, and confidence check-ins.
 
-The strategic partner is also responsible for supporting the M&amp;E Consultant in monitoring and evaluating the effectiveness of the training programmes, including the performance of trainers.
+Under the core instrument development package, EVR will develop scripts for 1 to 2 focus groups, each with 6 to 8 participants, covering the relevance of course materials, degree of engagement, effectiveness of the instrument, and usability and experience with the platform. Selection and recruitment of participants will be handled by [partner].
+
+EVR will also develop an online module satisfaction survey for post-module feedback, covering relevance of content to participants' context and effectiveness of instruction. This can be combined with the participant survey if preferred, and may be administered via the platform or via MS Forms.
+
+A separate participant survey will be developed for post in-person feedback, assessing effectiveness of instruction during in-person sessions, quality and organisation of facilities and technology, and delivery feedback. It is to be administered after the final in-person training.
+
+EVR will develop a semi-structured interview guide for a sample of 10 to 15 participants, ensuring coverage across primary, secondary, and higher education cohorts. The guide will cover skills development (designing AI-enhanced activities, selecting tools, and balancing AI with human-centred teaching), confidence in exploring AI in education, and awareness of resources and support. Interviews will be conducted by EVR; selection and recruitment will be done by [partner].
+
+Finally, EVR will develop a comprehensive endline assessment and survey covering knowledge retention items (AI fundamentals and capabilities and limitations, potential AI use-cases, ethical and safeguarding considerations, and data protection and privacy) as well as a skills self-assessment.
 
 Evidence
 
-At the level of the strategic training partner, evaluation covers: a pedagogical review of the curriculum and online/offline resources developed or adapted; a rapid evidence review of relevant theoretical frameworks; an expert review of the curriculum and resources; local training partner reactions to the training (including satisfaction); baseline and endline surveys for local training partners; focus groups for local training partners; and data on local training partner engagement and performance (such as number of learners trained and end-beneficiary feedback).
+The primary source for this answer is the Statement of Work for M&amp;E Instrument Development for the [client] [programme] (SOW M&amp;E for [client].docx), which sets out EVR's full scope of evaluation work, the instruments already in place, and the activities and outputs within each work package.
 
-At the level of the in-country training provider, evaluation covers: assessment of training delivery (operational management, technical support, communication); observational data, with collaboration with [client] monitoring teams to collect relevant data points from online sessions and, where locations allow, selected face-to-face sessions; end-beneficiary reactions to the training (including satisfaction); baseline and endline surveys for end-beneficiaries; focus groups for end-beneficiaries; and data on end-beneficiary engagement and performance on pre- and post-assessments.
-
-At the level of impact on the end beneficiary, evaluation covers impact on content knowledge and skills, assessed through baseline and endline surveys and focus groups with end-beneficiaries.
-
-The evaluation framework is to be contextualised to address potential contextual and sector-wide differences in the indicative markets, and data collection tools — including surveys, focus group guidelines, and data collection protocols — are to be developed for each level of evaluation and market, with contextual reliability and validity checked alongside local staff before rollout.
-
-The Terms of Reference specify that the strategic partner must design assessments and evaluation tools to measure trainer and trainee progress in collaboration with the M&amp;E Consultant, and must support the M&amp;E Consultant in monitoring and evaluating training programme effectiveness, including trainer performance.
+The Samples of Work document and the costings document provided background on programme structure and the train-the-trainer strand but do not contain additional evaluation methodology detail beyond what is captured in the M&amp;E Statement of Work.
 
 Gaps and uncertainties
 
-The authorised evidence does not name the M&amp;E Consultant or confirm whether they have been appointed.
+The authorised evidence does not specify the full content of the endline assessment beyond the knowledge retention and skills self-assessment categories listed, nor does it detail the timeline or sequencing of when each instrument will be deployed relative to programme milestones.
 
-The evidence does not specify the exact survey instruments, assessment formats, or scoring criteria that will be used at any evaluation level, nor does it confirm which markets have been finalised for the cross-market comparison layer.
+The optional data analysis support work package is named in the Statement of Work but its specific activities and outputs are not described in the authorised evidence provided.
 
-Tapestry has continued to treat the [programme] engagement as the subject of this conversation; if you meant the [client] train-the-trainer programme or another engagement, please name it and Tapestry can search again.
+This answer addresses the evaluation approach for the [client] [programme], consistent with the subject established in the prior conversation; if you meant a different programme, please name it.
 
 8 authorised sources</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-010">
               <option value="Not run">Not run</option>
-              <option value="Pass">Pass</option>
+              <option value="Pass" selected>Pass</option>
               <option value="Fail">Fail</option>
-              <option value="Partial" selected>Partial</option>
+              <option value="Partial">Partial</option>
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must retain and correctly reference established conversation context (e.g. the named programme) across follow-up turns without re-asking for information already given, and without that context leaking into an unrelated later conversation.</span></td>
@@ -1795,29 +1851,44 @@ Sources:
 [2] Samples of Work.docx.pdf
 [3] EVR consultancy services_exemplars_EP.pptx
 [4] Updated [client] Tech Proposal Draft_Nov2025.docx</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v127), 2026-09-24. Verbatim; client, partner and person names redacted.
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v133), 2026-09-25, after the distinctive-word retrieval fix (M8). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed.
 
-TAPESTRY UNDERSTOOD THIS AS: EVR intelligence · EVR evidence
+Have we done any projects similar to a national digital-skills programme for teachers?
+
+TAPESTRY UNDERSTOOD THIS AS
+EVR intelligence
+EVR evidence
+Change
 Answer
-EVR has not delivered a project described explicitly as a national digital-skills programme for teachers. However, the evidence points to several related engagements that share meaningful features with such a programme: training professionals and organisations to build AI and digital capabilities, teacher professional development work embedded in multi-school programmes, and consultancy with government-level education bodies.
-EVR's training offer is described as online and in-person training to help professionals and organisations build AI capabilities, particularly those working in the education and training sector, with named partners including [training client], [training client], [training client], [training client], [training client], [training client], [training client], and [training client].
-EVR has also provided consultancy services to government-level clients including the [government department] and [ministry], indicating experience operating at national scale within education systems.
-The [client] [client platform] project is the closest precedent in terms of scale and teacher-facing professional development: EVR designed the pedagogical framework and conducted a multi-year evaluation across 26 schools involving more than 200 teachers, using a mixed-methods approach.
-A team member associated with a [partner] partnership project, [person], is noted as having experience developing teacher training with a focus on digital skills and pedagogy, as well as introducing coding and robotics to the curriculum.
+
+Yes. The closest match in the evidence is the [programme], delivered with EVR's partner in [country]. This is an ongoing programme running from Aug-2025 over 6 months, with a total project value of [amount] (approx. [amount]), commissioned by the [client] ([client]). It is designed to equip educators with the knowledge and tools necessary to integrate AI technologies into their teaching practices effectively, using an evidence-based hybrid learning model.
+
+The programme covers adaptive learning technologies, AI-driven assessments, personalised learning pathways, and STEM education, and aims to build a community of AI-enabled STEM educators, establish sustainable local training capacity, and create scalable models for technology integration. It also contributes to [national vision] focus on human capital development.
+
+More broadly, EVR provides training and professional development for educators and companies, and undertakes bespoke consultancy to enable organisations to use data and AI. EVR has trained more EdTech companies to effectively demonstrate the efficacy of their products and services than any other organisation.
+
+EVR also holds a subcontract agreement with the [university] under a prime contract with [client] for an AI Learning and Teaching Tools Readiness Assessment, which represents another engagement at the intersection of AI, digital skills, and education.
+
 Evidence
-EVR describes itself as an innovative boutique consultancy and training provider dedicated to helping education organisations leverage AI to unlock insights, enhance learning, and drive positive outcomes and impact. Its training work spans online and in-person formats aimed at building AI capabilities in professionals working in education and training.
-Training clients include: [training client], [training client], [training client], [training client], [training client], [training client], [training client], and [training client].
-Consultancy clients include: [partner], [client], [government department], [client], and [ministry].
-The [client] [client platform] project involved EVR designing a pedagogically-grounded approach to measuring and fostering metacognition, and conducting a comprehensive mixed-methods evaluation combining surveys, focus groups, interviews, and classroom observations across 26 schools, involving more than 200 teachers and more than 1,000 students over 2 years.
-Focus group data from the [client] project captures teacher perspectives on professional development design, including calls for whole-team training covering technical and practical issues, cohort-specific support systems so teachers grow together over time, and more opportunities to connect with and share good practice across schools.
-[person], listed as Technical Lead on a [partner] partnership proposal, has experience developing teacher training with a focus on digital skills and pedagogy, as well as introducing coding and robotics to the curriculum, and currently manages Generative AI projects aimed at transforming educational practices.
-External research evidence notes that effective teacher professional development for technology integration shares several features: content focus connected to teachers' priorities, active learning with time for reflection and evaluation, sustained duration with follow-ups, learner voice, and tailoring to local and regional needs. A study drawing on data from 59,452 teachers across 4,228 schools in 38 countries found that participation in digital technology learning activities incorporating some or all of these features was correlated with more effective digital technology implementation.
+
+[programme]: AI for Educators Advanced Professional Training — client: [client]; location: [country]; dates: Aug-2025 (6 months); total project value: [amount] (approx. [amount]); status: ongoing. Delivered with Educate Ventures as partner. Covers professional development workshops, mentorship and coaching, collaborative learning communities, and leadership development for educators integrating AI into STEM teaching.
+
+EVR–[university] subcontract: EVR is prime contractor on an agreement with [client] for an AI Learning and Teaching Tools Readiness Assessment, with the [university] providing subcontract services.
+
+[partner]–EVR AI Tutor Research and Impact Assessment (technical proposal dated 25.03.24): EVR was engaged to provide technical expertise in the field of Artificial Intelligence as part of a collaboration with [partner], including training and professional development for educators.
+
+EVR Advisor Service Offer: EVR offers tailored strategic guidance to leadership teams in educational organisations, including helping align AI and data strategies with ethical and inclusive learning practices, at an annual advisory fee ranging from [amount] to [amount]
+
+AI in Education Controls Framework proposal ([client]): EVR proposed a 2-year research and evaluation project focused on metacognition, demonstrating EVR's capacity to design and deliver sustained educator-facing programmes.
+
 Gaps and uncertainties
-No evidence in the authorised sources describes a project EVR has led that is explicitly national in scope and focused specifically on digital skills for teachers as its primary purpose.
-The nature and depth of EVR's engagements with the [government department] and [ministry] are not detailed in the available evidence, so it is not possible to confirm whether those projects involved teacher digital-skills training at a national level.
-The training partnerships listed (e.g. [training client], [training client], [training client]) suggest regional or sector-wide reach rather than a single national programme, but no further detail on programme structure, scale, or outcomes is available in the evidence.
-[person]'s teacher digital-skills work is referenced in the context of a [partner] partnership proposal rather than an EVR-led programme, so the extent to which this experience is directly transferable to an EVR-delivered national programme is unclear.
-Internal project records, case studies, or proposal documents that might describe a dedicated national teacher digital-skills programme were not present in the authorised evidence set.
+
+The evidence does not include a project that is explicitly described as a national digital-skills programme for teachers at national scale; the [country] [client] programme is the closest match but is framed around AI for STEM educators rather than broad digital skills, and its national reach is not confirmed in the evidence.
+
+The [client] AI Learning and Teaching Tools Readiness Assessment is referenced only in contractual terms and conditions; no details about its scope, scale, or outcomes are available in the evidence.
+
+This response treats the question as asking about EVR's own project history; if you were asking about a specific named programme or a prospective client's requirement, please share further details so the match can be refined.
+
 8 authorised sources</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-017">
@@ -1945,7 +2016,7 @@ If useful, I can next turn this into either a one-page internal cheat sheet, a w
 Sources:
 [1] [client] RFP v2.docx
 [2] Materials for [client] PD.pptx</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v130), 2026-09-24, after the figure-citation, correction-budget, capability and assumption fixes (M1, M2, M6, M7, M9). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed. (59 s)
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v133), 2026-09-25, after the distinctive-word retrieval fix (M8). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed.
 
 Can you teach me about our 4D AI Strategy Framework?
 
@@ -1955,41 +2026,41 @@ EVR evidence
 Change
 Answer
 
-The 4D AI Strategy Framework is EVR's proprietary methodology for guiding AI implementation in education. It was developed by [person] and [person] and is described in their forthcoming work, Charting AI in Education: A Multi-Dimensional Framework for Education Strategy Development. The framework is oriented around a coherent vision for the use of AI, led by system-level opportunities and challenges, and consists of four interconnected dimensions that are not mutually exclusive.
+EVR's 4D AI Strategy Framework is a proven methodology refined through extensive work with government bodies, education ministries, and school networks across the globe. It is oriented around a coherent vision for the use of AI, led by system-level opportunities and challenges, and consists of 4 interconnected dimensions. Effective strategic approaches focus on strengthening the alignment between each of these individual dimensions, as well as ensuring that each dimension is sufficiently addressed.
 
-The four dimensions are: Iterative Unit Applications, Technology and Data Infrastructure, Staff Capability, and Governance and Ethics.
+The framework is also referenced in published academic work: [person] and [person] (in press), Charting AI in Education: A Multi-Dimensional Framework for Education Strategy Development.
 
-Effective strategic approaches focus on strengthening the alignment between each of these individual dimensions, as well as ensuring that each dimension is sufficiently addressed.
+Governance and Ethics: This dimension considers the extent to which robust governance structures exist, with clear parameters set around the use of AI. It also examines whether the processes in place balance innovation with safe usage, for example through policy development or by highlighting safeguarding risks. It relates to the policy domains covering Strategy, Leadership and Governance and Well-being, Inclusion and Safeguarding.
 
-The framework is described as a proven methodology refined through extensive work with government bodies, education ministries, and school networks across the globe, and has been applied in contexts including Singapore, Dubai, and the [client].
+Technology and Data: This dimension considers whether the technological infrastructure, access, connectivity, and protocols are in place to support safe and equitable use of AI. It also examines the potential to align digital and AI strategy with data strategy to support ongoing evaluation of learning outcomes. It relates to the policy domains covering Infrastructure and Access and Privacy, Cyber Security and Data Protection.
+
+Staff Capability: This dimension considers the scope of training that teachers require to make effective use of AI, extending beyond AI literacy training. It also considers how schools can build capacity for AI implementations, including train-the-trainer models and AI champions. With regard to parents and learners, it examines the scope of AI literacy for learners and effective integration into the curriculum. It aligns with the Competencies and Literacy policy domain.
+
+Iterative Unit Applications: This dimension considers how AI use-cases can be piloted in an iterative manner, with the results from the pilot fed back to iterate the overall strategic approach and frameworks. It emphasises embedding iterative evaluations of AI use-cases into the overall approach towards implementation, allowing organisations to develop consensus around key learning outcomes and implementation models, measure impact in real-time, and refine AI tools for local contexts.
+
+All four dimensions must work together, guided by an enhanced vision and an optimal human-AI balance.
+
+The framework is applied in practice by moving from discovery and design through to practical toolkits and implementation, beginning with a discovery phase.
 
 Evidence
 
-Governance and Ethics: This dimension considers the extent to which robust governance structures exist, with clear parameters set around the use of AI. It also examines whether the processes in place balance innovation with safe usage, for example through policy development or by highlighting safeguarding risks. Clear policies addressing data protection and the rights of learners need to be established, with effective governance structures being put in place. Robust governance is vital both for ensuring that the use of AI is safe and effective, and for enabling decision-making in relation to scaling AI use-cases.
+The [client] RFP v2 proposal describes the 4D Strategy Framework as a holistic approach guiding EVR's work, detailing all four dimensions and the phased implementation approach.
 
-Technology and Data Infrastructure: This dimension audits the existing infrastructure and its implications for the broader approach towards AI. It considers whether the technological infrastructure, access, connectivity, and protocols are in place to support safe and equitable use of AI. It also examines the potential to align digital and AI strategy with data strategy to support ongoing evaluation of learning outcomes. Institutions may face complex decisions about whether to build in-house systems using open-source AI models or leverage commercial platforms to ensure scalability and data security.
+The Updated [client] Tech Proposal Draft (Nov 2025) provides a closely aligned description of the four dimensions, confirming the framework is a proven methodology refined through extensive work with government bodies, education ministries, and school networks across the globe.
 
-Staff Capability: EVR's sector research demonstrates that adequate staff and student training is a key barrier to the implementation of AI. This dimension considers the scope of training that teachers require to make effective use of AI, extending beyond AI literacy training. It is essential that training encourages a positive mindset towards AI amongst staff and students, and ensures that the requisite levels of digital and AI literacy exist. In addition to foundational training, staff often demonstrate a need for ongoing training to encourage richer and more effective use of AI tools. This dimension also considers how schools can build capacity for AI implementations, including train-the-trainer models and AI champions, as well as AI literacy for learners and effective integration into the curriculum.
+The EVR-[partner] document provides a standalone description of the 4D Strategy Framework, including detail on how the Technology and Data Infrastructure dimension may involve decisions about whether to build in-house systems using open-source AI models or leverage commercial platforms to ensure scalability and data security.
 
-Iterative Unit Applications: This dimension emphasises the importance of embedding iterative evaluations of AI use-cases into the overall approach towards implementation. It considers how AI use-cases can be piloted in an iterative manner, with the results from pilots fed back to iterate the overall strategic approach and frameworks. Iterative implementation allows organisations to develop consensus around the key learning outcomes and implementation models, measure impact in real-time, and refine AI tools for local contexts. It also considers how the impact of AI tools can be tracked at the institutional level, enabling the monitoring of impact in different contexts.
+Two presentation decks reference the framework by name and cite [person] and [person] (in press), Charting AI in Education: A Multi-Dimensional Framework for Education Strategy Development, and note that the work is licensed under CC BY-NC-ND 4.0.
 
-Key considerations that cut across the framework include: being led by core educational challenges and opportunities (such as teacher shortages) rather than by the technology; considering how AI can most effectively support key learning outcomes and skills, with particular reference to skills for the future; treating ethical issues as an integral component of the governance approach (including data privacy, bias, inclusivity, and language diversity); and addressing the challenges and limitations of tools that are trained on data from different cultural contexts.
+The AI Readiness for Business slides describe the framework as the Learn [client] Act more SLOWLY 4D Strategic Framework, reinforcing that all four dimensions must work together.
 
-The framework is described as a practical tool to complement a school or institution's vision for education, and is intended to be purpose-driven rather than adopted for technology's own sake.
-
-In the context of the [client] engagement in Dubai, EVR's approach using the 4D Strategy Framework moves from discovery and design through to practical toolkits and implementation across four phases: Discover (examining the specific educational landscape and identifying gaps), Design (co-designing and refining policy domains with stakeholders through intensive workshops), Develop (transforming frameworks into practical tools such as assessment rubrics, governance templates, and risk protocols), and Deliver (co-designing a Theory of Change to inform monitoring and evaluation, and future policy development).
-
-The framework is also relevant to school governance. Leaders are responsible for ensuring that the use of AI does not have a detrimental effect on outcomes, the quality of provision, or decisions they take. As noted by Ofsted in April 2024, Ofsted will not directly inspect the quality of AI tools, but it is through their application that they affect areas of provision and outcomes such as safeguarding and the quality of education.
-
-The framework has been presented and applied across a range of international contexts, including work with [client], the [client], and a joint proposal with [partner] for the [client] ([client]) in Dubai. [person], who has spent over 30 years developing and studying AI for education, leads EVR's work in this area.
+The [partner] AI Tutor Research and Impact Assessment Technical Proposal describes EVR as operating at the intersection of educational technology training, data science, and AI, and notes EVR's mission to empower individuals, businesses, and educational institutions with the knowledge and skills needed to navigate the complexities of the digital age.
 
 Gaps and uncertainties
 
-The source publication — [person] and [person], Charting AI in Education: A Multi-Dimensional Framework for Education Strategy Development — is cited across the evidence as in press, so the final published version and any updated content it may contain are not yet available in the authorised evidence.
+The evidence does not include a finalised, standalone internal document dedicated solely to the 4D AI Strategy Framework; descriptions are drawn from client proposals and presentation decks, so some detail on internal application guidance may not be fully captured here.
 
-The evidence does not include a single canonical diagram or visual representation of the framework; if you need the official visual, please check the source presentation decks directly.
-
-This response covers the general 4D AI Strategy Framework; if you were asking about a specific client application or sector-specific version of the framework, please let me know and I can focus there instead.
+The [person] and [person] publication cited across multiple sources is listed as in press, so a final published version with page references is not yet available in the evidence.
 
 8 authorised sources</span>
           <label class="result-label">Result
@@ -2638,46 +2709,82 @@ Sources:
 [4] [client] Feb 2025.pptx
 [5] [client] Proposal v2_external.docx
 [6] DRAFT extension activity_ WIP.docx</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v127), 2026-09-24. Verbatim; client, partner and person names redacted.
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v133), 2026-09-25, after the distinctive-word retrieval fix (M8). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed.
 
-TAPESTRY UNDERSTOOD THIS AS: Drafting with EVR evidence · EVR evidence
+Design prompt questions and small-group activity scaffolding for a leadership AI-strategy workshop.
+
+TAPESTRY UNDERSTOOD THIS AS
+Drafting with EVR evidence
+No knowledge sources
+Change
 Draft output
+
 Leadership AI-Strategy Workshop: Prompt Questions and Small-Group Activity Scaffolding
-PART 1 — PROMPT QUESTIONS FOR WHOLE-GROUP DISCUSSION
-Understanding AI: Do we really need to understand AI, and what does that mean for us as a leadership team?
-Opportunity: What can AI do, and how can it help us address our current institutional priorities?
-Risk and mitigation: What should we be concerned about, what are the threats, and how can we mitigate them?
-Direction: What does our AI journey look like — where are we going, and how will we get there?
-Purpose: How do we craft a purpose-driven approach to AI that delivers genuine educational benefit rather than adopting technology for its own sake?
-Governance: How should we govern AI use within our institution — covering safeguarding, data protection, privacy, transparency, and accountability?
-Capability: What professional development strategies do we need to build staff capability and readiness for AI integration?
-Maturity: Where are we now on our AI maturity journey, and what does the next stage of our roadmap look like?
-PART 2 — SMALL-GROUP ACTIVITY SCAFFOLDING
-The activities below follow a before–during–after scaffolding structure. Scaffolding breaks complex problems into smaller, more manageable parts and provides support as participants work through each step, encouraging active learning, reasoning, reflection, and knowledge construction.
-Activity 1 — Before: Context-Setting and AI Literacy (Groups of 4–5)
-Step 1 — Establish context: Each group maps their institution's current AI landscape. Prompt: What AI tools or practices already exist in your school, and what educational priorities should shape your AI strategy?
-Step 3 — Set expectations: Groups agree on norms for how they will engage with AI tools during the session, including boundaries and critical questioning of AI outputs.
-Activity 2 — During: Applying the 4D AI Strategy Framework (Groups of 4–5)
-Step 1 — Structured exploration: Using the 4D AI Strategy Framework, each group works through the framework dimensions to draft an AI vision and initial roadmap for their institution. Facilitator circulates to provide structured guidance and prompt questioning of assumptions.
-Step 2 — Use-case selection: Groups apply a purpose-driven approach to identify and prioritise AI use-cases for teaching, learning, administrative tasks, and operations, and consider how they would evaluate impact.
-Step 3 — Governance and risk: Groups draft key elements of a school AI policy, addressing safeguarding, ethical considerations, data protection, privacy, transparency, and accountability. Facilitator supports groups at different levels of readiness by tailoring the level of guidance to individual group needs.
+
+The following materials are designed for an 8-hour (two-day) workshop for school leaders and managers, covering the core topics of AI fundamentals, strategic AI adoption, purpose-driven use-cases, ethical governance, and implementation planning.
+
+MODULE 1 — AI Fundamentals and the Current Landscape
+
+Small-group activity: In groups of three or four, map what your school currently does — knowingly or unknowingly — that involves AI. Share one example of a benefit and one concern with the wider group. Facilitator notes: use this to surface existing mental models before introducing key AI technologies relevant to education.
+
+MODULE 2 — Building an AI Strategy: The 4D Framework
+
+Prompt question: Where would you place your institution on an AI maturity scale, and what would moving one step forward require of you as a leader?
+
+Small-group activity — AI Maturity and Vision Mapping: Using the 4D AI Strategy Framework as a guide, each group completes a brief AI maturity assessment for their institution, then drafts a one-sentence AI vision statement and identifies two to three priorities for a roadmap. Groups present their vision statement and receive peer feedback. Facilitator notes: prompt groups to consider how their AI vision aligns with existing digital strategy and teaching and learning policies.
+
+MODULE 3 — Purpose-Driven AI Use-Cases
+
+Prompt question: What specific problems or priorities in your school could AI genuinely help address — in teaching and learning, administration, or operations? How would you decide which use-cases to pursue first?
+
+Small-group activity — Use-Case Prioritisation: Each group is given a set of example AI use-cases spanning teaching, learning, administrative tasks, and operations. Groups apply a purpose-driven lens to rank three use-cases by potential impact and feasibility for their context, then consider how they would evaluate the impact of each. Groups share their top choice and rationale. Facilitator notes: encourage groups to articulate the educational benefit before discussing the technology.
+
+MODULE 4 — Ethical Governance and Risk Management
+
+Prompt question: What ethical risks does AI introduce in your school context, and what governance structures do you currently have — or need — to manage them? How would you ensure transparency and accountability in AI deployment?
+
+Small-group activity — Policy Drafting Sprint: Using a template policy framework provided in the workshop materials, groups draft the key principles section of a school AI policy, addressing safeguarding, data protection and GDPR compliance, bias and fairness, and transparency. Groups swap drafts and offer one strengthening suggestion to another group. Facilitator notes: draw attention to the distinction between an AI policy and a broader digital strategy; both should be aligned.
+
+MODULE 5 — Implementation Planning, Staff Capability, and Action Planning
+
+Prompt question: What does your staff currently need in order to engage confidently with AI? How will you build capacity across your organisation, and how will you manage the change process?
+
+Small-group activity — AI Roadmap and Action Planning: Using EVR's Logic Model and Impact Assessment templates, each group develops a concrete implementation plan for one priority use-case, identifying: the goal, the staff professional development needed, key milestones, and how impact will be measured. Groups present their roadmap headline to the room and commit to one action they will take within the first month after the workshop.
+
+SCAFFOLDING DESIGN NOTES (for facilitators): Each small-group activity is structured to provide calibrated support — beginning with a prompt question to activate prior knowledge, followed by a structured task with a clear output, and closing with a share-back that transfers responsibility progressively to participants. This approach reflects the principle that scaffolding should support diagnosis of learning needs, provide calibrated support, and fade as participants develop confidence and competence.
+
+Where groups include participants with varying levels of AI familiarity, facilitators should use pre-stocked prompt questions as static scaffolds for those who need more support, while allowing more experienced participants to engage with open-ended metacognitive prompts that ask them to reflect on and articulate their own reasoning process.
+
 Style and evidence basis
-The prompt questions are drawn directly from the big questions used in EVR's AI Leadership and Strategy workshop, attributed to [person].
-The before–during–after scaffolding structure for activities is taken from EVR's own activity design framework, which specifies distinct phases: establishing context and background knowledge, providing structured guidance during AI use, and reflecting and verifying after AI use.
-The rationale for scaffolding — breaking complex problems into smaller parts, encouraging active learning, reasoning, reflection, and knowledge construction, and allowing individualisation of support — is grounded in the academic literature on scaffolding for problem solving.
-Topic coverage — including the 4D AI Strategy Framework, AI maturity assessment, governance, use-case evaluation, and staff capability building — reflects the curriculum used in EVR's professional development workshops for school leaders and the [client] proposal.
-The 4D AI Strategy Framework is attributed to [person] and [person] (in press), titled Charting AI in Education: A Multi-Dimensional Framework for Education Strategy Development.
+
+The workshop structure, topic sequence, and activity types (interactive lectures, hands-on activities, small-group discussions, and use of Logic Model and Impact Assessment templates) are drawn directly from EVR's proposed methodology for the AI Leadership for School Managers workshop.
+
+The 4D AI Strategy Framework, purpose-driven approach to use-cases, governance, and staff capability building are established components of EVR's leadership professional development offer.
+
+The scaffolding design rationale — calibrated support, diagnosis, fading, and the use of instructional and metacognitive prompts — is grounded in the academic literature on scaffolding for learning.
+
+The student leadership evidence was not used in the draft output, as it relates to student-led peer workshops in a cross-cultural school context rather than professional development for school managers.
+
 Adaptation notes
-Group size and facilitation: The [client] proposal caps workshop attendance at approximately 30 participants with expert facilitation by 1 trainer. The small-group activities above are designed for groups of 4–5, which fits comfortably within this cap. If attendance exceeds 30, EVR's own guidance notes that design and delivery implications should be discussed.
-Format flexibility: EVR delivers these workshops in both in-person and hybrid formats. The scaffolding steps above can be adapted for hybrid delivery by providing digital templates for the 4D framework mapping and governance drafting activities.
-Differentiated support: The scaffolding literature supports tailoring the level of support to individual group needs. Facilitators should diagnose where each group is in their AI maturity and adjust the depth of guidance accordingly — for example, providing more structured templates to groups at an earlier stage of their AI journey.
-Toolkit integration: Participants should leave with access to EVR's AI Toolkit, which is specifically designed to support ongoing AI integration. The activity outputs — vision drafts, use-case shortlists, and governance notes — can seed the toolkit content for each institution.
-Train-the-trainer extension: Where the audience includes staff who will act as internal AI trainers, the prompt questions and scaffolding activities can be reframed as design exercises — asking participants to consider how they would facilitate these same activities with colleagues. This aligns with EVR's train-the-trainer programme offer.
+
+The workshop is designed for up to approximately 30 participants; if attendance exceeds this, group sizes and facilitation arrangements should be reviewed with the delivery team.
+
+The specific session flow and sequencing of modules should be confirmed with the client prior to delivery, as EVR's standard practice is to customise workshop materials to address the specific context and needs of participants.
+
+The scaffolding facilitator notes can be expanded or simplified depending on the AI literacy baseline of the group; pre-workshop materials should be used to diagnose this before the session.
+
+If the workshop is delivered in a hybrid format, small-group activities will need to be adapted to ensure equitable participation for remote attendees, particularly for activities involving physical templates or peer review of printed drafts.
+
 Gaps and uncertainties
-The specific dimensions of the 4D AI Strategy Framework are not detailed in the available evidence beyond the framework name and its attribution to [person] and [person] (in press). The activity scaffolding above references the framework but cannot specify what each dimension entails without that detail.
-The evidence does not specify the precise duration allocated to each workshop segment or activity. Timing guidance for each small-group activity would need to be confirmed against the full workshop run-of-show, which is not included in the available materials.
-The after-activity reflection phase is described in EVR's activity design framework but no example reflection prompts specific to a leadership strategy context are provided in the evidence. These would need to be developed or sourced from additional EVR materials.
+
+The specific client context (school type, sector, country, and existing AI maturity level) is not known from the evidence provided; the prompt questions and activities above are written at a general level and will need to be contextualised once that information is available.
+
+The evidence does not specify the exact content or structure of EVR's Logic Model and Impact Assessment templates, so the action-planning activity references these tools by name without detailing their fields; the actual templates should be inserted into the workshop materials before delivery.
+
+This response was drafted on the assumption that the request is for the AI Leadership for School Managers workshop rather than the AI Essentials for Teachers workshop; if the intended audience includes teachers or a mixed group, please clarify so the prompt questions and activities can be adjusted accordingly.
+
 Some points in this answer were removed because Tapestry could not match them closely enough to the authorised EVR evidence.
+
 8 authorised sources</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-020">
@@ -2714,7 +2821,7 @@ EVR applied AHEAD in the [client] [programme] programme as part of its toolkit f
 Sources:
 [1] Module Activity 1_ Purpose-Driven AI .docx
 [2] Samples of Work.docx.pdf</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v130), 2026-09-24, after the figure-citation, correction-budget, capability and assumption fixes (M1, M2, M6, M7, M9). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed. (37 s)
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v133), 2026-09-25, after the distinctive-word retrieval fix (M8). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed.
 
 What is the AHEAD model?
 
@@ -2724,33 +2831,41 @@ EVR evidence
 Change
 Answer
 
-AHEAD is a strategic evaluative framework developed to guide purpose-driven AI selection and implementation in education. Each letter stands for a distinct principle that organisations should apply when choosing and designing AI use cases.
+AHEAD is a framework for purpose-driven AI adoption in education. Its name is an acronym standing for five principles: Alignment with educational goals, enhancing Human intelligence, Evidence-based practices, Adaptability and personalization, and Designed ethically and transparently.
 
-Alignment — AI use cases should align with educational goals and be outcome-orientated.
+The framework is intended to ensure that AI initiatives in education are grounded in clear purpose and tangible learner needs, rather than adopted for their own sake. It provides a scaffold for designing AI that serves educational goals and amplifies, rather than replaces, human expertise.
 
-Human enhancement — the focus should be on enhancing (not replacing) human intelligence and capacity.
-
-Evidence-based — development and progress should be grounded in evidence, with assumption awareness built in.
-
-Adaptability — AI implementations should support adaptability and personalisation.
-
-Ethical and transparent design — AI use cases must be designed with ethics and transparency at their core.
-
-The AHEAD framework is used alongside other tools such as Logic Models and the 4D model to ensure AI implementations are evidence-based and purpose-driven. It is applied in EVR's training modules to help educators — across primary, secondary, and higher education — evaluate and plan AI pilot projects strategically.
+The AHEAD model is used within EVR's training and professional development work, including as a central evaluative framework in module activities and webinar content on purpose-driven AI in education.
 
 Evidence
 
-The AHEAD acronym and its five principles — Alignment with educational goals, Enhancing (not replacing) human intelligence, Evidence-based development approach, Adaptability and personalisation focus, and Ethical and transparent design — are set out in EVR's [client] materials.
+Alignment with educational goals: AI initiatives must explicitly map to specific learning objectives and instructional strategies, and should address well-defined challenges and needs rather than being pursued for their own sake.
 
-An [client] Webinar slide deck frames AHEAD as a Purpose-Driven AI model and links its principles to strategic clarity, outcome-orientation, assumption awareness, resource optimisation, evidence-based progress, effective communication, and adaptability.
+Enhancing human intelligence: AI should augment, not replace, human capabilities. This involves identifying tasks suited for human-AI collaboration, designing AI to provide actionable insights and recommendations, and building in opportunities for human input, oversight, and feedback.
 
-An EVR module overview describes AHEAD as one of the powerful frameworks taught alongside Logic Models and the 4D model to ensure AI implementations are evidence-based and purpose-driven.
+Evidence-based practices: AI development should be grounded in established learning science principles, with proven pedagogical strategies identified for AI to support and scale. AI interventions should be evaluated through rigorous research methods, and findings should contribute to the broader evidence base on AI in education.
 
-A module activity document shows AHEAD being applied practically: educators are asked to identify which AHEAD principles are most relevant to a chosen scenario — covering alignment with goals, enhancing human capacity, evidence, adaptability, and ethics — as part of designing a purpose-driven AI pilot project.
+Adaptability and personalization: AI should adapt to individual learner needs and contexts, leveraging real-time learner data to provide targeted content, pacing, and support, and to identify and address common misconceptions and gaps. Educators should be empowered to adapt AI to their unique classroom needs.
+
+Designed ethically and transparently: This principle involves developing clear data privacy and security protocols, using inclusive training data and auditing for potential biases, providing transparency on AI functionalities and limitations, establishing human oversight and accountability measures, and proactively identifying and mitigating potential risks and harms.
+
+The primary goal of purpose-driven AI under the AHEAD framework is to augment human intelligence and ensure alignment with educational objectives — not to replace teachers with automated systems or to prioritise the most cutting-edge technology available.
+
+In practice, the AHEAD framework is used alongside other tools such as Logic Models and the 4D AI Strategy Framework. The 4D framework places an organisation's overall vision and ambition for AI at its centre, with four surrounding dimensions: Governance, Technology, Staff, and Applications.
+
+Module activities based on the AHEAD framework ask educators to apply its principles to real scenarios — for example, checking which principles are most relevant to a given challenge (such as alignment with goals, enhancing human capacity, evidence, adaptability, or ethics) and using a Logic Model structure to outline a pilot project.
+
+The AHEAD model also features in EVR's webinar content, where it is presented alongside guidance on how to generate impact evidence and build a theory of change for AI use cases in education.
+
+Implementing purpose-driven AI under the AHEAD framework involves defining success criteria and metrics aligned to priority goals, starting with high-impact use cases that balance feasibility and value, securing stakeholder buy-in and adequate resourcing, providing staff training and support, and evaluating, iterating, and scaling effective initiatives.
+
+The Vision underpinning an institution's AI strategy should be regularly refined based on real-world learnings and observed student outcomes, ensuring it remains an authentic and inspiring guide for the institution's educational AI transformation.
 
 Gaps and uncertainties
 
-The available evidence describes the AHEAD principles clearly but does not provide a single canonical definition document; if you are looking for a specific published source (such as a standalone AHEAD framework paper or guide), please let us know so Tapestry can search for it.
+The evidence describes the AHEAD framework as used in EVR's training and course materials; if you were asking about a different organisation's model that shares the same name, please clarify and Tapestry can refocus the response.
+
+The available evidence does not specify when the AHEAD framework was first developed, who authored it, or whether it has been published in a standalone document separate from the course and webinar materials cited here.
 
 8 authorised sources</span>
           <label class="result-label">Result
@@ -2877,17 +2992,18 @@ Sources:
 [1] AI in Education Controls Framework.pptx
 [2] [client] EVR ethical principles phase 3 report.docx
 [3] AI Readiness Framework for Scotland’s Education System.docx</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v130), 2026-09-24, after the figure-citation, correction-budget, capability and assumption fixes (M1, M2, M6, M7, M9). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed. (28 s)
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v133), 2026-09-25, after the distinctive-word retrieval fix (M8). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed.
 
 I need to present on the "five pillars" framework — do you know what that is?
 
 TAPESTRY UNDERSTOOD THIS AS
 General explanation
 EVR evidence
+Check this interpretation before continuing.
 Change
 Answer
 
-The five pillars framework referred to in EVR's materials is called the 5 Pillars of AI Pedagogy. It is a framework for how educators should integrate AI into their teaching practice.
+The five pillars framework referred to in EVR's materials is the 5 Pillars of AI Pedagogy, drawn from EVR's AI innovation and pedagogy deck. The five pillars are: Partner, Question, Process, Scaffold, and Adapt.
 
 Partner — AI enhances human connection.
 
@@ -2899,17 +3015,17 @@ Scaffold — Build independence systematically.
 
 Adapt — Continuous reflective practice.
 
-The fifth pillar, Adapt, is elaborated in the same source under the heading Reflective Practice and Continuous Adaptation. Its implementation strategy includes monthly AI reflection sessions, sharing both successes and failures, maintaining a living document of insights, positioning teachers as co-learners alongside students, and iterating practices based on evidence.
+The Adapt pillar is elaborated further in the same deck: the underlying principle is to model lifelong learning in an evolving AI landscape. Suggested implementation strategies include monthly AI reflection sessions, sharing successes and failures, maintaining a living document of insights, positioning teachers as co-learners alongside students, and iterating practices based on evidence.
 
 Evidence
 
-The 5 Pillars of AI Pedagogy — Partner, Question, Process, Scaffold, and Adapt — are drawn from EVR's AI innovation and pedagogy master deck, which also sets out the reflective practice implementation strategy associated with the Adapt pillar.
-
-No other evidence item in the authorised set provides additional detail on the individual pillars or their application.
+The sole source for the 5 Pillars of AI Pedagogy framework is EVR's AI innovation and pedagogy master deck, which names all five pillars and their one-line descriptors, and provides additional implementation detail for the Adapt pillar.
 
 Gaps and uncertainties
 
-The authorised evidence names the five pillars and gives brief descriptors for each, but does not include worked examples, case studies, or detailed guidance notes for any pillar beyond Adapt. If your presentation needs deeper content for Partner, Question, Process, or Scaffold, you may need to draw on additional EVR source materials not included here. This response treats the five pillars as belonging to EVR's AI Pedagogy framework; if you had a different five-pillars framework in mind, please let me know which one so I can search for the right evidence.
+The authorised evidence provides the names and one-line descriptors for all five pillars, and some implementation detail for Adapt, but does not include fuller explanations of Partner, Question, Process, or Scaffold beyond their one-line descriptors. If you need richer content for each pillar for your presentation, the full master deck or its accompanying speaker notes would be the place to look. This response treats the five pillars as EVR's AI Pedagogy framework from the master deck; if you had a different five-pillar framework in mind, please name it so Tapestry can locate the right source.
+
+Some points in this answer were removed because Tapestry could not match them closely enough to the authorised EVR evidence.
 
 8 authorised sources</span>
           <label class="result-label">Result
@@ -3048,25 +3164,48 @@ EVR was commissioned to help [client] convert its aspiration to use AI ethically
 
 Sources:
 [1] Ethical Frameworks Governance etc (1).pptx</span></td>
-        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v127), 2026-09-24. Verbatim; client, partner and person names redacted.
+        <td class="actual-answer"><span class="cell-label">Answer (Tapestry — actual)</span><span class="cell-text">Tapestry v2, staging (Lambda v133), 2026-09-25, after the distinctive-word retrieval fix (M8). Verbatim; client, partner, programme and person names, emails and money figures redacted; citation numbers removed.
 
-TAPESTRY UNDERSTOOD THIS AS: General explanation · EVR evidence
+What was the actual goal of the research we were commissioned to do by [client], based on our correspondence with them?
+
+TAPESTRY UNDERSTOOD THIS AS
+General explanation
+EVR evidence
+Change
 Answer
+
 EVR was commissioned by [client] to develop an ethical framework for [client]'s AI for Assessment programme, reflecting [client]'s values and aimed at helping students and teachers to realise their potential.
-To support this overarching goal, EVR conducted a series of focus groups and workshops with [client] staff. The specific goals pursued across these sessions collectively covered: understanding how [client] values and ethical considerations are currently articulated and applied in current and new projects, in external communications, in assessments and curriculum development, and in day-to-day AI use; understanding the current use of AI at [client] and the processes and policies around implementing [client] values; and exploring how the use of AI at [client] could be evaluated from an ethical standpoint.
+
+The engagement was structured across three phases. Phase 1 focused on reviewing [client]'s existing ethical AI principles through document review and stakeholder consultations, identifying gaps and producing initial recommendations. Phase 2 tested those recommendations against a live project at [client] to validate and refine them. Phase 3 produced a comprehensive, actionable roadmap for the ethical deployment of AI within [client].
+
+Although the engagement initially focused on AI for Assessment, it subsequently broadened to encompass all AI use across [client], reflecting the pervasive nature of AI technologies and ensuring a rigorous, organisation-wide approach to ethical AI implementation.
+
+The ethical AI principles were designed to serve as a foundational framework to guide the development, deployment, and management of AI systems within [client], aiming to ensure that AI systems uphold values such as fairness, transparency, and accountability, preventing biases and safeguarding the rights and interests of all stakeholders.
+
 Evidence
-[client] is an awarding body based in the UK that conducts examinations for GCSE, AS and A level, and over half of all GCSEs and A-levels taken in the UK each year are marked by [client].
-The stated goal of the commissioned project was to develop an ethical framework for [client]'s AI for Assessment programme, reflecting [client]'s values and achieving the aim of helping students and teachers to realise their potential.
-The 29th April focus group with developers and AI users aimed to understand the current use of AI at [client], the current processes and policies around implementing [client] values, and to explore ethical dimensions and how they might be applied at [client].
-The 1st May workshop aimed to understand how ethical considerations are currently articulated and considered at [client], understand current processes and policies around implementing [client] values, and explore ethical dimensions and how they might be applied to the use of AI at [client].
-The 2nd May workshop focused on understanding how [client] values and ethical considerations are currently articulated and considered in external communications, and on exploring ethical dimensions with respect to external communications regarding the use of AI at [client].
-The 8th May workshop focused on understanding how [client] values and ethical considerations are currently articulated and considered in assessments and curriculum development, and on exploring how AI services and products such as marking and feedback are evaluated from an ethical standpoint.
-The 9th May workshop aimed to understand how [client] values and ethical considerations are currently articulated and considered in current and new projects, and to explore how the use of AI at [client] could be evaluated from an ethical standpoint.
-The 10th May focus group shared the same goals: understanding how [client] values and ethical considerations are currently articulated and considered in current and new projects, and exploring ethical dimensions regarding the use of AI at [client].
-Discussion prompts used in the sessions included questions about participants' roles and key stakeholders, the mission they aimed to accomplish within their department and team, how they envisioned AI impacting that mission, what they were excited or concerned about regarding AI, key challenges or opportunities they foresaw, and how they might measure the outcomes and impacts of AI.
+
+The stated goal of the project, as recorded in EVR's consultancy exemplars, was to develop an ethical framework for [client]'s AI for Assessment programme, reflecting [client]'s values and to achieve the aim of helping students and teachers to realise their potential.
+
+The phase 3 report confirms that EVR was commissioned by [client] to design an implementation roadmap for their AI ethical principles, and that the engagement broadened from AI for Assessment to all AI use across [client].
+
+The phase 1 report describes a phased methodology involving a comprehensive document and policy review and stakeholder consultations with [client] staff, followed by a review of the existing ethical AI principles, with the aim of developing recommendations that are theoretically sound and practically applicable within [client]'s operational framework.
+
+The high-level questions guiding phase 1 included: what ethical considerations currently guide AI use at [client]; how stakeholders perceive the current ethical AI principles; and what internal policies and processes are in place to ensure ethical and safe AI use.
+
+Focus group goals documented in workshop materials included understanding how [client] values and ethical considerations are currently articulated and considered in current and new projects, and exploring how the use of AI at [client] could be evaluated from an ethical standpoint.
+
+The project plan set out three phases: Phase 1 (review of ethical principles), Phase 2 (testing of ethical principles against a live project), and Phase 3 (development of a roadmap for applying ethical principles), with Phase 3 outputs including an actionable AI roadmap, next steps for ethical policy development, next steps for AI-enabled assessment design, and next steps for recruitment and AI design processes.
+
+The phase 1 report states that the ultimate goal of phase 2 was to refine and strengthen the ethical AI principles, ensuring they are practical, effective, and aligned with the needs of [client] and its stakeholders, with the primary outcome being a validated and refined set of recommendations tested through application in a live project setting.
+
+The phase 3 report describes the final roadmap as designed to guide the responsible use of AI across all organisational activities, from assessment processes to administrative functions, addressing AI integration through a structured governance framework, readiness assessment, oversight mechanisms, and targeted training programmes.
+
+The provider report acceptability criteria for phase 1 confirm that the research questions were expected to align with the stated purpose and that the methodology should be fit-for-purpose, with the report covering [client]'s approach to an ethical AI framework and reviewing the dimensions of the ethical framework and principles against findings from focus groups and documentation.
+
 Gaps and uncertainties
-The authorised evidence does not include direct correspondence between EVR and [client], such as emails or a formal brief; the project goal and workshop objectives are drawn from EVR's own presentation materials rather than from [client]'s commissioning documents.
-It is therefore not possible to confirm from the available evidence whether the stated goal precisely matches the wording used by [client] in any original commission or contract.
+
+The evidence does not include the original commission letter or contract from [client], so the goal is reconstructed from project reports, plan documents, and exemplar materials rather than from a single authoritative commissioning document; if you have access to the original brief or contract, that would provide a more direct statement of the commissioned goal.
+
 8 authorised sources</span>
           <label class="result-label">Result
             <select data-field="result" aria-label="Result for HIST-025">
