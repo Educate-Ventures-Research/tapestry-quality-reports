@@ -136,6 +136,51 @@
   .test-matrix .fix-cell .fix-status{display:block;}
   .test-matrix .fix-cell .fix-links{display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.4rem;}
   .test-matrix .fix-cell .fix-links a{font-weight:700; color:var(--blue); text-decoration:underline; text-underline-offset:2px;}
+  :root{ --st-pass:#0ca30c; --st-iter:#ec835a; --st-block:#d03b3b; }
+  .status-panel{margin:1rem 0 1.75rem; padding:1.1rem 1.2rem; border:1px solid var(--border); border-radius:var(--radius-lg); background:var(--ink-900);}
+  .status-headline{display:flex; flex-wrap:wrap; align-items:baseline; gap:.35rem .75rem; margin-bottom:.85rem;}
+  .status-headline .big{font-family:var(--font-display); font-size:2.4rem; font-weight:800; line-height:1; color:var(--text);}
+  .status-headline .of{color:var(--text-muted); font-size:1rem;}
+  .status-bar{display:flex; gap:2px; height:1.1rem; margin-bottom:.45rem;}
+  .status-seg{height:100%; border-radius:2px; cursor:help;}
+  .status-seg:first-child{border-radius:4px 2px 2px 4px;} .status-seg:last-child{border-radius:2px 4px 4px 2px;}
+  .status-seg.pass{background:var(--st-pass);} .status-seg.iterating{background:var(--st-iter);} .status-seg.blocked{background:var(--st-block);}
+  .status-seglabels{display:flex; flex-wrap:wrap; gap:.3rem 1.25rem; margin-bottom:1rem; font-size:.82rem; color:var(--text-muted);}
+  .status-seglabels span{white-space:nowrap;}
+  .status-seglabels .sw{display:inline-block; width:.7rem; height:.7rem; border-radius:2px; margin-right:.35rem; vertical-align:-1px;}
+  .status-legend{display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.6rem 1rem; margin:0 0 1rem; padding:0; list-style:none;}
+  .status-legend li{font-size:.85rem; color:var(--text-muted); line-height:1.45;}
+  .status-legend strong{color:var(--text);}
+  .status-chip{display:inline-flex; align-items:center; gap:.35rem; padding:.15rem .5rem; border-radius:999px; font-size:.78rem; font-weight:700; color:var(--text); border:1px solid; white-space:nowrap;}
+  .status-chip .ico{font-size:.8rem; line-height:1;}
+  .status-chip.pass{border-color:var(--st-pass); background:rgba(12,163,12,.16);} .status-chip.pass .ico{color:#4bd14b;}
+  .status-chip.iterating{border-color:var(--st-iter); background:rgba(236,131,90,.16);} .status-chip.iterating .ico{color:var(--st-iter);}
+  .status-chip.blocked{border-color:var(--st-block); background:rgba(208,59,59,.2);} .status-chip.blocked .ico{color:#ff7a7a;}
+  .status-grid{display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); gap:.4rem; margin-bottom:1rem;}
+  @media (max-width:640px){ .status-grid{grid-template-columns:repeat(5,minmax(0,1fr));} }
+  .status-tile{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.1rem; min-height:3.1rem; padding:.3rem; border-radius:var(--radius-sm); border:1px solid var(--border); border-top:4px solid; color:var(--text) !important; text-decoration:none; font-size:.8rem; font-weight:700;}
+  .status-tile .ico{font-size:.85rem;}
+  .status-tile.pass{border-top-color:var(--st-pass); background:rgba(12,163,12,.10);} .status-tile.pass .ico{color:#4bd14b;}
+  .status-tile.iterating{border-top-color:var(--st-iter); background:rgba(236,131,90,.12);} .status-tile.iterating .ico{color:var(--st-iter);}
+  .status-tile.blocked{border-top-color:var(--st-block); background:rgba(208,59,59,.14);} .status-tile.blocked .ico{color:#ff7a7a;}
+  .status-tile:hover,.status-tile:focus-visible{outline:2px solid var(--focus); outline-offset:1px;}
+  .decision-box{border:1px solid var(--st-block); border-left:4px solid var(--st-block); border-radius:var(--radius-md); padding:.8rem 1rem; background:rgba(208,59,59,.08);}
+  .decision-box h3{margin:0 0 .4rem; font-size:1rem;}
+  .decision-box p,.decision-box li{font-size:.88rem; line-height:1.5; color:var(--text-muted);}
+  .decision-box ul{margin:.3rem 0 0; padding-left:1.1rem;}
+  .test-matrix tr[data-status="pass"] td.id-cell{box-shadow:inset 4px 0 0 var(--st-pass);}
+  .test-matrix tr[data-status="iterating"] td.id-cell{box-shadow:inset 4px 0 0 var(--st-iter);}
+  .test-matrix tr[data-status="blocked"] td.id-cell{box-shadow:inset 4px 0 0 var(--st-block);}
+  .test-matrix .status-cell{font-size:.8rem; line-height:1.45; color:var(--text-muted);}
+  .test-matrix .status-cell .status-note{display:block; margin-top:.45rem;}
+  .test-matrix tr[data-status="blocked"] .status-note{color:var(--text);}
+  .test-matrix .status-cell a, .decision-box a{color:var(--blue); font-weight:700; text-decoration:underline; text-underline-offset:2px; margin-right:.3rem;}
+  .status-filter{display:flex; flex-wrap:wrap; gap:.4rem; margin:0 0 .75rem;}
+  .status-filter button{font:inherit; font-size:.82rem; font-weight:700; padding:.35rem .75rem; border-radius:999px; border:1px solid var(--border-interactive); background:var(--ink-800); color:var(--text); cursor:pointer;}
+  .status-filter button[aria-pressed="true"]{background:var(--ink-700); border-color:var(--focus);}
+  .status-tip{position:fixed; z-index:90; max-width:22rem; padding:.5rem .7rem; background:var(--ink-800); border:1px solid var(--border-interactive); border-radius:var(--radius-sm); color:var(--text); font-size:.82rem; line-height:1.45; pointer-events:none; opacity:0; transition:opacity 80ms ease; box-shadow:var(--shadow-overlay);}
+  .status-tip.visible{opacity:1;}
+  @media print{ .status-filter{display:none;} }
   .table-scroll{overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius-md);}
 
   footer.doc{margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); color:var(--text-subtle); font-size:.82rem;}
@@ -176,6 +221,27 @@
 
 <section id="latest-status">
   <h2>Latest status — 2026-09-25</h2>
+  <div class="status-panel" id="status-overview">
+    <div class="status-headline"><span class="big">23</span><span class="of">of 30 cases pass · 2 iterating · 5 blocked on a decision · staging v133, 2026-09-25</span></div>
+    <div class="status-bar" role="img" aria-label="23 pass, 2 iterating, 5 blocked"><div class="status-seg pass" style="flex:23" data-tip="Pass: 23 — 001, 002, 003, 004, 006, 007, 009, 010, 013, 014, 016, 017, 018, 019, 020, 021, 022, 025, 026, 027, 028, 029, 030"></div><div class="status-seg iterating" style="flex:2" data-tip="Iterating: 2 — 015, 023"></div><div class="status-seg blocked" style="flex:5" data-tip="Blocked: 5 — 005, 008, 011, 012, 024"></div></div>
+    <div class="status-seglabels" aria-hidden="true"><span><span class="sw" style="background:var(--st-pass)"></span>✓ Pass <strong style="color:var(--text)">23</strong></span><span><span class="sw" style="background:var(--st-iter)"></span>↻ Iterating <strong style="color:var(--text)">2</strong></span><span><span class="sw" style="background:var(--st-block)"></span>■ Blocked <strong style="color:var(--text)">5</strong></span></div>
+    <ul class="status-legend">
+      <li><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span> <strong>Meets its correctness criteria</strong> on the latest staging run.</li>
+      <li><span class="status-chip iterating"><span class="ico" aria-hidden="true">↻</span>Iterating</span> <strong>Not there yet; an engineering fix is next.</strong> No decision needed.</li>
+      <li><span class="status-chip blocked"><span class="ico" aria-hidden="true">■</span>Blocked</span> <strong>Cannot pass until someone decides.</strong> The decision and its owner are in the box below and in each row.</li>
+    </ul>
+    <div class="status-grid" aria-label="All 30 cases by status; select one to jump to its row"><a class="status-tile pass" href="#row-HIST-001" data-tip="HIST-001 · Pass — Passing since v124." aria-label="HIST-001: Pass. Passing since v124."><span class="ico" aria-hidden="true">✓</span>001</a><a class="status-tile pass" href="#row-HIST-002" data-tip="HIST-002 · Pass — Passing since v124." aria-label="HIST-002: Pass. Passing since v124."><span class="ico" aria-hidden="true">✓</span>002</a><a class="status-tile pass" href="#row-HIST-003" data-tip="HIST-003 · Pass — Passing since v124." aria-label="HIST-003: Pass. Passing since v124."><span class="ico" aria-hidden="true">✓</span>003</a><a class="status-tile pass" href="#row-HIST-004" data-tip="HIST-004 · Pass — Passing since v124." aria-label="HIST-004: Pass. Passing since v124."><span class="ico" aria-hidden="true">✓</span>004</a><a class="status-tile blocked" href="#row-HIST-005" data-tip="HIST-005 · Blocked — Decision needed (sponsor): Allow a clearly labelled &quot;Tapestry&#x27;s suggestion&quot; section for advice (spec 020 FR-4)." aria-label="HIST-005: Blocked. Decision needed (sponsor): Allow a clearly labelled &quot;Tapestry&#x27;s suggestion&quot; section for advice (spec 020 FR-4)."><span class="ico" aria-hidden="true">■</span>005</a><a class="status-tile pass" href="#row-HIST-006" data-tip="HIST-006 · Pass — Passing since v128." aria-label="HIST-006: Pass. Passing since v128."><span class="ico" aria-hidden="true">✓</span>006</a><a class="status-tile pass" href="#row-HIST-007" data-tip="HIST-007 · Pass — Passing since v133." aria-label="HIST-007: Pass. Passing since v133."><span class="ico" aria-hidden="true">✓</span>007</a><a class="status-tile blocked" href="#row-HIST-008" data-tip="HIST-008 · Blocked — Decision needed (sponsor): Let a &quot;we have no record&quot; answer cite a record of what was searched (spec 020 FR-3)." aria-label="HIST-008: Blocked. Decision needed (sponsor): Let a &quot;we have no record&quot; answer cite a record of what was searched (spec 020 FR-3)."><span class="ico" aria-hidden="true">■</span>008</a><a class="status-tile pass" href="#row-HIST-009" data-tip="HIST-009 · Pass — Passing since v124." aria-label="HIST-009: Pass. Passing since v124."><span class="ico" aria-hidden="true">✓</span>009</a><a class="status-tile pass" href="#row-HIST-010" data-tip="HIST-010 · Pass — Passing since v133." aria-label="HIST-010: Pass. Passing since v133."><span class="ico" aria-hidden="true">✓</span>010</a><a class="status-tile blocked" href="#row-HIST-011" data-tip="HIST-011 · Blocked — Decision needed (sponsor): Make text the user pastes a citable source (spec 020 FR-2)." aria-label="HIST-011: Blocked. Decision needed (sponsor): Make text the user pastes a citable source (spec 020 FR-2)."><span class="ico" aria-hidden="true">■</span>011</a><a class="status-tile blocked" href="#row-HIST-012" data-tip="HIST-012 · Blocked — Decision needed (sponsor): Make text the user pastes a citable source (spec 020 FR-2)." aria-label="HIST-012: Blocked. Decision needed (sponsor): Make text the user pastes a citable source (spec 020 FR-2)."><span class="ico" aria-hidden="true">■</span>012</a><a class="status-tile pass" href="#row-HIST-013" data-tip="HIST-013 · Pass — Passing since v130." aria-label="HIST-013: Pass. Passing since v130."><span class="ico" aria-hidden="true">✓</span>013</a><a class="status-tile pass" href="#row-HIST-014" data-tip="HIST-014 · Pass — Passing since v130." aria-label="HIST-014: Pass. Passing since v130."><span class="ico" aria-hidden="true">✓</span>014</a><a class="status-tile iterating" href="#row-HIST-015" data-tip="HIST-015 · Iterating — Next engineering fix: ask which client before drafting the email. No decision needed." aria-label="HIST-015: Iterating. Next engineering fix: ask which client before drafting the email. No decision needed."><span class="ico" aria-hidden="true">↻</span>015</a><a class="status-tile pass" href="#row-HIST-016" data-tip="HIST-016 · Pass — Passing since v124." aria-label="HIST-016: Pass. Passing since v124."><span class="ico" aria-hidden="true">✓</span>016</a><a class="status-tile pass" href="#row-HIST-017" data-tip="HIST-017 · Pass — Passing since v127." aria-label="HIST-017: Pass. Passing since v127."><span class="ico" aria-hidden="true">✓</span>017</a><a class="status-tile pass" href="#row-HIST-018" data-tip="HIST-018 · Pass — Passing since v130." aria-label="HIST-018: Pass. Passing since v130."><span class="ico" aria-hidden="true">✓</span>018</a><a class="status-tile pass" href="#row-HIST-019" data-tip="HIST-019 · Pass — Passing since v130." aria-label="HIST-019: Pass. Passing since v130."><span class="ico" aria-hidden="true">✓</span>019</a><a class="status-tile pass" href="#row-HIST-020" data-tip="HIST-020 · Pass — Passing since v127." aria-label="HIST-020: Pass. Passing since v127."><span class="ico" aria-hidden="true">✓</span>020</a><a class="status-tile pass" href="#row-HIST-021" data-tip="HIST-021 · Pass — Passing since v127." aria-label="HIST-021: Pass. Passing since v127."><span class="ico" aria-hidden="true">✓</span>021</a><a class="status-tile pass" href="#row-HIST-022" data-tip="HIST-022 · Pass — Passing since v127." aria-label="HIST-022: Pass. Passing since v127."><span class="ico" aria-hidden="true">✓</span>022</a><a class="status-tile iterating" href="#row-HIST-023" data-tip="HIST-023 · Iterating — Next engineering fix: name the other matching framework it found, then answer. No decision needed." aria-label="HIST-023: Iterating. Next engineering fix: name the other matching framework it found, then answer. No decision needed."><span class="ico" aria-hidden="true">↻</span>023</a><a class="status-tile blocked" href="#row-HIST-024" data-tip="HIST-024 · Blocked — Decision needed (sponsor): Make text the user pastes a citable source (spec 020 FR-2)." aria-label="HIST-024: Blocked. Decision needed (sponsor): Make text the user pastes a citable source (spec 020 FR-2)."><span class="ico" aria-hidden="true">■</span>024</a><a class="status-tile pass" href="#row-HIST-025" data-tip="HIST-025 · Pass — Passing since v127." aria-label="HIST-025: Pass. Passing since v127."><span class="ico" aria-hidden="true">✓</span>025</a><a class="status-tile pass" href="#row-HIST-026" data-tip="HIST-026 · Pass — Passing since v130." aria-label="HIST-026: Pass. Passing since v130."><span class="ico" aria-hidden="true">✓</span>026</a><a class="status-tile pass" href="#row-HIST-027" data-tip="HIST-027 · Pass — Passing since v127." aria-label="HIST-027: Pass. Passing since v127."><span class="ico" aria-hidden="true">✓</span>027</a><a class="status-tile pass" href="#row-HIST-028" data-tip="HIST-028 · Pass — Passing since v130." aria-label="HIST-028: Pass. Passing since v130."><span class="ico" aria-hidden="true">✓</span>028</a><a class="status-tile pass" href="#row-HIST-029" data-tip="HIST-029 · Pass — Passing since v127." aria-label="HIST-029: Pass. Passing since v127."><span class="ico" aria-hidden="true">✓</span>029</a><a class="status-tile pass" href="#row-HIST-030" data-tip="HIST-030 · Pass — Passing since v128." aria-label="HIST-030: Pass. Passing since v128."><span class="ico" aria-hidden="true">✓</span>030</a></div>
+    <div class="decision-box">
+      <h3>■ Decision needed from the sponsor: how strict the evidence check is (ADR 0009)</h3>
+      <p>Five cases are good answers that the evidence check rejects, because it only accepts wording that closely matches EVR's documents. Figures and quotations stay strict in every option. The spec is written (spec 020, FR-2 to FR-4); the build can start as soon as the ADR is amended.</p>
+      <ul>
+        <li><strong>Pasted text as a source</strong> (011, 012, 024): let the user's own pasted email or notes be cited.</li>
+        <li><strong>"No record" answers</strong> (008): let the answer cite a record of what Tapestry searched.</li>
+        <li><strong>Labelled suggestions</strong> (005): allow a "Tapestry's suggestion" section that cites the facts it builds on, without word matching.</li>
+      </ul>
+      <p>Tracked in <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a> and <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/407">#407</a>.</p>
+    </div>
+  </div>
   <p><strong>Update, v133 (2026-09-25):</strong> after the retrieval fix (M8), nine cases were re-run: 010 moved from Partial to Pass and 007 from Fail to Pass, with no regressions.</p>
   <ul class="clean">
     <li>Search now looks for a question's distinctive words (its names, acronyms and rare terms) instead of requiring every word.</li>
@@ -292,11 +358,18 @@
 </section>
 
 <section>
+  <div class="status-filter" role="group" aria-label="Show cases by status">
+    <button type="button" data-filter="all" aria-pressed="true">All 30</button>
+    <button type="button" data-filter="pass" aria-pressed="false">✓ Pass 23</button>
+    <button type="button" data-filter="iterating" aria-pressed="false">↻ Iterating 2</button>
+    <button type="button" data-filter="blocked" aria-pressed="false">■ Blocked 5</button>
+  </div>
   <div class="table-scroll">
   <table class="test-matrix" id="testMatrix">
     <thead>
       <tr>
         <th class="col-id">Test ID</th>
+        <th style="width:12rem">Status</th>
         <th style="width:24rem">Question</th>
         <th style="width:26rem">Answer (Legacy)</th>
         <th style="width:20rem">Answer (Tapestry — actual)</th>
@@ -306,8 +379,9 @@
     </thead>
     <tbody>
 
-      <tr>
+      <tr id="row-HIST-001" data-status="pass">
         <td class="id-cell">HIST-001</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v124.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">We met a multi-academy trust with unclear goals and a limited budget — how should we engage them?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -469,8 +543,9 @@ Tapestry can't read live CRM or pipeline records in this release, so it can only
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v124).</span><span class="fix-links">—</span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-002" data-status="pass">
         <td class="id-cell">HIST-002</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v124.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you summarise the different client segments in our data model?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -582,8 +657,9 @@ To answer this question fully, you may wish to consult whoever owns EVR's CRM, b
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass (v124), after the advisory/drafting grounding fix.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/400">#400</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-003" data-status="pass">
         <td class="id-cell">HIST-003</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v124.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you list which clients are our key strategic partners?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -675,8 +751,9 @@ A CRM export, partnership register, or business development pipeline document wo
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v124).</span><span class="fix-links">—</span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-004" data-status="pass">
         <td class="id-cell">HIST-004</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v124.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Multi-turn: "You there Tapestry?" &rarr; "Hello, are you functioning?" &rarr; "I need help with some things."</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -716,8 +793,9 @@ It looks like your message is open-ended — Tapestry is ready to help, but need
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass (v124), after check-ins stopped getting the workflow menu.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/401">#401</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-005" data-status="blocked">
         <td class="id-cell">HIST-005</td>
+        <td class="status-cell"><span class="status-chip blocked"><span class="ico" aria-hidden="true">■</span>Blocked</span><span class="status-note">Decision needed (sponsor): Allow a clearly labelled &quot;Tapestry&#x27;s suggestion&quot; section for advice (spec 020 FR-4). <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/407">#407</a></span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Given this school's AI maturity and budget constraints, what engagement approach would you recommend?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -839,8 +917,9 @@ Adapted to the requested format; verify client-specific details before use.
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Partial): advice needs a labelled "Tapestry's suggestion" section, a sponsor decision (ADR 0009, spec 020 FR-4).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/407">#407</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-006" data-status="pass">
         <td class="id-cell">HIST-006</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v128.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you please summarise this document? (multiple files attached, none named)</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -884,8 +963,9 @@ There's no document or text here for Tapestry to work on, and it can't read uplo
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Partial → Pass in v128 (no dead ends).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/418">#418</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-007" data-status="pass">
         <td class="id-cell">HIST-007</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v133.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What's [a well-known partner organisation]'s view on opportunities in [a world region]?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -959,8 +1039,9 @@ This response treats [partner] as referring to [partner] ([partner]) rather than
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Pass in v133 (retrieval finds the evidence; the answer states which partner it assumed).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/453">#453</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/410">#410</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-008" data-status="blocked">
         <td class="id-cell">HIST-008</td>
+        <td class="status-cell"><span class="status-chip blocked"><span class="ico" aria-hidden="true">■</span>Blocked</span><span class="status-note">Decision needed (sponsor): Let a &quot;we have no record&quot; answer cite a record of what was searched (spec 020 FR-3). <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a></span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Have we had any interaction with [a named philanthropic foundation]?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -988,8 +1069,9 @@ Tapestry could not confirm this response was fully supported by the evidence it 
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Fail): "no record" answers need a citable search record, a sponsor decision (spec 020 FR-3).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-009" data-status="pass">
         <td class="id-cell">HIST-009</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v124.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What is [an internal-sounding acronym], and do we have a project by that name?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -1044,8 +1126,9 @@ If RECAP is a recently initiated, informal, or externally facing project not yet
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v124).</span><span class="fix-links">—</span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-010" data-status="pass">
         <td class="id-cell">HIST-010</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v133.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Multi-turn: "Do you have the specification for [a named programme]?" followed by 3–4 follow-up refinement questions in the same conversation.</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -1343,8 +1426,9 @@ This answer addresses the evaluation approach for the [client] [programme], cons
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Partial in v129 (conversation subject); Partial → Pass in v133 (distinctive-word retrieval).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/409">#409</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/394">#394</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/453">#453</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-011" data-status="blocked">
         <td class="id-cell">HIST-011</td>
+        <td class="status-cell"><span class="status-chip blocked"><span class="ico" aria-hidden="true">■</span>Blocked</span><span class="status-note">Decision needed (sponsor): Make text the user pastes a citable source (spec 020 FR-2). <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a></span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">[Pastes a lengthy email invitation.] Should we accept this?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -1414,8 +1498,9 @@ Tapestry could not confirm this response was fully supported by the evidence it 
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Fail): pasted text must become citable, a sponsor decision (spec 020 FR-2).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-012" data-status="blocked">
         <td class="id-cell">HIST-012</td>
+        <td class="status-cell"><span class="status-chip blocked"><span class="ico" aria-hidden="true">■</span>Blocked</span><span class="status-note">Decision needed (sponsor): Make text the user pastes a citable source (spec 020 FR-2). <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/410">#410</a></span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">[Pastes call notes.] Draft topics for a 4-module, 15-minute-session training based on this.</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -1526,8 +1611,9 @@ Tapestry could not confirm this response was fully supported by the evidence it 
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Fail): pasted text must become citable, a sponsor decision (spec 020 FR-2).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/410">#410</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-013" data-status="pass">
         <td class="id-cell">HIST-013</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v130.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Which clients are currently in early-stage conversations about AI strategy?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -1583,8 +1669,9 @@ Tapestry could not confirm this response was fully supported by the evidence it 
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Pass in v130 (plain note that CRM data is not available).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-014" data-status="pass">
         <td class="id-cell">HIST-014</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v130.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What invoices are linked to [a named project]?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -1628,8 +1715,9 @@ Tapestry could not confirm this response was fully supported by the evidence it 
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Pass in v130 (plain note that invoice data is not available).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-015" data-status="iterating">
         <td class="id-cell">HIST-015</td>
+        <td class="status-cell"><span class="status-chip iterating"><span class="ico" aria-hidden="true">↻</span>Iterating</span><span class="status-note">Next engineering fix: ask which client before drafting the email. No decision needed.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Help me draft a follow-up email to [a named client] about past work and possible next steps.</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -1692,8 +1780,9 @@ Tapestry can't read live CRM or pipeline records in this release, so it can only
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Partial): should ask which client before drafting; follow-up to the stated-assumption fix.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-016" data-status="pass">
         <td class="id-cell">HIST-016</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v124.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">I'm new here — can you help me get oriented to the organisation?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, re-run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -1808,8 +1897,9 @@ EVR is also exploring opportunities such as helping organisations evaluate how t
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass (v124), after the organisation-question and grounding fixes.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/392">#392</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/400">#400</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-017" data-status="pass">
         <td class="id-cell">HIST-017</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v127.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Have we done any projects similar to a national digital-skills programme for teachers?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -1924,8 +2014,9 @@ This response treats the question as asking about EVR's own project history; if 
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127).</span><span class="fix-links">—</span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-018" data-status="pass">
         <td class="id-cell">HIST-018</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v130.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you teach me about our 4D AI Strategy Framework?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -2098,8 +2189,9 @@ The [person] and [person] publication cited across multiple sources is listed as
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Pass in v130 (figure citation repair).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/445">#445</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-019" data-status="pass">
         <td class="id-cell">HIST-019</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v130.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">A prospective client wants an independent evaluation of their platform. Draft a proposal and statement of work based on similar past engagements.</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -2522,8 +2614,9 @@ Some points in this answer were removed because Tapestry could not match them cl
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Pass in v130 (time for the correction step).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-020" data-status="pass">
         <td class="id-cell">HIST-020</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v127.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Design prompt questions and small-group activity scaffolding for a leadership AI-strategy workshop.</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -2823,8 +2916,9 @@ Some points in this answer were removed because Tapestry could not match them cl
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127).</span><span class="fix-links">—</span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-021" data-status="pass">
         <td class="id-cell">HIST-021</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v127.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What is the AHEAD model?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -2906,8 +3000,9 @@ The available evidence does not specify when the AHEAD framework was first devel
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127).</span><span class="fix-links">—</span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-022" data-status="pass">
         <td class="id-cell">HIST-022</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v127.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What's the standard way to introduce our organisation in a written report?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -2986,8 +3081,9 @@ The available evidence may not cover every current detail.
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127).</span><span class="fix-links">—</span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-023" data-status="iterating">
         <td class="id-cell">HIST-023</td>
+        <td class="status-cell"><span class="status-chip iterating"><span class="ico" aria-hidden="true">↻</span>Iterating</span><span class="status-note">Next engineering fix: name the other matching framework it found, then answer. No decision needed.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">I need to present on the "five pillars" framework — do you know what that is?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -3068,8 +3164,9 @@ Some points in this answer were removed because Tapestry could not match them cl
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Partial): should name the other pillar framework it found; follow-up to the stated-assumption fix.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-024" data-status="blocked">
         <td class="id-cell">HIST-024</td>
+        <td class="status-cell"><span class="status-chip blocked"><span class="ico" aria-hidden="true">■</span>Blocked</span><span class="status-note">Decision needed (sponsor): Make text the user pastes a citable source (spec 020 FR-2). <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a></span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">[Pastes a media/interview invitation email.] Should we accept this?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -3159,8 +3256,9 @@ Some points in this answer were removed because Tapestry could not match them cl
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Fail): pasted text must become citable, a sponsor decision (spec 020 FR-2).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-025" data-status="pass">
         <td class="id-cell">HIST-025</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v127.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">What was the actual goal of a specific piece of commissioned research, based on our correspondence with the client about it?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -3249,8 +3347,9 @@ The evidence does not include the original commission letter or contract from [c
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127).</span><span class="fix-links">—</span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-026" data-status="pass">
         <td class="id-cell">HIST-026</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v130.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">How do you actually answer questions — where does your information come from?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -3319,8 +3418,9 @@ The Tapestry capability profile describes the document sources Tapestry draws on
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Pass in v130 (Tapestry's own capability description); unrelated citation removed in v131.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/449">#449</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-027" data-status="pass">
         <td class="id-cell">HIST-027</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v127.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Write a short profile of our organisation for external use.</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -3376,8 +3476,9 @@ It is not clear from the evidence which client relationships are current versus 
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127).</span><span class="fix-links">—</span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-028" data-status="pass">
         <td class="id-cell">HIST-028</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v130.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Multi-turn: "I'm compiling country profiles on AI-in-education policy — check our past work on Country A first, then Country B, then Country C" (one country per turn, same conversation).</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -3618,8 +3719,9 @@ External research isn't available in this release, so this answer uses EVR's own
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Partial in v128 (no dead ends); Partial → Pass in v130 (figure citation repair).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/418">#418</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/445">#445</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-029" data-status="pass">
         <td class="id-cell">HIST-029</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v127.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Hi, are you working today?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -3657,8 +3759,9 @@ Feel free to ask a question about EVR's work or request a draft — what can Tap
         <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127). An unrelated citation was removed in v131.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/449">#449</a></span></td>
       </tr>
 
-      <tr>
+      <tr id="row-HIST-030" data-status="pass">
         <td class="id-cell">HIST-030</td>
+        <td class="status-cell"><span class="status-chip pass"><span class="ico" aria-hidden="true">✓</span>Pass</span><span class="status-note">Passing since v128.</span></td>
         <td class="question-cell"><span class="cell-label">Question</span><span class="cell-text">Can you suggest good ready-to-use resources for teachers to use in the classroom?</span></td>
         <td class="legacy-answer"><span class="cell-label">Legacy answer</span><span class="cell-text">Legacy tool, run 2026-09-23. Verbatim; client, partner and person names and money figures redacted.
 
@@ -3875,7 +3978,7 @@ The evidence does not include independent quality evaluations or effectiveness r
 
   document.getElementById('exportBtn').addEventListener('click', function () {
     var rows = Array.prototype.slice.call(document.querySelectorAll('#testMatrix tbody tr'));
-    var header = ['Test ID', 'Question', 'Answer (Legacy)', 'Answer (Tapestry - actual)', 'Result', 'Correctness criteria', 'Fixed by (GitHub)'];
+    var header = ['Test ID', 'Status', 'Question', 'Answer (Legacy)', 'Answer (Tapestry - actual)', 'Result', 'Correctness criteria', 'Fixed by (GitHub)'];
     var lines = [header.map(csvEscape).join(',')];
     rows.forEach(function (row) {
       var id = row.querySelector('.id-cell').textContent.trim();
@@ -3886,7 +3989,9 @@ The evidence does not include independent quality evaluations or effectiveness r
       var criteria = row.querySelector('.criteria-cell .cell-text').textContent.trim();
       var fixCell = row.querySelector('.fix-cell');
       var fixedBy = fixCell ? fixCell.querySelector('.fix-status').textContent.trim() + ' ' + Array.prototype.map.call(fixCell.querySelectorAll('a'), function (a) { return a.textContent + ' ' + a.href; }).join('; ') : '';
-      lines.push([id, question, legacy, actual, result, criteria, fixedBy].map(csvEscape).join(','));
+      var statusCell = row.querySelector('.status-cell');
+      var statusText = statusCell ? statusCell.textContent.replace(/\s+/g, ' ').trim() : '';
+      lines.push([id, statusText, question, legacy, actual, result, criteria, fixedBy].map(csvEscape).join(','));
     });
     var blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
     var url = URL.createObjectURL(blob);
@@ -3901,5 +4006,25 @@ The evidence does not include independent quality evaluations or effectiveness r
 })();
 </script>
 
+<script>
+(function () {
+  var tip = document.createElement('div'); tip.className = 'status-tip'; tip.setAttribute('role', 'tooltip'); document.body.appendChild(tip);
+  function place(e) { var m = 14; var x = Math.min(e.clientX + m, window.innerWidth - tip.offsetWidth - m); var y = Math.min(e.clientY + m, window.innerHeight - tip.offsetHeight - m); tip.style.left = Math.max(m, x) + 'px'; tip.style.top = Math.max(m, y) + 'px'; }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-tip]'), function (el) {
+    el.addEventListener('mouseenter', function (e) { tip.textContent = el.getAttribute('data-tip'); tip.classList.add('visible'); place(e); });
+    el.addEventListener('mousemove', place);
+    el.addEventListener('mouseleave', function () { tip.classList.remove('visible'); });
+  });
+  var buttons = document.querySelectorAll('.status-filter button');
+  function show(filter) {
+    Array.prototype.forEach.call(buttons, function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-filter') === filter)); });
+    Array.prototype.forEach.call(document.querySelectorAll('#testMatrix tbody tr[data-status]'), function (tr) { tr.hidden = filter !== 'all' && tr.getAttribute('data-status') !== filter; });
+  }
+  Array.prototype.forEach.call(buttons, function (b) { b.addEventListener('click', function () { show(b.getAttribute('data-filter')); }); });
+  Array.prototype.forEach.call(document.querySelectorAll('.status-tile'), function (a) {
+    a.addEventListener('click', function () { show('all'); var row = document.querySelector(a.getAttribute('href')); if (row) { row.scrollIntoView({ block: 'center' }); row.querySelector('.id-cell').focus && row.querySelector('.id-cell').setAttribute('tabindex', '-1'); row.querySelector('.id-cell').focus(); } });
+  });
+})();
+</script>
 </body>
 </html>
