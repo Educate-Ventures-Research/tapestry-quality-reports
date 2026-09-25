@@ -131,6 +131,11 @@
   .result-label select.result-fail{color:var(--red);}
   .result-label select.result-partial{color:var(--amber);}
   .test-matrix .criteria-cell{color:var(--text); font-size:.85rem; line-height:1.5;}
+  .test-matrix .fix-cell{border-left:3px solid var(--border-interactive); font-size:.82rem; line-height:1.5; color:var(--text);}
+  .test-matrix .fix-cell .cell-label{color:var(--amber);}
+  .test-matrix .fix-cell .fix-status{display:block;}
+  .test-matrix .fix-cell .fix-links{display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.4rem;}
+  .test-matrix .fix-cell .fix-links a{font-weight:700;}
   .table-scroll{overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius-md);}
 
   footer.doc{margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); color:var(--text-subtle); font-size:.82rem;}
@@ -296,6 +301,7 @@
         <th style="width:26rem">Answer (Legacy)</th>
         <th style="width:20rem">Answer (Tapestry — actual)</th>
         <th style="width:26rem">Correctness criteria</th>
+        <th style="width:16rem">Fixed by (GitHub)</th>
       </tr>
     </thead>
     <tbody>
@@ -460,6 +466,7 @@ Tapestry can't read live CRM or pipeline records in this release, so it can only
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Every citation must resolve to a real authorised source (title + URL) via citation-resolve. No raw/unresolved citation syntax may reach the visible answer. If the segmentation framework referenced isn't found in authorised evidence, the answer must say so rather than asserting it.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v124).</span><span class="fix-links">—</span></td>
       </tr>
 
       <tr>
@@ -572,6 +579,7 @@ To answer this question fully, you may wish to consult whoever owns EVR's CRM, b
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Same citation-integrity bar as HIST-001. The described segmentation must match an authorised internal document, or the answer must disclose that no matching authorised source was found.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass (v124), after the advisory/drafting grounding fix.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/400">#400</a></span></td>
       </tr>
 
       <tr>
@@ -664,6 +672,7 @@ A CRM export, partnership register, or business development pipeline document wo
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must always return a terminal outcome — a grounded answer, an evidence-gap message, or an explicit out-of-scope/capability message. An empty or missing response is an automatic fail.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v124).</span><span class="fix-links">—</span></td>
       </tr>
 
       <tr>
@@ -704,6 +713,7 @@ It looks like your message is open-ended — Tapestry is ready to help, but need
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Basic conversational check-ins must succeed. If a dependency is genuinely unavailable, the terminal message must name the limitation (e.g. dependency_unavailable) — and must not repeat identically across a whole session without any escalating guidance to the user.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass (v124), after check-ins stopped getting the workflow menu.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/401">#401</a></span></td>
       </tr>
 
       <tr>
@@ -826,6 +836,7 @@ Adapted to the requested format; verify client-specific details before use.
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Recommendations must be traceable to cited, resolvable authorised evidence. Where the advice is the model's own inference rather than a sourced fact, the answer must clearly separate fact from inference.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Partial): advice needs a labelled "Tapestry's suggestion" section, a sponsor decision (ADR 0009, spec 020 FR-4).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/407">#407</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a></span></td>
       </tr>
 
       <tr>
@@ -870,6 +881,7 @@ There's no document or text here for Tapestry to work on, and it can't read uplo
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">When a request is genuinely ambiguous among multiple candidate sources, the system must ask a clarifying question rather than silently guessing one.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Partial → Pass in v128 (no dead ends).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/418">#418</a></span></td>
       </tr>
 
       <tr>
@@ -944,6 +956,7 @@ This response treats [partner] as referring to [partner] ([partner]) rather than
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">When a name or term has more than one plausible referent, the system must either state its assumption explicitly in the answer or ask before proceeding. An unstated silent assumption is a fail.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Pass in v133 (retrieval finds the evidence; the answer states which partner it assumed).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/453">#453</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/410">#410</a></span></td>
       </tr>
 
       <tr>
@@ -972,6 +985,7 @@ Tapestry could not confirm this response was fully supported by the evidence it 
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">When no matching evidence exists, the system must say so plainly and state what was checked — never fabricate a plausible-sounding but unsupported answer.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Fail): "no record" answers need a citable search record, a sponsor decision (spec 020 FR-3).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a></span></td>
       </tr>
 
       <tr>
@@ -1027,6 +1041,7 @@ If RECAP is a recently initiated, informal, or externally facing project not yet
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Same honesty bar as HIST-008, plus: must distinguish a coincidental generic word match from an actual named-entity match rather than conflating the two.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v124).</span><span class="fix-links">—</span></td>
       </tr>
 
       <tr>
@@ -1325,6 +1340,7 @@ This answer addresses the evaluation approach for the [client] [programme], cons
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must retain and correctly reference established conversation context (e.g. the named programme) across follow-up turns without re-asking for information already given, and without that context leaking into an unrelated later conversation.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Partial in v129 (conversation subject); Partial → Pass in v133 (distinctive-word retrieval).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/409">#409</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/394">#394</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/453">#453</a></span></td>
       </tr>
 
       <tr>
@@ -1395,6 +1411,7 @@ Tapestry could not confirm this response was fully supported by the evidence it 
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must correctly extract the decision-relevant facts from a long pasted passage (dates, deadline, requester), ground any internal-precedent claim in a real citation, and give a clear recommendation with stated reasoning — not a generic non-answer.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Fail): pasted text must become citable, a sponsor decision (spec 020 FR-2).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a></span></td>
       </tr>
 
       <tr>
@@ -1506,6 +1523,7 @@ Tapestry could not confirm this response was fully supported by the evidence it 
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must handle a reasonably long pasted working document as input without failing outright. If the input exceeds a supported limit, the system must say so explicitly rather than returning an unexplained generic error.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Fail): pasted text must become citable, a sponsor decision (spec 020 FR-2).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/410">#410</a></span></td>
       </tr>
 
       <tr>
@@ -1562,6 +1580,7 @@ Tapestry could not confirm this response was fully supported by the evidence it 
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Pending scope decision. If live CRM lookup is out of scope for Tapestry v2, the correct behaviour is a clear, explicit capability-limitation message — not silence and not a fabricated answer. If it is in scope, this becomes a real functional test instead.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Pass in v130 (plain note that CRM data is not available).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a></span></td>
       </tr>
 
       <tr>
@@ -1606,6 +1625,7 @@ Tapestry could not confirm this response was fully supported by the evidence it 
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Same scope-boundary criteria as HIST-013.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Pass in v130 (plain note that invoice data is not available).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a></span></td>
       </tr>
 
       <tr>
@@ -1669,6 +1689,7 @@ Tapestry can't read live CRM or pipeline records in this release, so it can only
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Any specific past-engagement facts used in the draft (dates, deliverables, names) must be grounded in real cited evidence, not invented specifics that can't be verified.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Partial): should ask which client before drafting; follow-up to the stated-assumption fix.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a></span></td>
       </tr>
 
       <tr>
@@ -1784,6 +1805,7 @@ EVR is also exploring opportunities such as helping organisations evaluate how t
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must give an accurate, appropriately-scoped organisational overview grounded in authorised internal materials, without overclaiming specifics that aren't actually present in the source documents.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass (v124), after the organisation-question and grounding fixes.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/392">#392</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/400">#400</a></span></td>
       </tr>
 
       <tr>
@@ -1899,6 +1921,7 @@ This response treats the question as asking about EVR's own project history; if 
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Specific past-project claims (names, scope, outcomes) must be traceable to real cited evidence. If no real precedent exists, the answer must say so rather than inventing a plausible-sounding one.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127).</span><span class="fix-links">—</span></td>
       </tr>
 
       <tr>
@@ -2072,6 +2095,7 @@ The [person] and [person] publication cited across multiple sources is listed as
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">The framework description must match the real authorised source document's terminology and structure — must not invent, rename, or reorder dimensions that aren't actually in the source.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Pass in v130 (figure citation repair).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/445">#445</a></span></td>
       </tr>
 
       <tr>
@@ -2495,6 +2519,7 @@ Some points in this answer were removed because Tapestry could not match them cl
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Any past-engagement details used as precedent must be grounded in real cited evidence, and clearly separated from newly generated proposal language that isn't sourced from anywhere.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Pass in v130 (time for the correction step).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a></span></td>
       </tr>
 
       <tr>
@@ -2795,6 +2820,7 @@ Some points in this answer were removed because Tapestry could not match them cl
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Generated workshop content that claims to align with a named internal framework must accurately reflect that framework's real structure, not an approximation of it.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127).</span><span class="fix-links">—</span></td>
       </tr>
 
       <tr>
@@ -2877,6 +2903,7 @@ The available evidence does not specify when the AHEAD framework was first devel
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must correctly and completely list the framework's real components from an authorised source — partial, reordered, or renamed components should fail this check.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127).</span><span class="fix-links">—</span></td>
       </tr>
 
       <tr>
@@ -2956,6 +2983,7 @@ The available evidence may not cover every current detail.
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Suggested boilerplate text must be grounded in an authorised existing document, not freshly invented copy presented as an existing convention.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127).</span><span class="fix-links">—</span></td>
       </tr>
 
       <tr>
@@ -3037,6 +3065,7 @@ Some points in this answer were removed because Tapestry could not match them cl
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">When a term could refer to more than one internal framework, the system must flag the ambiguity clearly rather than presenting one match as the only possibility.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Partial): should name the other pillar framework it found; follow-up to the stated-assumption fix.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a></span></td>
       </tr>
 
       <tr>
@@ -3127,6 +3156,7 @@ Some points in this answer were removed because Tapestry could not match them cl
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must correctly extract time-sensitive facts (deadlines) from the pasted content and flag urgency; any reputational or precedent claims must be grounded in real evidence, not assumed.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Open (Fail): pasted text must become citable, a sponsor decision (spec 020 FR-2).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a></span></td>
       </tr>
 
       <tr>
@@ -3216,6 +3246,7 @@ The evidence does not include the original commission letter or contract from [c
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must only state a goal or finding if it is explicitly grounded in retrievable correspondence or documents — must not infer intent beyond what the source actually says.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127).</span><span class="fix-links">—</span></td>
       </tr>
 
       <tr>
@@ -3285,6 +3316,7 @@ The Tapestry capability profile describes the document sources Tapestry draws on
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">The system's self-description of its own capabilities must accurately reflect what it can actually access in the current release — must not claim data-source access it doesn't actually have.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Pass in v130 (Tapestry's own capability description); unrelated citation removed in v131.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/443">#443</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/449">#449</a></span></td>
       </tr>
 
       <tr>
@@ -3341,6 +3373,7 @@ It is not clear from the evidence which client relationships are current versus 
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Company-profile facts (founder, mission wording, focus areas) must match authorised source material — must not paraphrase into claims that drift from the source.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127).</span><span class="fix-links">—</span></td>
       </tr>
 
       <tr>
@@ -3582,6 +3615,7 @@ External research isn't available in this release, so this answer uses EVR's own
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Must keep each country's findings correctly separated (no cross-country fact bleed) while still remembering the overall task framing across turns.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Partial in v128 (no dead ends); Partial → Pass in v130 (figure citation repair).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/418">#418</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/445">#445</a></span></td>
       </tr>
 
       <tr>
@@ -3620,6 +3654,7 @@ Feel free to ask a question about EVR's work or request a draft — what can Tap
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">A basic conversational check-in must always succeed with a normal response — this is a baseline reliability floor, not a knowledge question.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Pass from the first run (v127). An unrelated citation was removed in v131.</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/449">#449</a></span></td>
       </tr>
 
       <tr>
@@ -3706,6 +3741,7 @@ The evidence does not include independent quality evaluations or effectiveness r
             </select>
           </label></td>
         <td class="criteria-cell"><span class="cell-label">Correctness criteria</span><span class="cell-text">Where recommendations are generated suggestions rather than pulled from a specific authorised resource, the answer must make that clear rather than implying the resources are pre-existing verified materials.</span></td>
+        <td class="fix-cell"><span class="cell-label">Fixed by</span><span class="fix-status">Fail → Pass in v128 (no dead ends).</span><span class="fix-links"><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/418">#418</a></span></td>
       </tr>
 
     </tbody>
@@ -3839,7 +3875,7 @@ The evidence does not include independent quality evaluations or effectiveness r
 
   document.getElementById('exportBtn').addEventListener('click', function () {
     var rows = Array.prototype.slice.call(document.querySelectorAll('#testMatrix tbody tr'));
-    var header = ['Test ID', 'Question', 'Answer (Legacy)', 'Answer (Tapestry - actual)', 'Result', 'Correctness criteria'];
+    var header = ['Test ID', 'Question', 'Answer (Legacy)', 'Answer (Tapestry - actual)', 'Result', 'Correctness criteria', 'Fixed by (GitHub)'];
     var lines = [header.map(csvEscape).join(',')];
     rows.forEach(function (row) {
       var id = row.querySelector('.id-cell').textContent.trim();
@@ -3848,7 +3884,9 @@ The evidence does not include independent quality evaluations or effectiveness r
       var actual = row.querySelector('.actual-answer .cell-text').textContent.trim();
       var result = row.querySelector('select[data-field="result"]').value;
       var criteria = row.querySelector('.criteria-cell .cell-text').textContent.trim();
-      lines.push([id, question, legacy, actual, result, criteria].map(csvEscape).join(','));
+      var fixCell = row.querySelector('.fix-cell');
+      var fixedBy = fixCell ? fixCell.querySelector('.fix-status').textContent.trim() + ' ' + Array.prototype.map.call(fixCell.querySelectorAll('a'), function (a) { return a.textContent + ' ' + a.href; }).join('; ') : '';
+      lines.push([id, question, legacy, actual, result, criteria, fixedBy].map(csvEscape).join(','));
     });
     var blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
     var url = URL.createObjectURL(blob);
