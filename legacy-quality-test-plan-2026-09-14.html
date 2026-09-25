@@ -192,6 +192,11 @@
   .test-matrix.compact th:nth-child(6), .test-matrix.compact td:nth-child(6){display:none;}
   .test-matrix.compact th:nth-child(5), .test-matrix.compact td:nth-child(5){display:none;}
   .test-matrix .fix-cell .fix-status{font-weight:700;}
+  .now-box{margin-top:.75rem; border:1px solid var(--st-iter); border-left:4px solid var(--st-iter); border-radius:var(--radius-md); padding:.8rem 1rem; background:rgba(236,131,90,.07);}
+  .now-box h3{margin:0 0 .4rem; font-size:1rem;}
+  .now-box ul{list-style:none; margin:.3rem 0 0; padding-left:0;}
+  .now-box li{margin:.2rem 0; font-size:.88rem; line-height:1.5; color:var(--text-muted);}
+  .now-box a{color:var(--blue); font-weight:700; text-decoration:underline; text-underline-offset:2px;}
   .table-scroll{overflow-x:auto; border:1px solid var(--border); border-radius:var(--radius-md);}
 
   footer.doc{margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); color:var(--text-subtle); font-size:.82rem;}
@@ -233,7 +238,7 @@
 <section id="latest-status">
   <h2>Latest status — 2026-09-25</h2>
   <div class="status-panel" id="status-overview">
-    <div class="status-headline"><span class="big">23</span><span class="of">of 30 pass</span><span class="when">staging v133 · 25 Sep 2026</span></div>
+    <div class="status-headline"><span class="big">23</span><span class="of">of 30 pass</span><span class="when">graded on v133 · staging now v137 · 25 Sep 2026</span></div>
     <div class="status-bar" role="img" aria-label="23 pass, 2 iterating, 5 blocked"><div class="status-seg pass" style="flex:23" data-tip="Pass: 23 — 001, 002, 003, 004, 006, 007, 009, 010, 013, 014, 016, 017, 018, 019, 020, 021, 022, 025, 026, 027, 028, 029, 030"></div><div class="status-seg iterating" style="flex:2" data-tip="Iterating: 2 — 015, 023"></div><div class="status-seg blocked" style="flex:5" data-tip="Blocked: 5 — 005, 008, 011, 012, 024"></div></div>
     <div class="status-seglabels" aria-hidden="true"><span><span class="sw" style="background:var(--st-pass)"></span>✓ Pass <strong style="color:var(--text)">23</strong></span><span><span class="sw" style="background:var(--st-iter)"></span>↻ Iterating <strong style="color:var(--text)">2</strong></span><span><span class="sw" style="background:var(--st-block)"></span>■ Blocked <strong style="color:var(--text)">5</strong></span></div>
     <ul class="status-legend">
@@ -251,9 +256,18 @@
       </ul>
       <p><a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/408">#408</a> <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/407">#407</a></p>
     </div>
+    <div class="now-box">
+      <h3>↻ Now</h3>
+      <ul>
+        <li><strong>Testing changed:</strong> each case now runs 3 times through an automatic runner (minutes, not hours). One run per case proved too noisy: v134 and v135 were rolled back. <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/415">#415</a></li>
+        <li><strong>Blocked:</strong> the AI provider began refusing all requests mid-baseline (25 Sep, 11:11), most likely the account's credit or spending limit. Once fixed, the baseline takes 20 minutes.</li>
+        <li><strong>Next:</strong> re-test three changes one at a time: 023 naming, draft length, 015 asking which client. <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/462">#462</a></li>
+      </ul>
+    </div>
   </div>
   <details class="history">
-    <summary>Change history and details (v124 → v133)</summary>
+    <summary>Change history and details (v124 → v137)</summary>
+  <p><strong>Update, v134–v137 (2026-09-25):</strong> two prompt releases were each measured on all 30 cases and rolled back. v134 fixed 023 but broke two drafts; v135 fixed 019 and 023 but four passing cases failed. Staging now runs v137: v133, plus answers that are too long are shortened with a note instead of rejected, plus a larger test budget. Grades stay those of v133 until the repeated-run baseline completes.</p>
   <p><strong>Update, v133 (2026-09-25):</strong> after the retrieval fix (M8), nine cases were re-run: 010 moved from Partial to Pass and 007 from Fail to Pass, with no regressions.</p>
   <ul class="clean">
     <li>Search now looks for a question's distinctive words (its names, acronyms and rare terms) instead of requiring every word.</li>
