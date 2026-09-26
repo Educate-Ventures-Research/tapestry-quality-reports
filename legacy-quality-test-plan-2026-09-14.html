@@ -238,7 +238,7 @@
 <section id="latest-status">
   <h2>Latest status — 2026-09-25</h2>
   <div class="status-panel" id="status-overview">
-    <div class="status-headline"><span class="big">23</span><span class="of">of 30 pass</span><span class="when">graded on v133 · staging now v137 · 25 Sep 2026</span></div>
+    <div class="status-headline"><span class="big">23</span><span class="of">of 30 pass</span><span class="when">graded on v133 · staging now v139 · 26 Sep 2026</span></div>
     <div class="status-bar" role="img" aria-label="23 pass, 2 iterating, 5 blocked"><div class="status-seg pass" style="flex:23" data-tip="Pass: 23 — 001, 002, 003, 004, 006, 007, 009, 010, 013, 014, 016, 017, 018, 019, 020, 021, 022, 025, 026, 027, 028, 029, 030"></div><div class="status-seg iterating" style="flex:2" data-tip="Iterating: 2 — 015, 023"></div><div class="status-seg blocked" style="flex:5" data-tip="Blocked: 5 — 005, 008, 011, 012, 024"></div></div>
     <div class="status-seglabels" aria-hidden="true"><span><span class="sw" style="background:var(--st-pass)"></span>✓ Pass <strong style="color:var(--text)">23</strong></span><span><span class="sw" style="background:var(--st-iter)"></span>↻ Iterating <strong style="color:var(--text)">2</strong></span><span><span class="sw" style="background:var(--st-block)"></span>■ Blocked <strong style="color:var(--text)">5</strong></span></div>
     <ul class="status-legend">
@@ -260,13 +260,14 @@
       <h3>↻ Now</h3>
       <ul>
         <li><strong>Testing changed:</strong> each case now runs 3 times through an automatic runner (minutes, not hours). One run per case proved too noisy: v134 and v135 were rolled back. <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/415">#415</a></li>
-        <li><strong>Blocked:</strong> the AI provider began refusing all requests mid-baseline (25 Sep, 11:11), most likely the account's credit or spending limit. Once fixed, the baseline takes 20 minutes.</li>
+        <li><strong>Blocked:</strong> the AI provider account ran out of credit mid-baseline (25 Sep, 11:11). This is now confirmed by the new logs, and an alarm fires when it happens. The 3-run baseline on v137 is therefore not usable: 49 of its 90 answers were refusals. It will be re-run on v139 once the credit is topped up (about 20 minutes).</li>
         <li><strong>Next:</strong> re-test three changes one at a time: 023 naming, draft length, 015 asking which client. <a href="https://github.com/Educate-Ventures-Research/tapestry-backend/issues/462">#462</a></li>
       </ul>
     </div>
   </div>
   <details class="history">
-    <summary>Change history and details (v124 → v137)</summary>
+    <summary>Change history and details (v124 → v139)</summary>
+  <p><strong>Update, v138–v139 (2026-09-25/26):</strong> no change to how Tapestry answers. v138 makes failures traceable. Every log line of a question carries the same request ID. Provider refusals record a reason (for example "credit balance too low") without storing any text. Every question ends with one outcome line. Alarms now fire on exhausted credit, provider errors and the test budget. Employees now see "Tapestry's AI credit has run out" instead of a generic refusal. v139 also saves the real AI cost of each question. Grades stay those of v133.</p>
   <p><strong>Update, v134–v137 (2026-09-25):</strong> two prompt releases were each measured on all 30 cases and rolled back. v134 fixed 023 but broke two drafts; v135 fixed 019 and 023 but four passing cases failed. Staging now runs v137: v133, plus answers that are too long are shortened with a note instead of rejected, plus a larger test budget. Grades stay those of v133 until the repeated-run baseline completes.</p>
   <p><strong>Update, v133 (2026-09-25):</strong> after the retrieval fix (M8), nine cases were re-run: 010 moved from Partial to Pass and 007 from Fail to Pass, with no regressions.</p>
   <ul class="clean">
